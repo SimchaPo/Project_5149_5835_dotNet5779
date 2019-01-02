@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL;
-using BE;
-
 
 namespace UI
 {
@@ -15,7 +12,7 @@ namespace UI
         {
             for (int i = 0; i < 100; i++)
             {
-            Console.WriteLine(DAL.Dal_imp.getExamIDNum());
+                Console.WriteLine(DAL.Dal_imp.getExamIDNum());
 
             }
             Console.ReadKey();

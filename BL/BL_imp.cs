@@ -7,7 +7,7 @@ using BE;
 
 namespace BL
 {
-    class IBL_imp : IBL
+    class BL_imp : IBL
     {
         public void addTest(Test newTest)
         {
@@ -17,7 +17,7 @@ namespace BL
 
         public void addTester(Tester newTester)
         {
-            if(newTester)
+          //  if(newTester.)
             //בדיקת גיל הטסטר מינימום 40
             // טסטר זמין
             throw new NotImplementedException();
@@ -41,6 +41,11 @@ namespace BL
         }
 
         public List<Tester> getTesters()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Tester> getTestersFilter(Func<Tester, bool> filter =null)
         {
             throw new NotImplementedException();
         }

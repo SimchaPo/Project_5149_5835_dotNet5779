@@ -20,6 +20,7 @@ namespace BL
         void addTest(Test newTest);
         void updateTest();
 
+        List<Tester> getTestersFilter(Func<Tester,bool> filter);
         List<Tester> getTesters();
         List<Trainee> getTrainees();
         List<Test> getTests();
