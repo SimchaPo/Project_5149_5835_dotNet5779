@@ -13,7 +13,7 @@ namespace BE
         DateTime birthDateTester;
         Gender genderTester;
         string phoneNumberTester;
-        Addres addresTester;
+        Address addresTester;
         int seniorityTester; //שנות וותק
         int maxTestsTester;
         CarType carTypeTester;

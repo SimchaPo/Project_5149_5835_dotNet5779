@@ -12,7 +12,7 @@ namespace BE
         FullName nameTrainee;
         Gender genderTrainee;
         string phoneNumberTrainee;
-        Addres addresTrainee;
+        Address addresTrainee;
         DateTime birthDateTrainee;
         CarType carTypeTrainee;
         Gearbox gearboxTrainee;
