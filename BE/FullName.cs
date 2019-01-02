@@ -9,7 +9,7 @@ namespace BE
     public struct FullName
     {
         public string LastName { get; set; }
-        public string FirsrtName { get; set; }
+        public string FirsrtName { get; set; }//
     }
 
 }
