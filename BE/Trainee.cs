@@ -8,16 +8,15 @@ namespace BE
 {
     public class Trainee
     {
-        string idTrainee;
-        FullName nameTrainee;
-        Gender genderTrainee;
-        string phoneNumberTrainee;
-        Address addresTrainee;
-        DateTime birthDateTrainee;
-        CarType carTypeTrainee;
-        Gearbox gearboxTrainee;
-        string schoolTrainee;
-        string teacherTrainee;
-
+        public string IdTrainee { get; set; }
+        public FullName NameTrainee { get; set; }
+        public Gender GenderTrainee { get; set; }
+        public string PhoneNumberTrainee { get; set; }
+        public Address AddressTrainee { get; set; }
+        public DateTime BirthDateTrainee { get; set; }
+        public CarType CarTypeTrainee { get; set; }
+        public Gearbox GearboxTrainee { get; set; }
+        public string SchoolTrainee { get; set; }
+        public string TeacherTrainee { get; set; }
     }
 }

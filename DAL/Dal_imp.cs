@@ -12,20 +12,17 @@ namespace DAL
         static int examIDNum = Configuration.minIDNum;
         public static string getExamIDNum()
         {
-            if (examIDNum == 99999999) //reset IDnum - need to check what to do with old tests
+            if (examIDNum < 10000000) //reset IDnum - need to check what to do with old tests
             {
-                examIDNum = Configuration.minIDNum;
+            return examIDNum++.ToString().PadLeft(8, '0'); //return examIDnum as a string and adds '0' to left of the number
             }
-            return examIDNum++.ToString().PadLeft(8, '0'); //this return the examIDnum as a string and add a zeroes in the left of the number to con
+            return examIDNum++.ToString();
         }
 
         public void AddTest(Test newTest)
         {
             Console.WriteLine("throw new NotImplementedException");
         }
-
-        
-    
 
         public void addTester(Tester newTester)
         {
@@ -51,22 +48,22 @@ namespace DAL
 
         public void removeTester()
         {
-Console.WriteLine("            throw new NotImplementedException");
+            Console.WriteLine("throw new NotImplementedException");
         }
 
         public void removeTrainee()
         {
-Console.WriteLine("            throw new NotImplementedException");
+            Console.WriteLine("throw new NotImplementedException");
         }
 
         public void updateTest()
         {
-Console.WriteLine("            throw new NotImplementedException");
+            Console.WriteLine("throw new NotImplementedException");
         }
 
         void addTest()
         {
-Console.WriteLine("            throw new NotImplementedException");
+            Console.WriteLine("throw new NotImplementedException");
         }
 
         List<Tester> Idal.getTesters()

@@ -11,16 +11,17 @@ namespace UI
     {
         static void Main(string[] args)
         {
-            Test test = new Test
+            Tester tester = new Tester
             {
-                TesterId = "3",
-                TestDate = DateTime.Now,
-                AddresTest = new Address { City = "Jerusalem", hHouseNum = 21, Street = "Havaad Haleumi" }
+                 IdTester = "3",
+                 BirthDateTester = new DateTime(1979, 01,03),
+                 AddresTester = new Address { City = "Jerusalem", HouseNum = 21, Street = "Havaad Haleumi" }
             };
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 10; i++)
             {
-                Console.WriteLine(DAL.Dal_imp.getExamIDNum());
-
+                //if(tester.BirthDateTester.CompareTo(DateTime.Now))
+                Console.WriteLine(tester.BirthDateTester.AddYears(40) < DateTime.Now);
+                Console.WriteLine(tester.BirthDateTester);
             }
             Console.ReadKey();
         }

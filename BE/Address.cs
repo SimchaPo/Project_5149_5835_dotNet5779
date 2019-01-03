@@ -9,7 +9,7 @@ namespace BE
     public struct Address
     {
         public string Street { get; set; }
-        public int hHouseNum { get; set; }
+        public int HouseNum { get; set; }
         public string City { get; set; }
     }
 

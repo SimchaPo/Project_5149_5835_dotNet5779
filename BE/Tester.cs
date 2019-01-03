@@ -8,16 +8,16 @@ namespace BE
 {
     public class Tester
     {
-        string idTester;
-        FullName nameTester;
-        DateTime birthDateTester;
-        Gender genderTester;
-        string phoneNumberTester;
-        Address addresTester;
-        int seniorityTester; //שנות וותק
-        int maxTestsTester;
-        CarType carTypeTester;
-        bool? [,] mat; // צריך לאתחל את גודל המטריצה
-        int maxFarFromTester;
+        public string IdTester { get; set; }
+        public FullName NameTester { get; set; }
+        public DateTime BirthDateTester { get; set; }
+        public Gender GenderTester { get; set; }
+        public string PhoneNumberTester { get; set; }
+        public Address AddresTester { get; set; }
+        public int SeniorityTester { get; set; } //שנות וותק
+        public int MaxTestsTester { get; set; }
+        public CarType CarTypeTester { get; set; }
+        public bool?[,] mat { get; set; } // צריך לאתחל את גודל המטריצה
+        public int MaxFarFromTester { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BE;
+using DAL;
 
 namespace BL
 {
@@ -11,23 +12,38 @@ namespace BL
     {
         public void addTest(Test newTest)
         {
-            //בדיקה שעברו 7 ימים מטסט קודם
+                        // טסטר זמין
+        //בדיקה שעברו 7 ימים מטסט קודם
             throw new NotImplementedException();
         }
 
         public void addTester(Tester newTester)
         {
-          //  if(newTester.)
-            //בדיקת גיל הטסטר מינימום 40
-            // טסטר זמין
-            throw new NotImplementedException();
+            try{
+                if(newTester.BirthDateTester.AddYears(Configuration.minAgetester) > DateTime.Now){
+                    throw "can't be a tester, you are to young";
+                }
+                if(newTester.BirthDateTester.AddYears(Configuration.maxAgeTester) < DateTime.Now){
+                    throw Exception("can't be a tester, you are to old");
+                }
+            }
+            catch(string exeption) {
+                Console.WriteLine(exeption);
+                return;
+            }
+            
         }
 
         public void addTrainee(Trainee newTrainee)
         {
-            //בדיקת גיל תלמיד, מינימום 18
-            // מינימום 20 שיעורים
-            throw new NotImplementedException();
+            try{
+                if(newTrainee.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) < DateTime.Now){
+                    throw "can't do a test, you are to young";
+                    }
+            }
+            catch(string exeption){
+                Console.WriteLine(exeption);
+            }
         }
 
         public void changeTester()
