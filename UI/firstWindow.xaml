@@ -21,13 +21,13 @@
             <RowDefinition Height="314*"/>
             <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
-        <TextBlock TextWrapping="Wrap" FontSize="36" TextAlignment="Center" FontWeight="Bold" Foreground="#FF8080B6" Grid.RowSpan="3" Grid.ColumnSpan="5" Text="ברוכים הבאים לאתר משרד הרישוי" Margin="0,0,0,-0.4" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
+        <TextBlock TextWrapping="Wrap" FontSize="36" TextAlignment="Center" FontWeight="Bold" Foreground="#FF8080B6" Grid.RowSpan="3" Grid.ColumnSpan="5" Text="ברוכים הבאים לאתר משרד הרישוי"/>
         <Rectangle Fill="#FFF4F4F5" Grid.Column="2" Grid.Row="1" Stroke="Black" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
         <StackPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="3">
             <TextBlock Text="כניסה למערכת" FontSize="36" TextAlignment="Center"/>
-            <RadioButton Name="old_user" Content="משתמש קיים" HorizontalAlignment="Right" FlowDirection="RightToLeft" Height="30" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" Cursor="None" />
-            <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" HorizontalAlignment="Center">
-                <TextBlock AutomationProperties.HelpText="הכנס את שמך" Text="שם המשתמש" FlowDirection="RightToLeft" Grid.Column="3" Padding="3,0,0,0" />
+            <RadioButton Name="old_user" Content="משתמש קיים" HorizontalAlignment="Right" FlowDirection="RightToLeft" Height="30" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"/>
+            <StackPanel FlowDirection="RightToLeft" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock  AutomationProperties.HelpText="הכנס את שמך" Text="שם המשתמש" FlowDirection="RightToLeft" Grid.Column="3" FontSize="20" TextAlignment="Center" FontFamily="Tekton Pro" FontWeight="Bold" />
                 <TextBox AutomationProperties.HelpText="הכנס את שמך" Text="הכנס את שמך" FlowDirection="RightToLeft" Grid.Column="2" HorizontalContentAlignment="Stretch" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" Width="193"/>
             </StackPanel>
             <RadioButton Name="new_user" Content="משתמש חדש" HorizontalAlignment="Right" FlowDirection="RightToLeft" Height="30" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" Cursor="None" />
