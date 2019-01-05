@@ -24,5 +24,14 @@ namespace UI2
         {
             InitializeComponent();
         }
+
+        private void userName_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (userName.Text == "שם")
+                userName.Text = "";
+            else if (userName.Text == "")
+                userName.Text = "שם";
+        }
+
     }
 }
