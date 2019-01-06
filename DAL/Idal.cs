@@ -7,6 +7,14 @@ using BE;
 
 namespace DAL
 {
+    public class FactoryDal
+    {
+        public static Idal GetDal()
+        {
+            return new Dal_imp();
+        }
+    }
+
     public interface Idal
     {
         void addTester(Tester newTester);

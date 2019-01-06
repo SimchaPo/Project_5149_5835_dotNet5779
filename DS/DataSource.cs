@@ -11,7 +11,6 @@ namespace DS
     {
         static List<Test> tests;
         static List<Tester> testers;
-        static List<Trainee> trainees;
-        
+        static List<Trainee> trainees;        
     }
 }

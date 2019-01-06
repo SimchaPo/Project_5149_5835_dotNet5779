@@ -10,8 +10,7 @@ namespace BL
 {
     class BL_imp : IBL
     {
-        private static Idal instance = new DAL.Dal_imp.getInstance();
-
+        Idal idal = FactoryDal.GetDal();
         public void addTest(Test newTest)
         {
             // טסטר זמין
@@ -37,8 +36,7 @@ namespace BL
                 Console.WriteLine(exeption);
                 return;
             }
-            Dal_imp dal_Imp = new Dal_imp();
-            dal_Imp.addTester(newTester);
+            idal.addTester(newTester);
         }
 
         public void addTrainee(Trainee newTrainee)
@@ -54,51 +52,52 @@ namespace BL
             {
                 Console.WriteLine(exeption);
             }
+            idal.addTrainee(newTrainee);
         }
 
         public void changeTester()
         {
-            throw new NotImplementedException();
+            idal.changeTester();
         }
 
         public void changeTrainee()
         {
-            throw new NotImplementedException();
+            idal.changeTrainee();
         }
 
         public List<Tester> getTesters()
         {
-            throw new NotImplementedException();
+            return idal.getTesters();
         }
 
-        public List<Tester> getTestersFilter(Func<Tester, bool> filter = null)
+        public List<Tester> getTestersFilter(Func<Tester, bool> filter)
         {
             throw new NotImplementedException();
         }
 
         public List<Test> getTests()
         {
-            throw new NotImplementedException();
+            return idal.getTests();
         }
 
         public List<Trainee> getTrainees()
         {
-            throw new NotImplementedException();
+            return idal.getTrainees();
         }
 
         public void removeTester()
         {
-            throw new NotImplementedException();
+            idal.removeTester();
         }
 
         public void removeTrainee()
         {
-            throw new NotImplementedException();
+            idal.removeTrainee();
         }
 
         public void updateTest()
         {
-            throw new NotImplementedException();
+            idal.updateTest();
         }
     }
 }
