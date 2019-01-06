@@ -10,6 +10,8 @@ namespace BL
 {
     class BL_imp : IBL
     {
+        private static Idal instance = new DAL.Dal_imp.getInstance();
+
         public void addTest(Test newTest)
         {
             // טסטר זמין
@@ -35,7 +37,8 @@ namespace BL
                 Console.WriteLine(exeption);
                 return;
             }
-            Dal_imp.
+            Dal_imp dal_Imp = new Dal_imp();
+            dal_Imp.addTester(newTester);
         }
 
         public void addTrainee(Trainee newTrainee)
