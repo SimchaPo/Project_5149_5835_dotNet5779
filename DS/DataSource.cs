@@ -9,9 +9,15 @@ namespace DS
 {
     class DataSource
     {
-        static List<Test> tests;
-        static List<Tester> testers;
-        static List<Trainee> trainees;
+        static List<Test> tests=new List<Test>();
+        static List<Tester> testers = new List<Tester>();
+        static List<Trainee> trainees = new List<Trainee>();
+
+        public void init()
+        {
+           
+
+        }
         
     }
 }

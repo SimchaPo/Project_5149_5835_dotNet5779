@@ -7,8 +7,24 @@ using BE;
 
 namespace DAL
 {
+    public class FactoryDal
+    {
+        protected static Dal_imp myDal=null;
+       
+        
+        public static Idal GetDal()
+        {
+            if (myDal == null)
+            {
+                myDal = new Dal_imp();
+            }
+                return myDal;
+                
+        }
+    }
     public interface Idal
     {
+        
         void addTester(Tester newTester);
         void removeTester();
         void changeTester();

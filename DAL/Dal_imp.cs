@@ -4,18 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BE;
+using DS;
 
 namespace DAL
 {
    public class Dal_imp: Idal
     {
-        public class FactoryDal
-        {
-            public static Idal GetDal()
-            {
-                return new Dal_imp();
-            }
-        }
+
         static int examIDNum = Configuration.minIDNum;
         public static string getExamIDNum()
         {
