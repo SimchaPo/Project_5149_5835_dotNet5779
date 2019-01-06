@@ -8,7 +8,9 @@ using DS;
 
 namespace DAL
 {
-   public class Dal_imp: Idal
+
+
+    public class Dal_imp: Idal
     {
 
         static int examIDNum = Configuration.minIDNum;

@@ -11,15 +11,13 @@
             <ImageBrush ImageSource="images/לוגו משרד התחבורה.jpg" Opacity="0.6" Stretch="None"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="266*"/>
-            <ColumnDefinition Width="266*"/>
-            <ColumnDefinition Width="177*"/>
-            <ColumnDefinition Width="77*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="314*"/>
-            <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
         <TextBlock TextWrapping="Wrap" FontSize="36" TextAlignment="Center" FontWeight="Bold" Foreground="#FF8080B6" Grid.RowSpan="3" Grid.ColumnSpan="5" Text="ברוכים הבאים לאתר משרד הרישוי"/>
         <Rectangle Fill="#FFF4F4F5" Grid.Column="2" Grid.Row="1" Stroke="Black" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
@@ -32,6 +30,6 @@
             </StackPanel>
             <RadioButton Name="new_user" Content="משתמש חדש" HorizontalAlignment="Right" FlowDirection="RightToLeft" Height="30" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" Cursor="None" />
         </StackPanel>
-        <TextBlock Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" Foreground="Red" Text="באמצעות המערכת החדשה ניתן לנהל את מבחן הנהיגה שלך באופן עצמאי ומיידי" FontSize="30" LineHeight="22" TextAlignment="Center" FontWeight="Bold" Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" Margin="11,50.6,11.6,50.2" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" Foreground="Red" Text="באמצעות המערכת החדשה ניתן לנהל את מבחן הנהיגה שלך באופן עצמאי ומיידי" FontSize="30" LineHeight="22" TextAlignment="Center" FontWeight="Bold" Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" Margin="11,50.6,11.6,50.2"/>
     </Grid>
 </UserControl>
