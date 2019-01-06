@@ -20,8 +20,8 @@ namespace BL
         public void addTester(Tester newTester)
         {
             try{
-                if(newTester.BirthDateTester.AddYears(Configuration.minAgetester) > DateTime.Now){
-                    throw "can't be a tester, you are to young";
+                if(newTester.BirthDateTester.AddYears(Configuration.minAgetester) > DateTime.Now){  //check the if the tester in the min limit of the age
+                    throw "can't be a tester, you are to young"; 
                 }
                 if(newTester.BirthDateTester.AddYears(Configuration.maxAgeTester) < DateTime.Now){
                     throw Exception("can't be a tester, you are to old");
