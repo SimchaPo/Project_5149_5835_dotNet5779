@@ -12,36 +12,43 @@ namespace BL
     {
         public void addTest(Test newTest)
         {
-                        // טסטר זמין
-        //בדיקה שעברו 7 ימים מטסט קודם
+            // טסטר זמין
+            //בדיקה שעברו 7 ימים מטסט קודם
             throw new NotImplementedException();
         }
 
         public void addTester(Tester newTester)
         {
-            try{
-                if(newTester.BirthDateTester.AddYears(Configuration.minAgetester) > DateTime.Now){
-                    throw "can't be a tester, you are to young";
+            try
+            {
+                if (newTester.BirthDateTester.AddYears(Configuration.minAgetester) > DateTime.Now)
+                {
+                    throw new Exception("can't be a tester, you are to young");
                 }
-                if(newTester.BirthDateTester.AddYears(Configuration.maxAgeTester) < DateTime.Now){
-                    throw Exception("can't be a tester, you are to old");
+                if (newTester.BirthDateTester.AddYears(Configuration.maxAgeTester) < DateTime.Now)
+                {
+                    throw new Exception("can't be a tester, you are to old");
                 }
             }
-            catch(string exeption) {
+            catch (Exception exeption)
+            {
                 Console.WriteLine(exeption);
                 return;
             }
-            
+            Dal_imp.
         }
 
         public void addTrainee(Trainee newTrainee)
         {
-            try{
-                if(newTrainee.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) < DateTime.Now){
-                    throw "can't do a test, you are to young";
-                    }
+            try
+            {
+                if (newTrainee.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) < DateTime.Now)
+                {
+                    throw new Exception("can't do a test, you are to young");
+                }
             }
-            catch(string exeption){
+            catch (Exception exeption)
+            {
                 Console.WriteLine(exeption);
             }
         }
@@ -61,7 +68,7 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public List<Tester> getTestersFilter(Func<Tester, bool> filter =null)
+        public List<Tester> getTestersFilter(Func<Tester, bool> filter = null)
         {
             throw new NotImplementedException();
         }
