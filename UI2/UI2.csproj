@@ -118,5 +118,15 @@
   <ItemGroup>
     <Resource Include="images\לוגו משרד התחבורה.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BE\BE.csproj">
+      <Project>{c76d3098-d151-45b6-af49-cba57271f413}</Project>
+      <Name>BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BL\BL.csproj">
+      <Project>{a4ed30a9-6bb8-4c2f-9b44-69f746ca68a6}</Project>
+      <Name>BL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,10 +12,10 @@ namespace DS
 
         //******exam list**********
         private static List<Test> tests = new List<Test>();  //list of all of the exams
-        public static List<Test>  Tests//property
-            {
+        public static List<Test> Tests//property
+        {
             get { return tests; } //return refferece of the tests list
-            }
+        }
         //********testers list**********
         private static List<Tester> testers = new List<Tester>(); //list of all of the testers
         public static List<Tester> Testers//property
@@ -25,8 +25,10 @@ namespace DS
 
         //******trainee list******
         private static List<Trainee> trainees = new List<Trainee>(); //list of all of the students that signed to the tests
-        public static List<Trainee> Trainees { //propterty
-            get { return trainees; }} //return refference of the trainee list
+        public static List<Trainee> Trainees
+        { //propterty
+            get { return trainees; }
+        } //return refference of the trainee list
 
         public void init()
         {
@@ -60,6 +62,6 @@ namespace DS
         }
 
 
-        
+
     }
 }
