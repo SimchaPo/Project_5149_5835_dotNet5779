@@ -10,17 +10,16 @@ namespace BL
     interface IBL
     {
         void addTester(Tester newTester);
-        void removeTester();
-        void changeTester();
+        void removeTester(string idTester);
+        void changeTester(Tester updateTester);
 
         void addTrainee(Trainee newTrainee);
-        void removeTrainee();
-        void changeTrainee();
+        void removeTrainee(string iTrainee);
+        void changeTrainee(Trainee updateTrainee);
 
-        void addTest(Test newTest);
-        void updateTest();
+        void AddTest(Test newTest);
+        void updateTest(Test updateTest);
 
-        List<Tester> getTestersFilter(Func<Tester,bool> filter);
         List<Tester> getTesters();
         List<Trainee> getTrainees();
         List<Test> getTests();

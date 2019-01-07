@@ -39,28 +39,28 @@ namespace DAL
             Console.WriteLine("throw new NotImplementedException");
         }
 
-        public void changeTester()
+        public void changeTester(Tester updateTester)
         {
             Console.WriteLine("throw new NotImplementedException");
         }
 
-        public void changeTrainee()
+        public void changeTrainee(Trainee updateTrainee)
         {
             Console.WriteLine("throw new NotImplementedException");
         }
 
 
-        public void removeTester()
+        public void removeTester(string idTester)
         {
             Console.WriteLine("throw new NotImplementedException");
         }
 
-        public void removeTrainee()
+        public void removeTrainee(string idTrainee)
         {
             Console.WriteLine("throw new NotImplementedException");
         }
 
-        public void updateTest()
+        public void updateTest(Test updateTest)
         {
             Console.WriteLine("throw new NotImplementedException");
         }

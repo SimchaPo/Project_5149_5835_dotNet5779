@@ -7,34 +7,19 @@ using BE;
 
 namespace DAL
 {
-    public class FactoryDal
-    {
-        protected static Dal_imp myDal = null;
-
-
-        public static Idal GetDal()
-        {
-            if (myDal == null)
-            {
-                myDal = new Dal_imp();
-            }
-            return myDal;
-
-        }
-    }
     public interface Idal
     {
         
         void addTester(Tester newTester);
-        void removeTester();
-        void changeTester();
+        void removeTester(string idTester);
+        void changeTester(Tester updateTester);
 
         void addTrainee(Trainee newTrainee);
-        void removeTrainee();
-        void changeTrainee();
+        void removeTrainee(string iTrainee);
+        void changeTrainee(Trainee updateTrainee);
 
         void AddTest(Test newTest);
-        void updateTest();
+        void updateTest(Test updateTest);
 
         List<Tester> getTesters();
         List<Trainee> getTrainees();

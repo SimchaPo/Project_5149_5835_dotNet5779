@@ -11,58 +11,44 @@ namespace BL
     internal class BL_imp : IBL
     {
         Idal idal = FactoryDal.GetDal();
-        public void addTest(Test newTest)
+        public void AddTest(Test newTest)
         {
             // טסטר זמין
             //בדיקה שעברו 7 ימים מטסט קודם
-            throw new NotImplementedException();
+            idal.AddTest(newTest);
         }
 
         public void addTester(Tester newTester)
         {
-            try
+
+            if (newTester.BirthDateTester.AddYears(Configuration.minAgetester) > DateTime.Now)
             {
-                if (newTester.BirthDateTester.AddYears(Configuration.minAgetester) > DateTime.Now)
-                {
-                    throw new Exception("can't be a tester, you are to young");
-                }
-                if (newTester.BirthDateTester.AddYears(Configuration.maxAgeTester) < DateTime.Now)
-                {
-                    throw new Exception("can't be a tester, you are to old");
-                }
+                throw new Exception("can't be a tester, you are to young");
             }
-            catch (Exception exeption)
+            if (newTester.BirthDateTester.AddYears(Configuration.maxAgeTester) < DateTime.Now)
             {
-                Console.WriteLine(exeption);
-                return;
+                throw new Exception("can't be a tester, you are to old");
             }
             idal.addTester(newTester);
         }
 
         public void addTrainee(Trainee newTrainee)
         {
-            try
+            if (newTrainee.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) < DateTime.Now)
             {
-                if (newTrainee.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) < DateTime.Now)
-                {
-                    throw new Exception("can't do a test, you are to young");
-                }
-            }
-            catch (Exception exeption)
-            {
-                Console.WriteLine(exeption);
+                throw new Exception("can't do a test, you are to young");
             }
             idal.addTrainee(newTrainee);
         }
 
-        public void changeTester()
+        public void changeTester(Tester newTester)
         {
-            idal.changeTester();
+            idal.changeTester(newTester);
         }
 
-        public void changeTrainee()
+        public void changeTrainee(Trainee updateTrainee)
         {
-            idal.changeTrainee();
+            idal.changeTrainee(updateTrainee);
         }
 
         public List<Tester> getTesters()
@@ -85,19 +71,19 @@ namespace BL
             return idal.getTrainees();
         }
 
-        public void removeTester()
+        public void removeTester(string idTester)
         {
-            idal.removeTester();
+            idal.removeTester(idTester);
         }
 
-        public void removeTrainee()
+        public void removeTrainee(string idTrainee)
         {
-            idal.removeTrainee();
+            idal.removeTrainee(idTrainee);
         }
 
-        public void updateTest()
+        public void updateTest(Test updateTest)
         {
-            idal.updateTest();
+            idal.updateTest(updateTest);
         }
     }
 }
