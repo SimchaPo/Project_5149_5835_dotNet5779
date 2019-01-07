@@ -18,8 +18,16 @@ namespace DAL
                 LastName = name.LastName
             };
         }
+
         //we are not need to to clone to address bacause it is a struct and not a class
-         
+        
+        public static bool?[,] Clone(this bool?[,] mat) //***********not complete*************
+        {
+            return new bool?[,]
+            {
+
+            };
+        }
             
         //clone for Trainee
 
@@ -28,18 +36,50 @@ namespace DAL
             return new Trainee
             {
                 IdTrainee = t.IdTrainee,
-                NameTrainee = t.NameTrainee,
+                NameTrainee = t.NameTrainee.Clone(),
                 GenderTrainee = t.GenderTrainee,
                 PhoneNumberTrainee = t.PhoneNumberTrainee,
-                AddressTrainee = t.AddressTrainee,
+                AddressTrainee = t.AddressTrainee,//we not using a clone bacasue it is a struct
                 BirthDateTrainee = t.BirthDateTrainee, //did datetime return reffence or copy???????????????????
                 CarTypeTrainee = t.CarTypeTrainee,
                 GearboxTrainee = t.GearboxTrainee,
                 SchoolTrainee = t.SchoolTrainee,
                 TeacherTrainee = t.TeacherTrainee
             };
+           
         }
-        
+        public static Test Clone(this Test t)
+        {
+            return new Test
+            {
+                TestNum = t.TestNum,
+                TesterId = t.TesterId,
+                TraineeId = t.TraineeId,
+                TestDate = t.TestDate,//did datetime return reffence or copy???????????????????
+                HourTest = t.HourTest,
+                AddresTest = t.AddresTest,
+                TestTime = t.TestTime,//did datetime return reffence or copy???????????????????
+                NoteTester = t.NoteTester
+
+            };
+        }
+        public static Tester Clone(this Tester t)
+        {
+            return new Tester
+            {
+                IdTester = t.IdTester,
+                NameTester = t.NameTester.Clone(),
+                BirthDateTester = t.BirthDateTester,
+                GenderTester = t.GenderTester,//did datetime return reffence or copy???????????????????
+                PhoneNumberTester = t.PhoneNumberTester,
+                AddresTester = t.AddresTester,
+                SeniorityTester = t.SeniorityTester,
+                MaxTestsTester = t.MaxTestsTester,
+                CarTypeTester = t.CarTypeTester,
+                mat = t.mat.Clone(), //i need to make the clone of mat*********
+                MaxFarFromTester = t.MaxFarFromTester
+            };
+        }
 };
    
 }
