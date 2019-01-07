@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BE;
+using BL;
 
 namespace UI2
 {
@@ -20,12 +22,17 @@ namespace UI2
     /// </summary>
     public partial class MainWindow : Window
     {
+        Tester tester;
+        Trainee trainee;
+        Test test;
+        IBL bl;
         public MainWindow()
         {
             InitializeComponent();
-
-            bool data1 = (bool)old_user.IsChecked || (bool)new_user.IsChecked;
-            stack.DataContext = data1;
+            tester = new Tester();
+            trainee = new Trainee();
+            test = new Test();
+            bl = FactoryBL.GetBL();
         }
         private void userName_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -53,8 +60,21 @@ namespace UI2
                     MessageBox.Show("אנא מלא את כל הפרטים", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                window2 window2 = new window2();
-                window2.ShowDialog();
+                if (combo.SelectedIndex == 0)
+                {
+                    MessageBox.Show("אנא סמן את בחירתך", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                if (combo.SelectedIndex == 1)
+                {
+                    Conect_old_tester conect_old_tester = new Conect_old_tester();
+                    conect_old_tester.ShowDialog();
+                }
+                if (combo.SelectedIndex == 2)
+                {
+                    Conect_old_trainee conect_old_trainee = new Conect_old_trainee();
+                    conect_old_trainee.ShowDialog();
+                }
             }
             if ((bool)new_user.IsChecked)
             {
@@ -65,13 +85,13 @@ namespace UI2
                 }
                 if (combo.SelectedIndex == 1)
                 {
-                    window3 window3 = new window3();
-                    window3.ShowDialog();
+                    New_tester new_tester = new New_tester();
+                    new_tester.ShowDialog();
                 }
                 if (combo.SelectedIndex == 2)
                 {
-                    window4 window4 = new window4();
-                    window4.ShowDialog();
+                    New_trainee new_trainee = new New_trainee();
+                    new_trainee.ShowDialog();
                 }
             }
         }

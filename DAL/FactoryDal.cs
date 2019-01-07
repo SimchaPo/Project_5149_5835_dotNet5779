@@ -10,7 +10,6 @@ namespace DAL
     {
         protected static Dal_imp myDal = null;
 
-
         public static Idal GetDal()
         {
             if (myDal == null)
