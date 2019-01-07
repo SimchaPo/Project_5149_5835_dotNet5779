@@ -7,7 +7,7 @@ using BE;
 
 namespace DS
 {
-    class DataSource
+    public class DataSource
     {
 
         //******exam list**********

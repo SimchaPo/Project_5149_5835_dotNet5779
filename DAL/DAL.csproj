@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BE_ex.cs" />
     <Compile Include="Dal_imp.cs" />
     <Compile Include="FactoryDal.cs" />
     <Compile Include="Idal.cs" />

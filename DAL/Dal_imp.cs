@@ -26,6 +26,7 @@ namespace DAL
         public void AddTest(Test newTest)
         {
             Console.WriteLine("throw new NotImplementedException");
+            
         }
 
         public void addTester(Tester newTester)
