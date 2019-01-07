@@ -30,7 +30,7 @@ namespace UI2
         private void userName_MouseEnter(object sender, MouseEventArgs e)
         {
             if (userName.Text == "שם")
-                userName.Text = "";
+                userName.ClearValue(TextBox.TextProperty);
             else if (userName.Text == "")
                 userName.Text = "שם";
 
@@ -39,7 +39,7 @@ namespace UI2
         private void userID_MouseEnter(object sender, MouseEventArgs e)
         {
             if (userID.Text == "מספר זהות")
-                userID.Text = "";
+                userID.ClearValue(TextBox.TextProperty);
             else if (userID.Text == "")
                 userID.Text = "מספר זהות";
         }

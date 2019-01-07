@@ -8,7 +8,7 @@ using DAL;
 
 namespace BL
 {
-    class BL_imp : IBL
+    internal class BL_imp : IBL
     {
         Idal idal = FactoryDal.GetDal();
         public void addTest(Test newTest)
