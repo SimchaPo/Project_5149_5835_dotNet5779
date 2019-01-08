@@ -24,8 +24,9 @@
         <Label Content="ברוכים הבאים למערך הרישום למבחני נהיגה" Grid.Row="0" FontSize="36" FontWeight="Bold" Margin="34,0,27.6,0.6" Grid.ColumnSpan="4"/>
         <Label Content="אנא מלא את הפרטים הבאים" Grid.Row="1" FontSize="20" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <StackPanel Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right">
-                <Label Content="שם" HorizontalAlignment="Right"/>
-                <Label Content="מספר זהות" HorizontalAlignment="Right"/>
+                <Label Content="שם פרטי" HorizontalAlignment="Right"/>
+            <Label Content="שם משפחה" HorizontalAlignment="Right"/>
+            <Label Content="מספר זהות" HorizontalAlignment="Right"/>
                 <Label Content="מספר טלפון" HorizontalAlignment="Right"/>
                 <Label Content="מין" HorizontalAlignment="Right"/>
                 <Label Content="כתובת" HorizontalAlignment="Right"/>
@@ -34,13 +35,14 @@
                 <Label Content="מספר בית" HorizontalAlignment="Right"/>
                 <Label Content="תאריך לידה" HorizontalAlignment="Right"/>
             </StackPanel>
-            <StackPanel x:Name="traineeName" Grid.Row="3" Grid.Column="2" >
-            <TextBox Text="{Binding Path=NameTrainee}"  FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center" Width="205" Height="25.6"/>
-            <TextBox Text="{Binding Path=IdTrainee}" FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="205" Height="25.6"/>
-            <TextBox Text="{Binding Path=PhoneNumberTrainee}" FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="205" Height="25.6"/>
+        <StackPanel x:Name="traineeName" Grid.Row="3" Grid.Column="2" >
+            <TextBox Text="{Binding Path=NameTrainee.FirstName}" FlowDirection="RightToLeft" Width="205" Height="25.6" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"/>
+            <TextBox Text="{Binding Path=NameTrainee.LastName}"  FlowDirection="RightToLeft" Width="205" Height="25.6" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"/>
+            <TextBox Text="{Binding Path=IdTrainee}" FlowDirection="RightToLeft" Width="205" Height="25.6" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"/>
+            <TextBox Text="{Binding Path=PhoneNumberTrainee}" FlowDirection="RightToLeft" Width="205" Height="25.6" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                <RadioButton Content="נקבה" HorizontalAlignment="Center" FlowDirection="RightToLeft" Height="25.6" VerticalAlignment="Center"/>
-                <RadioButton Content="זכר    " HorizontalAlignment="Center" FlowDirection="RightToLeft" Height="25.6" VerticalAlignment="Center"/>
+                <RadioButton  Content="נקבה" HorizontalAlignment="Center" FlowDirection="RightToLeft" Height="25.6" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <RadioButton Content="זכר    " FlowDirection="RightToLeft" Height="25.6" VerticalContentAlignment="Center"/>
             </StackPanel>
             <TextBox Text="" FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="205" Height="25.6"/>
             <TextBox Text="" FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="205" Height="25.6"/>

@@ -31,14 +31,13 @@ namespace UI2
             tester = new Tester();
             trainee = new Trainee();
             test = new Test();
-            bl = FactoryBL.GetBL();
-            //newTrainee.DataContext = trainee;
+            bl = FactoryBL.GetBL();          
             traineeName.DataContext = trainee;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(trainee.NameTrainee + "\n" + trainee.IdTrainee + "\n" + trainee.PhoneNumberTrainee);
+            MessageBox.Show(trainee.NameTrainee.FirstName + " " + trainee.NameTrainee.LastName + "\n" + trainee.IdTrainee);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace DAL
         {
             return new FullName
             {
-                FirsrtName = name.FirsrtName,
+                FirstName = name.FirstName,
                 LastName = name.LastName
             };
         }
@@ -76,7 +76,7 @@ namespace DAL
                 SeniorityTester = t.SeniorityTester,
                 MaxTestsTester = t.MaxTestsTester,
                 CarTypeTester = t.CarTypeTester,
-                mat = t.mat.Clone(), //i need to make the clone of mat*********
+                //mat = t.mat.Clone(), //i need to make the clone of mat*********
                 MaxFarFromTester = t.MaxFarFromTester
             };
         }

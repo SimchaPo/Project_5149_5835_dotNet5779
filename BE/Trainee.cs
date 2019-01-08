@@ -8,6 +8,11 @@ namespace BE
 {
     public class Trainee
     {
+        public Trainee()
+        {
+            NameTrainee = new FullName();
+            AddressTrainee = new Address();
+        }
         public string IdTrainee { get; set; }
         public FullName NameTrainee { get; set; }
         public Gender GenderTrainee { get; set; }
