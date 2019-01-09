@@ -113,12 +113,11 @@ namespace DAL
         }
 
         //******************all of this getters need change to clone************
-        List<Tester> Idal.getTesters() => DataSource.Testers;
+        List<Tester> Idal.getTesters() => DataSource.Testers.Select(t=>t.Clone()).ToList<Tester>();
 
-        List<Trainee> Idal.getTrainees() => DataSource.Trainees;
+        List<Trainee> Idal.getTrainees() => DataSource.Trainees.Select(t => t.Clone()).ToList<Trainee>();
 
-
-        List<Test> Idal.getTests() => DataSource.Tests;
-        
+        List<Test> Idal.getTests() => DataSource.Tests.Select(t => t.Clone()).ToList<Test>();
+       
     }
 }
