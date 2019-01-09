@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Resources;
 using BE;
 using BL;
 
@@ -31,13 +32,16 @@ namespace UI2
             tester = new Tester();
             trainee = new Trainee();
             test = new Test();
-            bl = FactoryBL.GetBL();          
+            bl = FactoryBL.GetBL();
             traineeName.DataContext = trainee;
+            adres.DataContext = trainee.AddressTrainee;
+            birth.DataContext = trainee.BirthDateTrainee;
         }
-
+        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(trainee.NameTrainee.FirstName + " " + trainee.NameTrainee.LastName + "\n" + trainee.IdTrainee);
+            MessageBox.Show(trainee.NameTrainee.FirstName + " " + trainee.NameTrainee.LastName + "\n" + trainee.AddressTrainee.City + " " + trainee.AddressTrainee.Street + "\n" + trainee.BirthDateTrainee);
         }
+
     }
 }

@@ -17,38 +17,46 @@
             <ColumnDefinition Width="86*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="19*"/>
-            <RowDefinition Height="15*"/>
-            <RowDefinition Height="115*"/>
+            <RowDefinition Height="54*"/>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="160*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="151*"/>
         </Grid.RowDefinitions>
-        <Label Content="ברוכים הבאים למערך הרישום למבחני נהיגה" Grid.Row="0" FontSize="36" FontWeight="Bold" Margin="34,0,27.6,0.6" Grid.ColumnSpan="4"/>
+        <Label Content="ברוכים הבאים למערך הרישום למבחני נהיגה" Grid.Row="0" FontSize="36" FontWeight="Bold" Margin="34,0,27.6,0.4" Grid.ColumnSpan="4"/>
         <Label Content="אנא מלא את הפרטים הבאים" Grid.Row="1" FontSize="20" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <StackPanel Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right">
-                <Label Content="שם פרטי" HorizontalAlignment="Right"/>
+        <StackPanel Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right" Margin="0,0,-0.4,0" Grid.RowSpan="3">
+            <Label Content="שם פרטי" HorizontalAlignment="Right"/>
             <Label Content="שם משפחה" HorizontalAlignment="Right"/>
             <Label Content="מספר זהות" HorizontalAlignment="Right"/>
-                <Label Content="מספר טלפון" HorizontalAlignment="Right"/>
-                <Label Content="מין" HorizontalAlignment="Right"/>
-                <Label Content="כתובת" HorizontalAlignment="Right"/>
-                <Label Content="עיר" HorizontalAlignment="Right"/>
-                <Label Content="רחוב" HorizontalAlignment="Right"/>
-                <Label Content="מספר בית" HorizontalAlignment="Right"/>
-                <Label Content="תאריך לידה" HorizontalAlignment="Right"/>
-            </StackPanel>
-        <StackPanel x:Name="traineeName" Grid.Row="3" Grid.Column="2" >
+            <Label Content="מספר טלפון" HorizontalAlignment="Right"/>
+            <Label Content="מין" HorizontalAlignment="Right"/>
+            <Label Content="תאריך לידה" HorizontalAlignment="Right"/>
+        </StackPanel>
+        <Label Content="כתובת" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" VerticalContentAlignment="Center" FlowDirection="RightToLeft" FontSize="16"/>
+        <StackPanel x:Name="traineeName" Grid.Row="2" Grid.Column="2" Grid.RowSpan="3" >
             <TextBox Text="{Binding Path=NameTrainee.FirstName}" FlowDirection="RightToLeft" Width="205" Height="25.6" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"/>
             <TextBox Text="{Binding Path=NameTrainee.LastName}"  FlowDirection="RightToLeft" Width="205" Height="25.6" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"/>
             <TextBox Text="{Binding Path=IdTrainee}" FlowDirection="RightToLeft" Width="205" Height="25.6" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"/>
             <TextBox Text="{Binding Path=PhoneNumberTrainee}" FlowDirection="RightToLeft" Width="205" Height="25.6" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                <RadioButton  Content="נקבה" HorizontalAlignment="Center" FlowDirection="RightToLeft" Height="25.6" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                <RadioButton Content="זכר    " FlowDirection="RightToLeft" Height="25.6" VerticalContentAlignment="Center"/>
+                <RadioButton x:Name="female_button" Content="נקבה" FlowDirection="RightToLeft" Height="25.6" VerticalContentAlignment="Center"/>
+                <RadioButton x:Name="male_button" Content="זכר      " FlowDirection="RightToLeft" Height="25.6" VerticalContentAlignment="Center"/>
             </StackPanel>
-            <TextBox Text="" FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="205" Height="25.6"/>
-            <TextBox Text="" FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="205" Height="25.6"/>
+            <DatePicker x:Name="birth" Height="25.6" Width="205" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Visible" FlowDirection="RightToLeft" DisplayDate="2002-01-01" Text="{Binding}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="3">
+            <Label Content="עיר" HorizontalAlignment="Right"/>
+            <Label Content="רחוב" HorizontalAlignment="Right"/>
+            <Label Content="מספר בית" HorizontalAlignment="Right"/>
+        </StackPanel>
+        <StackPanel x:Name="adres" Grid.Row="4" Grid.Column="2">
+            <TextBox Text="{Binding Path=City}" FlowDirection="RightToLeft" Width="205" Height="25.6" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"/>
+            <TextBox Text="{Binding Path=Street}" FlowDirection="RightToLeft" Width="205" Height="25.6" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"/>
+            <TextBox Text="{Binding Path=AddressTrainee.HouseNum}" FlowDirection="RightToLeft" Width="205" Height="25.6" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"/>
             <Button Height="20" Click="Button_Click"/>
         </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="0">
+        <StackPanel Grid.Row="2" Grid.Column="0">
             <Label Content="סוג רישיון" HorizontalAlignment="Right"/>
             <Label Content="תיבת הילוכים" HorizontalAlignment="Right"/>
             <Label Content="בית הספר לנהיגה" HorizontalAlignment="Right"/>
