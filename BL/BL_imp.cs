@@ -34,7 +34,7 @@ namespace BL
 
         public void addTrainee(Trainee newTrainee)
         {
-            if (newTrainee.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) < DateTime.Now)
+            if (newTrainee.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) > DateTime.Now) // שיניתי פה את הסימן לכיוון ההפוך
             {
                 throw new Exception("can't do a test, you are to young");
             }

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public struct Address
+    public class Address
     {
+        public string City { get; set; }
         public string Street { get; set; }
         public int HouseNum { get; set; }
-        public string City { get; set; }
     }
 
 }

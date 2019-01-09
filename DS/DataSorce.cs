@@ -37,13 +37,13 @@ namespace DS
                 AddresTester = new Address { Street = "baruch duvdevani", HouseNum = 40, City = "jerusalem" }
                 ,
                 IdTester = "304944855",
-                NameTester = new FullName { FirsrtName = "netnel", LastName = "zadok" },
+                NameTester = new FullName { FirstName = "netnel", LastName = "zadok" },
                 BirthDateTester = new DateTime(1970, 1, 1),
-                GenderTester = Gender.MALE,
+                GenderTester = Gender.זכר,
                 PhoneNumberTester = "05444444",
                 SeniorityTester = 15,
                 MaxTestsTester = 15,
-                CarTypeTester = CarType.PRIVATECAR
+                CarTypeTester = CarType.רכב_פרטי
                 ,
                 MaxFarFromTester = 15
             ,

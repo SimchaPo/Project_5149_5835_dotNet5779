@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public struct FullName
+    public class FullName
     {
+        public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string FirsrtName { get; set; }//
-        
     }
 
 }
