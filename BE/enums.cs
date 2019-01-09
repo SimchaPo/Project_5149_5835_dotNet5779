@@ -1,3 +1,3 @@
-﻿public enum Gender { MALE, FEMALE }
-public enum Gearbox { MANUAL, AUTOMATIC }
-public enum CarType { PRIVATECAR, MOTORCYCLE, TRUCK, SEMITRAILER}
+﻿public enum Gender { זכר, נקבה }
+public enum Gearbox { גיר_ידני, תיבת_הילוכים_אוטומטית }
+public enum CarType { רכב_פרטי, אופנוע, משאית, סמי_טריילר}
