@@ -10,6 +10,7 @@ namespace BE
     {
         public string LastName { get; set; }
         public string FirsrtName { get; set; }//
+        
     }
 
 }

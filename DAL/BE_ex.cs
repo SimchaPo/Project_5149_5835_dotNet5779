@@ -9,6 +9,17 @@ namespace DAL
 {
     internal static class BE_ex
     {
+        //********clone for address
+        public static Address Clone(this Address address)
+        {
+            return new Address
+            {
+                City = address.City,
+                Street = address.City,
+                HouseNum = address.HouseNum
+
+            };
+        }
         //*********clone for name**********
         public static FullName Clone(this FullName name)
         {
@@ -76,7 +87,7 @@ namespace DAL
                 SeniorityTester = t.SeniorityTester,
                 MaxTestsTester = t.MaxTestsTester,
                 CarTypeTester = t.CarTypeTester,
-                mat = t.mat.Clone(), //i need to make the clone of mat*********
+               // mat = t.mat.Clone(), //i need to make the clone of mat*********
                 MaxFarFromTester = t.MaxFarFromTester
             };
         }
