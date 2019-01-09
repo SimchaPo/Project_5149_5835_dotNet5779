@@ -59,6 +59,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="check.xaml.cs">
+      <DependentUpon>check.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Conect_old_tester.xaml.cs">
       <DependentUpon>Conect_old_tester.xaml</DependentUpon>
     </Compile>
@@ -71,6 +74,10 @@
     <Compile Include="New_trainee.xaml.cs">
       <DependentUpon>New_trainee.xaml</DependentUpon>
     </Compile>
+    <Page Include="check.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Conect_old_trainee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
