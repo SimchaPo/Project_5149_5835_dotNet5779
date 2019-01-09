@@ -91,6 +91,70 @@ namespace DAL
                 MaxFarFromTester = t.MaxFarFromTester
             };
         }
-};
+
+
+        //************************checks
+        public static void CheckCorrectAgeTester(this Tester t)
+        {
+            if (t.BirthDateTester.AddYears(Configuration.minAgetester) > DateTime.Now)
+            {
+                throw new Exception("can't be a tester, you are to young");
+            }
+            if (t.BirthDateTester.AddYears(Configuration.maxAgeTester) < DateTime.Now)
+            {
+                throw new Exception("can't be a tester, you are to old");
+            }
+        }
+
+        public static void isCorrectAgeTrainee(this Trainee t)
+        {
+        if (t.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) > DateTime.Now)
+                throw new Exception("This student can't do a test, he is too young");
+        }
+
+
+        public static bool DidTraineeExamInRecentTime(this Trainee t)
+        {
+            if (t.LastExamDate == null) return false;
+
+            return (t.LastExamDate.AddDays(-7) > DateTime.Now); //we need to check if it is correct
+
+        }
+        public static bool didTrainee20Lesson(this Trainee t)
+        {
+            return (t.NumberOfLesson > 19);
+        }
+
+#if false
+        public static bool didTesterPassLimitExam(this Tester t)
+        {
+        }
+        public static bool didTesterVacatedInThisDate(this Tester t, DateTime time)
+        {
+
+        }
+#endif
+        public static bool didStudentPassThisSortVehicle(this Trainee t, Gearbox gear, CarType carType)
+        {
+            return (t.GearboxTrainee == gear) & (t.CarTypeTrainee == carType);
+        }
+
+        public static bool didStudentsExist(this Trainee t)
+        {
+            throw new Exception("not implemnted");
+
+        }
+        public static bool didTesterExist(this Tester t)
+        {
+            throw new Exception("not implemnted");
+        }
+
+        public static bool didTestExist(this Test t)
+        {
+            throw new Exception("not implemnted");
+        } 
+
+        
+    };
    
 }

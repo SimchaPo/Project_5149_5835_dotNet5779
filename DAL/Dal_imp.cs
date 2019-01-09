@@ -111,6 +111,18 @@ namespace DAL
             //***add the updated test to the list
             DataSource.Tests.Add(updatedTest);
         }
+        public Trainee GetTrainee(string id)
+        {
+            throw new Exception("not implemented");
+        }
+        public Tester GetTester(string id)
+        {
+            throw new Exception("not implemented");
+        }
+        public Test GetTest(string id)
+        {
+            throw new Exception("not implemented");
+        }
 
         //******************all of this getters need change to clone************
         List<Tester> Idal.getTesters() => DataSource.Testers.Select(t=>t.Clone()).ToList<Tester>();
