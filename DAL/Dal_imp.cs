@@ -112,25 +112,13 @@ namespace DAL
             DataSource.Tests.Add(updatedTest);
         }
 
-        void addTest() //delete this?????
-        {
-            
-            Console.WriteLine("throw new NotImplementedException");
-        }
+        //******************all of this getters need change to clone************
+        List<Tester> Idal.getTesters() => DataSource.Testers;
 
-        List<Tester> Idal.getTesters()
-        {
-            throw new NotImplementedException();
-        }
+        List<Trainee> Idal.getTrainees() => DataSource.Trainees;
 
-        List<Trainee> Idal.getTrainees()
-        {
-            throw new NotImplementedException();
-        }
 
-        List<Test> Idal.getTests()
-        {
-            throw new NotImplementedException();
-        }
+        List<Test> Idal.getTests() => DataSource.Tests;
+        
     }
 }
