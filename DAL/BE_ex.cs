@@ -113,16 +113,15 @@ namespace DAL
         }
 
 
-        public static bool DidTraineeExamInRecentTime(this Trainee t)
+        public static void DidTraineeExamInRecentTime(this Trainee t)
         {
-            if (t.LastExamDate == null) return false;
-
-            return (t.LastExamDate.AddDays(-7) > DateTime.Now); //we need to check if it is correct
-
+            
+            if (t.LastExamDate.AddDays(-Configuration.minDaysPassFromLastTest) > DateTime.Now); //we need to check if it is correct
+            throw new Exception("The studenet did exam in the last " + Configuration.minDaysPassFromLastTest + " days, please wait to correct time");//*** I need to change this
         }
-        public static bool didTrainee20Lesson(this Trainee t)
+        public static bool didTraineeMinLessons(this Trainee t)
         {
-            return (t.NumberOfLesson > 19);
+            return (t.NumberOfLesson >Configuration.minLessons);
         }
 
 #if false
@@ -136,22 +135,22 @@ namespace DAL
 #endif
         public static bool didStudentPassThisSortVehicle(this Trainee t, Gearbox gear, CarType carType)
         {
-            return (t.GearboxTrainee == gear) & (t.CarTypeTrainee == carType);
+            return ((t.GearboxTrainee == gear)||(t.GearboxTrainee==Gearbox.גיר_ידני)) //if the student pass exam on manual gear it also good for automatic gear
+                & (t.CarTypeTrainee == carType); 
         }
 
         public static bool didStudentsExist(this Trainee t)
         {
-            throw new Exception("not implemnted");
-
+            return DS.DataSource.Trainees.Exists(item => item.IdTrainee == t.IdTrainee);
         }
         public static bool didTesterExist(this Tester t)
         {
-            throw new Exception("not implemnted");
+            return DS.DataSource.Testers.Exists(item => item.IdTester == t.IdTester);
         }
 
         public static bool didTestExist(this Test t)
         {
-            throw new Exception("not implemnted");
+            return DS.DataSource.Tests.Exists(item => item.TestNum == t.TestNum);
         } 
 
         

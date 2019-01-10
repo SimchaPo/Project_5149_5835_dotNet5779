@@ -25,11 +25,11 @@ namespace DAL
 
         public void AddTest(Test newTest)
         {
-            //****check if the test with this id num already exist
-            foreach (Test item in DS.DataSource.Tests)
-                if (item.TestNum == newTest.TestNum)
-                    throw new Exception("exam with this id num already exist");
+            // give idNum to the exam
+            newTest.TestNum = getExamIDNum();
 
+            //check if the student did exam in this 7 days
+            GetTrainee(newTest.TraineeId).DidTraineeExamInRecentTime();
 
 
             //**in this place i need to do all of the checks
@@ -113,15 +113,15 @@ namespace DAL
         }
         public Trainee GetTrainee(string id)
         {
-            throw new Exception("not implemented");
+            return DataSource.Trainees.Find(t => t.IdTrainee == id);
         }
         public Tester GetTester(string id)
         {
-            throw new Exception("not implemented");
+            return DataSource.Testers.Find(t => t.IdTester == id);
         }
         public Test GetTest(string id)
         {
-            throw new Exception("not implemented");
+            return DataSource.Tests.Find(t => t.TestNum==id);
         }
 
         //******************all of this getters need change to clone************
