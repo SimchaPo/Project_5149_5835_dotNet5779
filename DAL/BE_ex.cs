@@ -91,6 +91,75 @@ namespace DAL
                 MaxFarFromTester = t.MaxFarFromTester
             };
         }
-};
+
+
+        //************************checks
+        public static void CheckCorrectAgeTester(this Tester t)
+        {
+            if (t.BirthDateTester.AddYears(Configuration.minAgetester) > DateTime.Now)
+            {
+                throw new Exception("can't be a tester, you are to young");
+            }
+            if (t.BirthDateTester.AddYears(Configuration.maxAgeTester) < DateTime.Now)
+            {
+                throw new Exception("can't be a tester, you are to old");
+            }
+        }
+
+        public static void isCorrectAgeTrainee(this Trainee t)
+        {
+        if (t.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) > DateTime.Now)
+                throw new Exception("This student can't do a test, he is too young");
+        }
+
+
+        public static void DidTraineeExamInRecentTime(this Trainee t)
+        {
+            
+            if (t.LastExamDate.AddDays(-Configuration.minDaysPassFromLastTest) > DateTime.Now); //we need to check if it is correct
+            throw new Exception("The studenet did exam in the last " + Configuration.minDaysPassFromLastTest + " days, please wait to correct time");//*** I need to change this
+        }
+        public static bool didTraineeMinLessons(this Trainee t)
+        {
+            return (t.NumberOfLesson >Configuration.minLessons);
+        }
+
+
+        public static void didTesterPassLimitExam(this Tester t)
+        {
+            throw new Exception("not implemented func");
+        }
+        public static void didTesterVacatedInThisDate(this Tester t, DateTime time)
+        {
+            throw new Exception("not implemented func");
+        }
+
+        public static bool didStudentPassThisSortVehicle(this Trainee t, Gearbox gear, CarType carType)
+        {
+            return ((t.GearboxTrainee == gear)||(t.GearboxTrainee==Gearbox.גיר_ידני)) //if the student pass exam on manual gear it also good for automatic gear
+                & (t.CarTypeTrainee == carType); 
+        }
+
+        public static bool didStudentsExist(this Trainee t)
+        {
+            return DS.DataSource.Trainees.Exists(item => item.IdTrainee == t.IdTrainee);
+        }
+        public static bool didTesterExist(this Tester t)
+        {
+            return DS.DataSource.Testers.Exists(item => item.IdTester == t.IdTester);
+        }
+
+        public static bool didTestExist(this Test t)
+        {
+            return DS.DataSource.Tests.Exists(item => item.TestNum == t.TestNum);
+        } 
+
+        public static void DidtesterFitToTrainee(this Tester tester, Trainee trainee)
+        {
+            if (tester.CarTypeTester != trainee.CarTypeTrainee)
+                 throw new Exception("התמחות הבוחן אינה מתאימה לרכב עליו למד הנבחן");
+        }
+        
+    };
    
 }

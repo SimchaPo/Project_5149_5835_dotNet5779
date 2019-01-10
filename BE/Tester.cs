@@ -15,7 +15,7 @@ namespace BE
         public string PhoneNumberTester { get; set; }
         public Address AddresTester { get; set; }
         public int SeniorityTester { get; set; } //שנות וותק
-        public int MaxTestsTester { get; set; }
+        public int MaxTestsTester { get; set; } 
         public CarType CarTypeTester { get; set; }
         public bool?[,] mat { get; set; } // צריך לאתחל את גודל המטריצה
         public int MaxFarFromTester { get; set; }

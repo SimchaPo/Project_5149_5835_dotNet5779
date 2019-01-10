@@ -13,7 +13,7 @@ namespace BE
             NameTrainee = new FullName();
             AddressTrainee = new Address();
         }
-        public FullName NameTrainee { get; set; }
+        public FullName NameTrainee { get; set; } 
         public string IdTrainee { get; set; }
         public Gender GenderTrainee { get; set; }
         public DateTime BirthDateTrainee { get; set; }
@@ -23,5 +23,8 @@ namespace BE
         public string TeacherTrainee { get; set; }
         public CarType CarTypeTrainee { get; set; }
         public Gearbox GearboxTrainee { get; set; }
+        public int NumberOfLesson { get; set; } //how much lesson the student did
+
+        public DateTime LastExamDate { get; set; } //the date of last exam
     }
 }
