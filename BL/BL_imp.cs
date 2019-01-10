@@ -10,6 +10,7 @@ namespace BL
 {
     public class BL_imp : IBL
     {
+        Checks checks;
         Idal idal = FactoryDal.GetDal();
         public void AddTest(Test newTest)
         {
@@ -24,11 +25,23 @@ namespace BL
             {
                 if (newTester.BirthDateTester.AddYears(Configuration.minAgetester) > DateTime.Now)
                 {
-                    throw new Exception("can't be a tester, you are to young");
+                    throw new Exception("בוחן צעיר מדי");
                 }
                 if (newTester.BirthDateTester.AddYears(Configuration.maxAgeTester) < DateTime.Now)
                 {
-                    throw new Exception("can't be a tester, you are to old");
+                    throw new Exception("בוחן מבוגר מדי");
+                }
+                if (checks.CheckForNull(newTester))
+                {
+                    throw new Exception("אנא השלם את כל הפרטים");
+                }
+                if (!checks.checkID(newTester.IdTester))
+                {
+                    throw new Exception("מספר תעודת זהות לא חוקי");
+                }
+                if (checks.checkPhoneNumber(newTester.PhoneNumberTester))
+                {
+                    throw new Exception("מספר טלפון לא חוקי");
                 }
                 idal.addTester(newTester);
             }

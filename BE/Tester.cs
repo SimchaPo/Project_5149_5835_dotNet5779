@@ -8,6 +8,11 @@ namespace BE
 {
     public class Tester
     {
+        public Tester()
+        {
+            NameTester = new FullName();
+            AddresTester = new Address();
+        }
         public string IdTester { get; set; }
         public FullName NameTester { get; set; }
         public DateTime BirthDateTester { get; set; }

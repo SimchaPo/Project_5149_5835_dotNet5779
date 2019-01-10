@@ -24,6 +24,7 @@ namespace UI2
         Tester tester;
         IBL bl;
         Checks checks;
+        
         public sign_in_tester()
         {
             InitializeComponent();
@@ -33,12 +34,11 @@ namespace UI2
             DataContext = tester;
             carTypeTesterComboBox.ItemsSource = Enum.GetValues(typeof(CarType));
             genderTesterComboBox.ItemsSource = Enum.GetValues(typeof(Gender));
-            //   tester.mat = m2.mat1;
         }
 
         private void back_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void next_Click(object sender, RoutedEventArgs e)
@@ -47,7 +47,7 @@ namespace UI2
             {
                 tester.mat = m2.mat1;
                 bl.addTester(tester);
-                this.Close();
+                Close();
                 log_in_tester log_In = new log_in_tester();
                 log_In.ShowDialog();
             }

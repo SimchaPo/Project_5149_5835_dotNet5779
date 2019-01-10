@@ -59,15 +59,15 @@ namespace DAL
             //**** check if this tester already exist
             foreach (Tester item in DS.DataSource.Testers)
                 if (item.IdTester == newTester.IdTester)
-                    throw new Exception("this tester already exist");
+                    throw new Exception("בוחן כבר רשום במערכת");
             //**check if the the tester in correct age
             if (newTester.BirthDateTester.AddYears(Configuration.minAgetester )> DateTime.Now)//check about the min age
-                throw new Exception("This man can't be a tester, he is too young");
+                throw new Exception("בוחן צעיר מדי");
             if (newTester.BirthDateTester.AddYears(Configuration.maxAgeTester) < DateTime.Now)//check about the max age
-                throw new Exception("This man can't be a tester, he is too old");
+                throw new Exception("בוחן מבוגר מדי");
 
             //**in this place i need to do all of the checks
-            DS.DataSource.Testers.Add(newTester.Clone());
+            DataSource.Testers.Add(newTester.Clone());
         }
 
 
