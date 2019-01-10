@@ -26,21 +26,15 @@ namespace UI2
         Trainee trainee;
         Test test;
         IBL bl;
+        Checks checks;
         public MainWindow()
         {
             InitializeComponent();
             tester = new Tester();
             trainee = new Trainee();
             test = new Test();
+            checks = new Checks();
             bl = FactoryBL.GetBL();
-        }
-        private void userName_MouseEnter(object sender, MouseEventArgs e)
-        {
-            if (userName.Text == "שם")
-                userName.ClearValue(TextBox.TextProperty);
-            else if (userName.Text == "")
-                userName.Text = "שם";
-
         }
 
         private void userID_MouseEnter(object sender, MouseEventArgs e)
@@ -55,9 +49,14 @@ namespace UI2
         {
             if ((bool)old_user.IsChecked)
             {
-                if (userID.Text == "מספר זהות" || userName.Text == "שם")
+                if (userID.Text == "מספר זהות" || userFirstName.Text == "שם פרטי" || userLastName.Text == "שם משפחה") //missing detailes
                 {
                     MessageBox.Show("אנא מלא את כל הפרטים", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                if(!checks.checkID(userID.Text))
+                {
+                    MessageBox.Show("מספר זהות לא חוקי", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 if (combo.SelectedIndex == 0)
@@ -67,13 +66,13 @@ namespace UI2
                 }
                 if (combo.SelectedIndex == 1)
                 {
-                    Conect_old_tester conect_old_tester = new Conect_old_tester();
-                    conect_old_tester.ShowDialog();
+                    log_in_tester log_in_tester = new log_in_tester();
+                    log_in_tester.ShowDialog();
                 }
                 if (combo.SelectedIndex == 2)
                 {
-                    Conect_old_trainee conect_old_trainee = new Conect_old_trainee();
-                    conect_old_trainee.ShowDialog();
+                    log_in_trainee log_in_trainee = new log_in_trainee();
+                    log_in_trainee.ShowDialog();
                 }
             }
             if ((bool)new_user.IsChecked)
@@ -85,26 +84,43 @@ namespace UI2
                 }
                 if (combo.SelectedIndex == 1)
                 {
-                    New_tester new_tester = new New_tester();
-                    new_tester.ShowDialog();
+                    sign_in_tester sign_in_tester = new sign_in_tester();
+                    sign_in_tester.ShowDialog();
                 }
                 if (combo.SelectedIndex == 2)
                 {
-                    New_trainee new_trainee = new New_trainee();
-                    new_trainee.ShowDialog();
+                    sign_in_trainee sign_in_trainee = new sign_in_trainee();
+                    sign_in_trainee.ShowDialog();
                 }
             }
         }
 
         private void old_user_Unchecked(object sender, RoutedEventArgs e)
         {
-            userName.Text = "שם";
+            userFirstName.Text = "שם פרטי";
+            userLastName.Text = userLastName.Text = "שם משפחה";
             userID.Text = "מספר זהות";
         }
 
         private void new_user_Unchecked(object sender, RoutedEventArgs e)
         {
             combo.SelectedIndex = 0;
+        }
+
+        private void userFirstName_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (userFirstName.Text == "שם פרטי")
+                userFirstName.ClearValue(TextBox.TextProperty);
+            else if (userFirstName.Text == "")
+                userFirstName.Text = "שם פרטי";
+        }
+
+        private void userLastName_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (userLastName.Text == "שם משפחה")
+                userLastName.ClearValue(TextBox.TextProperty);
+            else if (userLastName.Text == "")
+                userLastName.Text = "שם משפחה";
         }
     }
     

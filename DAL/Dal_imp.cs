@@ -57,10 +57,10 @@ namespace DAL
         {
             foreach (Trainee item in DS.DataSource.Trainees)
                 if (item.IdTrainee == newTrainee.IdTrainee)
-                    throw new Exception("this student already exist in the system");
+                    throw new Exception("התלמיד כבר רשום למערכת");
             //****check if the student in the correct age
             if (newTrainee.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) > DateTime.Now)
-                throw new Exception("This student can't do a test, he is too young");
+                throw new Exception("התלמיד צעיר מדי בשביל לגשת לטסט");
 
             //**in this place i need to do all of the checks
             DS.DataSource.Trainees.Add(newTrainee.Clone());

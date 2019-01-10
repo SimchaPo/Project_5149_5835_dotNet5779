@@ -20,25 +20,39 @@ namespace BL
 
         public void addTester(Tester newTester)
         {
-
-            if (newTester.BirthDateTester.AddYears(Configuration.minAgetester) > DateTime.Now)
+            try
             {
-                throw new Exception("can't be a tester, you are to young");
+                if (newTester.BirthDateTester.AddYears(Configuration.minAgetester) > DateTime.Now)
+                {
+                    throw new Exception("can't be a tester, you are to young");
+                }
+                if (newTester.BirthDateTester.AddYears(Configuration.maxAgeTester) < DateTime.Now)
+                {
+                    throw new Exception("can't be a tester, you are to old");
+                }
+                idal.addTester(newTester);
             }
-            if (newTester.BirthDateTester.AddYears(Configuration.maxAgeTester) < DateTime.Now)
+            catch(Exception ex)
             {
-                throw new Exception("can't be a tester, you are to old");
+                throw ex;
             }
-            idal.addTester(newTester);
         }
 
         public void addTrainee(Trainee newTrainee)
         {
-            if (newTrainee.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) > DateTime.Now) // שיניתי פה את הסימן לכיוון ההפוך
+            try
             {
-                throw new Exception("can't do a test, you are to young");
+                if (newTrainee.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) > DateTime.Now) // שיניתי פה את הסימן לכיוון ההפוך
+                {
+                    throw new Exception("can't do a test, you are to young");
+                }
+
+                idal.addTrainee(newTrainee);
             }
-            idal.addTrainee(newTrainee);
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public void changeTester(Tester newTester)

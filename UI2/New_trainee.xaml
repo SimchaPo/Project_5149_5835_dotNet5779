@@ -43,7 +43,7 @@
                 <RadioButton x:Name="female_button" Content="נקבה" FlowDirection="RightToLeft" Height="25.6" VerticalContentAlignment="Center"/>
                 <RadioButton x:Name="male_button" Content="זכר      " FlowDirection="RightToLeft" Height="25.6" VerticalContentAlignment="Center"/>
             </StackPanel>
-            <DatePicker x:Name="birth" Height="25.6" Width="205" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Visible" FlowDirection="RightToLeft" DisplayDate="2002-01-01" Text="{Binding}"/>
+            <DatePicker x:Name="birth" Height="25.6" Width="205" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Visible" FlowDirection="RightToLeft" Text="{Binding}" DisplayDate="2000-01-01"/>
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.Column="3">
             <Label Content="עיר" HorizontalAlignment="Right"/>

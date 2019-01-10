@@ -33,12 +33,19 @@ namespace UI2
             carTypeTraineeComboBox.ItemsSource = Enum.GetValues(typeof(CarType));
             gearboxTraineeComboBox.ItemsSource = Enum.GetValues(typeof(Gearbox));
             genderTraineeComboBox.ItemsSource = Enum.GetValues(typeof(Gender));
-            birthDateTraineeDatePicker.DataContext = trainee.BirthDateTrainee;
+            //birthDateTraineeDatePicker.DataContext = trainee.BirthDateTrainee;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            bl.addTrainee(trainee);
+            try
+            {
+                bl.addTrainee(trainee);
+            }
+            catch(Exception e2)
+            {
+                MessageBox.Show(e2.Message);
+            }
         }
     }
 }

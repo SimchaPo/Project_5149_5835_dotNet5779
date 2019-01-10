@@ -34,7 +34,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Label VerticalAlignment="Center" Grid.Row="0" HorizontalAlignment="Left" Grid.Column="0" Content="תאריך לידה:"/>
-            <DatePicker x:Name="birthDateTraineeDatePicker" VerticalAlignment="Center" SelectedDate="{Binding BirthDateTrainee, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="1" DisplayDate="2000-01-01"/>
+            <DatePicker x:Name="birthDateTraineeDatePicker" VerticalAlignment="Center" SelectedDate="{Binding BirthDateTrainee, Mode=TwoWay}" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="1" IsTodayHighlighted="False" DisplayDate="2000-01-01" DisplayDateStart="1950-01-01"/>
             <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="סוג הרישיון:"/>
             <ComboBox x:Name="carTypeTraineeComboBox" Width="120" VerticalAlignment="Center" Grid.Row="1" Margin="3" Height="Auto" HorizontalAlignment="Left" SelectedItem="{Binding CarTypeTrainee}" Grid.Column="1"/>
             <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="תיבת הילוכים:"/>
