@@ -8,15 +8,15 @@ namespace BE
 {
     public class Checks
     {
-        public bool checkID(string myID)
+        public static bool checkID(string myID)
         {
             return myID.Any(c => char.IsDigit(c)) && myID.Length == 9;
         }
-        public bool checkPhoneNumber(string myNumber)
+        public static bool checkPhoneNumber(string myNumber)
         {
             return myNumber.Any(c => char.IsDigit(c)) && myNumber.Length == 10;
         }
-        public bool CheckForNull(Tester t)
+        public static bool CheckForNull(Tester t)
         {
             foreach (bool? item in t.mat)
             {

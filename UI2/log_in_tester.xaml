@@ -5,8 +5,117 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI2"
         mc:Ignorable="d"
-        Title="log_in_tester" Height="450" Width="800">
+        Title="log_in_tester" Height="650" Width="800">
     <Grid>
-        
-    </Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="350"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="149*"/>
+            <RowDefinition Height="47*"/>
+            <RowDefinition Height="111*"/>
+            <RowDefinition Height="257*"/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <TextBlock Text="פרטיך כפי שמופיעים במערכת" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" AllowDrop="True" FontWeight="Bold"/>
+
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="150*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="2">
+                <Label VerticalAlignment="Center" Content="שם פרטי:" FlowDirection="RightToLeft"  Height="24"/>
+                <Label VerticalAlignment="Center" Content="שם משפחה:" FlowDirection="RightToLeft"  Height="24"/>
+                <Label VerticalAlignment="Center" Content="תעודת זהות:" FlowDirection="RightToLeft"  Height="24"/>
+                <Label VerticalAlignment="Center" Content="תאריך לידה:" FlowDirection="RightToLeft"  Height="24"/>
+                <Label VerticalAlignment="Center" Content="מין" FlowDirection="RightToLeft"  Height="24"/>
+                <Label VerticalAlignment="Center" Content="מספר טלפון:" FlowDirection="RightToLeft"  Height="24"/>
+            </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBox IsReadOnly="True" x:Name="firstNameTextBox" Text="{Binding NameTester.FirstName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft"/>
+                    <TextBox IsReadOnly="True" x:Name="lastNameTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding NameTester.LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" />
+                    <TextBox IsReadOnly="True" x:Name="idTesterTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding IdTester, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center" MaxLength="9" />
+                    <TextBox IsReadOnly="True" x:Name="birthDateTesterDatePicker" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding BirthDateTester, Mode=TwoWay, StringFormat=\{0:d\}}" Height="24" VerticalContentAlignment="Center"/>
+                    <TextBox IsReadOnly="True" x:Name="genderTesterComboBox" VerticalAlignment="Center" Grid.Row="2" Text="{Binding GenderTester}" FlowDirection="RightToLeft" Height="24" VerticalContentAlignment="Center"/>
+                    <TextBox IsReadOnly="True" x:Name="phoneNumberTesterTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding PhoneNumberTester, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" MaxLength="10"/>
+                </StackPanel>
+            </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="2" Grid.Column="1" FlowDirection="RightToLeft" Orientation="Horizontal">
+                <Label Content="עיר" Height="24"/>
+                    <TextBox  IsReadOnly="True" x:Name="cityTextBox" Text="{Binding AddresTester.City, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="68" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24"/>
+                <Label Content="רחוב:" Height="24"/>
+                    <TextBox IsReadOnly="True" x:Name="streetTextBox" Text="{Binding AddresTester.Street, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24" Width="68"/>
+                <Label Content="מספר בית:" Height="24"/>
+                    <TextBox IsReadOnly="True" x:Name="houseNumTextBox" Text="{Binding AddresTester.HouseNum, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="30" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24" MaxLength="4"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="150*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="3" Grid.Column="2">
+                <Label VerticalAlignment="Center" Content="סוג הרכב:" FlowDirection="RightToLeft"  Height="24"/>
+                <Label VerticalAlignment="Center" Content="מרחק מקסימלי מהכתובת:" FlowDirection="RightToLeft"  Height="24"/>
+                <Label VerticalAlignment="Center" Content="מספר מבחנים מקסימלי בשבוע:" FlowDirection="RightToLeft"  Height="24"/>
+                <Label VerticalAlignment="Center" Content="שנות וותק:" FlowDirection="RightToLeft"  Height="24"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="3">
+                <TextBox IsReadOnly="True" x:Name="carTypeTesterComboBox" Text="{Binding CarTypeTester}" FlowDirection="RightToLeft" Height="24"/>
+                <TextBox IsReadOnly="True" x:Name="maxFarFromTesterTextBox" Text="{Binding MaxFarFromTester, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft"/>
+                <TextBox IsReadOnly="True" x:Name="maxTestsTesterTextBox" Text="{Binding MaxTestsTester, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft"/>
+                <TextBox IsReadOnly="True" x:Name="seniorityTesterTextBox" Text="{Binding SeniorityTester, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft"/>
+            </StackPanel>
+        </Grid>
+            <Grid Grid.Row="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="31"/>
+                    <RowDefinition Height="27"/>
+                    <RowDefinition Height="27"/>
+                    <RowDefinition Height="27"/>
+                    <RowDefinition Height="27"/>
+                    <RowDefinition Height="27"/>
+                    <RowDefinition Height="27"/>
+                    <RowDefinition Height="27"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="53"/>
+                    <ColumnDefinition Width="53"/>
+                    <ColumnDefinition Width="53"/>
+                    <ColumnDefinition Width="53"/>
+                    <ColumnDefinition Width="53"/>
+                    <ColumnDefinition Width="53"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="ראשון" Grid.Row="0" Grid.Column="4" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                <Label Content="שני" Grid.Row="0" Grid.Column="3" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                <Label Content="שלישי" Grid.Row="0" Grid.Column="2" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                <Label Content="רביעי" Grid.Row="0" Grid.Column="1" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                <Label Content="חמישי" Grid.Row="0" Grid.Column="0" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                <Label Content="09:00" Grid.Row="1" Grid.Column="5" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                <Label Content="10:00" Grid.Row="2" Grid.Column="5" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                <Label Content="11:00" Grid.Row="3" Grid.Column="5" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                <Label Content="12:00" Grid.Row="4" Grid.Column="5" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                <Label Content="13:00" Grid.Row="5" Grid.Column="5" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                <Label Content="14:00" Grid.Row="6" Grid.Column="5" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                <Label Content="15:00" Grid.Row="7" Grid.Column="5" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+
+            </Grid>
+        </Grid>
+    </Grid>        
 </Window>

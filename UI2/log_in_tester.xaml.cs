@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BE;
+using BL;
 
 namespace UI2
 {
@@ -19,9 +21,12 @@ namespace UI2
     /// </summary>
     public partial class log_in_tester : Window
     {
-        public log_in_tester()
+        public string buttonName { get; set; }
+        Button button;
+        public log_in_tester(Tester tester)
         {
             InitializeComponent();
+            DataContext = tester;    
         }
     }
 }

@@ -54,7 +54,7 @@ namespace UI2
                     MessageBox.Show("אנא מלא את כל הפרטים", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                if(!checks.checkID(userID.Text))
+                if(!Checks.checkID(userID.Text))
                 {
                     MessageBox.Show("מספר זהות לא חוקי", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
@@ -66,7 +66,7 @@ namespace UI2
                 }
                 if (combo.SelectedIndex == 1)
                 {
-                    log_in_tester log_in_tester = new log_in_tester();
+                    log_in_tester log_in_tester = new log_in_tester(tester);
                     log_in_tester.ShowDialog();
                 }
                 if (combo.SelectedIndex == 2)

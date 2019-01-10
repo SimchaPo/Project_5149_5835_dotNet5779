@@ -10,7 +10,6 @@ namespace BL
 {
     public class BL_imp : IBL
     {
-        Checks checks;
         Idal idal = FactoryDal.GetDal();
         public void AddTest(Test newTest)
         {
@@ -23,6 +22,18 @@ namespace BL
         {
             try
             {
+                if (Checks.CheckForNull(newTester))
+                {
+                    throw new Exception("אנא השלם את כל הפרטים");
+                }
+                if (!Checks.checkID(newTester.IdTester))
+                {
+                    throw new Exception("מספר תעודת זהות לא חוקי");
+                }
+                if (!Checks.checkPhoneNumber(newTester.PhoneNumberTester))
+                {
+                    throw new Exception("מספר טלפון לא חוקי");
+                }
                 if (newTester.BirthDateTester.AddYears(Configuration.minAgetester) > DateTime.Now)
                 {
                     throw new Exception("בוחן צעיר מדי");
@@ -30,18 +41,6 @@ namespace BL
                 if (newTester.BirthDateTester.AddYears(Configuration.maxAgeTester) < DateTime.Now)
                 {
                     throw new Exception("בוחן מבוגר מדי");
-                }
-                if (checks.CheckForNull(newTester))
-                {
-                    throw new Exception("אנא השלם את כל הפרטים");
-                }
-                if (!checks.checkID(newTester.IdTester))
-                {
-                    throw new Exception("מספר תעודת זהות לא חוקי");
-                }
-                if (checks.checkPhoneNumber(newTester.PhoneNumberTester))
-                {
-                    throw new Exception("מספר טלפון לא חוקי");
                 }
                 idal.addTester(newTester);
             }
@@ -55,9 +54,9 @@ namespace BL
         {
             try
             {
-                if (newTrainee.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) > DateTime.Now) // שיניתי פה את הסימן לכיוון ההפוך
+                if (newTrainee.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) > DateTime.Now)
                 {
-                    throw new Exception("can't do a test, you are to young");
+                    throw new Exception("תלמיד צעיר מדי");
                 }
 
                 idal.addTrainee(newTrainee);
