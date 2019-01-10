@@ -76,6 +76,8 @@ namespace BL
             idal.removeTester(idTester);
         }
 
+        
+
         public void removeTrainee(string idTrainee)
         {
             idal.removeTrainee(idTrainee);

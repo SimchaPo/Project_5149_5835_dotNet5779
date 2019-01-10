@@ -124,15 +124,16 @@ namespace DAL
             return (t.NumberOfLesson >Configuration.minLessons);
         }
 
-#if false
-        public static bool didTesterPassLimitExam(this Tester t)
-        {
-        }
-        public static bool didTesterVacatedInThisDate(this Tester t, DateTime time)
-        {
 
+        public static void didTesterPassLimitExam(this Tester t)
+        {
+            throw new Exception("not implemented func");
         }
-#endif
+        public static void didTesterVacatedInThisDate(this Tester t, DateTime time)
+        {
+            throw new Exception("not implemented func");
+        }
+
         public static bool didStudentPassThisSortVehicle(this Trainee t, Gearbox gear, CarType carType)
         {
             return ((t.GearboxTrainee == gear)||(t.GearboxTrainee==Gearbox.גיר_ידני)) //if the student pass exam on manual gear it also good for automatic gear
@@ -153,6 +154,11 @@ namespace DAL
             return DS.DataSource.Tests.Exists(item => item.TestNum == t.TestNum);
         } 
 
+        public static void DidtesterFitToTrainee(this Tester tester, Trainee trainee)
+        {
+            if (tester.CarTypeTester != trainee.CarTypeTrainee)
+                 throw new Exception("התמחות הבוחן אינה מתאימה לרכב עליו למד הנבחן");
+        }
         
     };
    

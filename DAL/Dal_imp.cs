@@ -28,9 +28,27 @@ namespace DAL
             // give idNum to the exam
             newTest.TestNum = getExamIDNum();
 
-            //check if the student did exam in this 7 days
-            GetTrainee(newTest.TraineeId).DidTraineeExamInRecentTime();
+            Trainee CurrentTrainee = GetTrainee(newTest.TraineeId).Clone();
+            Tester CurrnetTester = GetTester(newTest.TesterId).Clone();
 
+            /* set of checks if the input is proper
+             if the check failed the function will throw exception
+             */
+           
+            //checks about the student
+
+                    //check if the student did exam in this 7 days
+                    CurrentTrainee.DidTraineeExamInRecentTime();
+                    //check if the studen did enough lessons
+                    CurrentTrainee.didTraineeMinLessons();
+            //check if the tester fit to this sort of exam
+            CurrnetTester.DidtesterFitToTrainee(CurrentTrainee);
+
+            //checks about the tester
+
+                //check if the tester not pass the limit of exams in this week
+                CurrnetTester.didTesterPassLimitExam();
+                //check if the the 
 
             //**in this place i need to do all of the checks
             DS.DataSource.Tests.Add(newTest.Clone());
@@ -113,15 +131,24 @@ namespace DAL
         }
         public Trainee GetTrainee(string id)
         {
-            return DataSource.Trainees.Find(t => t.IdTrainee == id);
+            var v = DS.DataSource.Trainees.Where(t => t.IdTrainee == id);
+            foreach (var item in v)
+                return item;
+            throw new Exception("תלמיד זה אינו קיים במערכת");
         }
         public Tester GetTester(string id)
         {
-            return DataSource.Testers.Find(t => t.IdTester == id);
+            var v = DS.DataSource.Testers.Where(t => t.IdTester==id);
+            foreach (var item in v)
+                return item;
+            throw new Exception("בוחן זה אינו קיים במערכת");
         }
         public Test GetTest(string id)
         {
-            return DataSource.Tests.Find(t => t.TestNum==id);
+            var v = DataSource.Tests.Where(t => t.TestNum==id);
+            foreach (var item in v)
+                return item;
+            throw new Exception("מבחן זה אינו קיים במערכת");
         }
 
         //******************all of this getters need change to clone************
