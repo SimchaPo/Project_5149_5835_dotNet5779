@@ -36,7 +36,7 @@
                 <Label VerticalAlignment="Center" Content="שם משפחה:" FlowDirection="RightToLeft"  Height="24"/>
                 <Label VerticalAlignment="Center" Content="תעודת זהות:" FlowDirection="RightToLeft"  Height="24"/>
                 <Label VerticalAlignment="Center" Content="תאריך לידה:" FlowDirection="RightToLeft"  Height="24"/>
-                <Label VerticalAlignment="Center" Content="מין" FlowDirection="RightToLeft"  Height="24"/>
+                <Label VerticalAlignment="Center" Content="מין:" FlowDirection="RightToLeft"  Height="24"/>
                 <Label VerticalAlignment="Center" Content="מספר טלפון:" FlowDirection="RightToLeft"  Height="24"/>
             </StackPanel>
                 <StackPanel Grid.Column="1">
@@ -55,7 +55,7 @@
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="2" Grid.Column="1" FlowDirection="RightToLeft" Orientation="Horizontal">
-                <Label Content="עיר" Height="24"/>
+                <Label Content="עיר:" Height="24"/>
                     <TextBox  IsReadOnly="True" x:Name="cityTextBox" Text="{Binding AddresTester.City, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="68" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24"/>
                 <Label Content="רחוב:" Height="24"/>
                     <TextBox IsReadOnly="True" x:Name="streetTextBox" Text="{Binding AddresTester.Street, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24" Width="68"/>
@@ -83,39 +83,8 @@
                 <TextBox IsReadOnly="True" x:Name="seniorityTesterTextBox" Text="{Binding SeniorityTester, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft"/>
             </StackPanel>
         </Grid>
-            <Grid Grid.Row="4">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="31"/>
-                    <RowDefinition Height="27"/>
-                    <RowDefinition Height="27"/>
-                    <RowDefinition Height="27"/>
-                    <RowDefinition Height="27"/>
-                    <RowDefinition Height="27"/>
-                    <RowDefinition Height="27"/>
-                    <RowDefinition Height="27"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="53"/>
-                    <ColumnDefinition Width="53"/>
-                    <ColumnDefinition Width="53"/>
-                    <ColumnDefinition Width="53"/>
-                    <ColumnDefinition Width="53"/>
-                    <ColumnDefinition Width="53"/>
-                </Grid.ColumnDefinitions>
-                <Label Content="ראשון" Grid.Row="0" Grid.Column="4" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
-                <Label Content="שני" Grid.Row="0" Grid.Column="3" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
-                <Label Content="שלישי" Grid.Row="0" Grid.Column="2" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
-                <Label Content="רביעי" Grid.Row="0" Grid.Column="1" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
-                <Label Content="חמישי" Grid.Row="0" Grid.Column="0" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
-                <Label Content="09:00" Grid.Row="1" Grid.Column="5" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
-                <Label Content="10:00" Grid.Row="2" Grid.Column="5" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
-                <Label Content="11:00" Grid.Row="3" Grid.Column="5" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
-                <Label Content="12:00" Grid.Row="4" Grid.Column="5" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
-                <Label Content="13:00" Grid.Row="5" Grid.Column="5" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
-                <Label Content="14:00" Grid.Row="6" Grid.Column="5" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
-                <Label Content="15:00" Grid.Row="7" Grid.Column="5" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+            <local:matrix x:Name="m1" Grid.Row="4"/>
 
-            </Grid>
         </Grid>
-    </Grid>        
+        </Grid>
 </Window>

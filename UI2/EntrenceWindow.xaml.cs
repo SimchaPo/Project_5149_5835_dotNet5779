@@ -66,12 +66,14 @@ namespace UI2
                 }
                 if (combo.SelectedIndex == 1)
                 {
+                    tester = bl.GetTester(userID.Text);
                     log_in_tester log_in_tester = new log_in_tester(tester);
                     log_in_tester.ShowDialog();
                 }
                 if (combo.SelectedIndex == 2)
                 {
-                    log_in_trainee log_in_trainee = new log_in_trainee();
+                    trainee = bl.GetTrainee(userID.Text);
+                    log_in_trainee log_in_trainee = new log_in_trainee(trainee);
                     log_in_trainee.ShowDialog();
                 }
             }

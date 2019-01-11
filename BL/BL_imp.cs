@@ -22,7 +22,7 @@ namespace BL
         {
             try
             {
-                if (Checks.CheckForNull(newTester))
+                if (Checks.CheckForNullTester(newTester))
                 {
                     throw new Exception("אנא השלם את כל הפרטים");
                 }
@@ -54,6 +54,18 @@ namespace BL
         {
             try
             {
+                if (Checks.CheckForNullTrainee(newTrainee))
+                {
+                    throw new Exception("אנא השלם את כל הפרטים");
+                }
+                if (!Checks.checkID(newTrainee.IdTrainee))
+                {
+                    throw new Exception("מספר תעודת זהות לא חוקי");
+                }
+                if (!Checks.checkPhoneNumber(newTrainee.PhoneNumberTrainee))
+                {
+                    throw new Exception("מספר טלפון לא חוקי");
+                }
                 if (newTrainee.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) > DateTime.Now)
                 {
                     throw new Exception("תלמיד צעיר מדי");
@@ -95,6 +107,19 @@ namespace BL
         public List<Trainee> getTrainees()
         {
             return idal.getTrainees();
+        }
+
+        public Test GetTest(string id)
+        {
+            return idal.GetTest(id);
+        }
+        public Trainee GetTrainee(string trainee)
+        {
+            return idal.GetTrainee(trainee);
+        }
+        public Tester GetTester(string id)
+        {
+            return idal.GetTester(id);
         }
 
         public void removeTester(string idTester)

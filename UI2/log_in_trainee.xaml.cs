@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BE;
+using BL;
 
 namespace UI2
 {
@@ -22,6 +24,11 @@ namespace UI2
         public log_in_trainee()
         {
             InitializeComponent();
+        }
+        public log_in_trainee(Trainee trainee)
+        {
+            InitializeComponent();
+            DataContext = trainee;
         }
     }
 }

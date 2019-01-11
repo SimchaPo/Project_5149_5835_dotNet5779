@@ -16,7 +16,7 @@ namespace BE
         {
             return myNumber.Any(c => char.IsDigit(c)) && myNumber.Length == 10;
         }
-        public static bool CheckForNull(Tester t)
+        public static bool CheckForNullTester(Tester t)
         {
             foreach (bool? item in t.mat)
             {
@@ -28,6 +28,12 @@ namespace BE
             return t.IdTester == null || t.NameTester.FirstName == null || t.NameTester.LastName == null
                 || t.PhoneNumberTester == null || t.AddresTester.City == null ||
                 t.AddresTester.Street == null;
+        }
+        public static bool CheckForNullTrainee(Trainee t)
+        {
+            return t.IdTrainee == null || t.NameTrainee.FirstName == null || t.NameTrainee.LastName == null
+                || t.PhoneNumberTrainee == null || t.AddressTrainee.City == null ||
+                t.AddressTrainee.Street == null || t.SchoolTrainee == null || t.TeacherTrainee == null;
         }
 
     }

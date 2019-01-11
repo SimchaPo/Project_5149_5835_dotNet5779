@@ -22,11 +22,11 @@ namespace UI2
     public partial class log_in_tester : Window
     {
         public string buttonName { get; set; }
-        Button button;
         public log_in_tester(Tester tester)
         {
             InitializeComponent();
-            DataContext = tester;    
+            DataContext = tester;
+            m1 = new matrix(tester);
         }
     }
 }

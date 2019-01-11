@@ -32,7 +32,7 @@
                 <Label VerticalAlignment="Center" Content="שם משפחה:" FlowDirection="RightToLeft"  Height="24"/>
                 <Label VerticalAlignment="Center" Content="תעודת זהות:" FlowDirection="RightToLeft"  Height="24"/>
                 <Label VerticalAlignment="Center" Content="תאריך לידה:" FlowDirection="RightToLeft"  Height="24"/>
-                <Label VerticalAlignment="Center" Content="מין" FlowDirection="RightToLeft"  Height="24"/>
+                <Label VerticalAlignment="Center" Content="מין:" FlowDirection="RightToLeft"  Height="24"/>
                 <Label VerticalAlignment="Center" Content="מספר טלפון:" FlowDirection="RightToLeft"  Height="24"/>
             </StackPanel>
             <StackPanel Grid.Column="1">
@@ -51,7 +51,7 @@
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="2" Grid.Column="1" FlowDirection="RightToLeft" Orientation="Horizontal">
-                <Label Content="עיר" Height="24"/>
+                <Label Content="עיר:" Height="24"/>
                 <TextBox x:Name="cityTextBox" Text="{Binding AddresTester.City, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="68" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24"/>
                 <Label Content="רחוב:" Height="24"/>
                 <TextBox x:Name="streetTextBox" Text="{Binding AddresTester.Street, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24" Width="68"/>

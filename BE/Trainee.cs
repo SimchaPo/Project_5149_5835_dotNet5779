@@ -24,7 +24,6 @@ namespace BE
         public CarType CarTypeTrainee { get; set; }
         public Gearbox GearboxTrainee { get; set; }
         public int NumberOfLesson { get; set; } //how much lesson the student did
-
         public DateTime LastExamDate { get; set; } //the date of last exam
     }
 }

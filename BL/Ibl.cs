@@ -20,6 +20,10 @@ namespace BL
         void AddTest(Test newTest);
         void updateTest(Test updateTest);
 
+        Test GetTest(string id);
+        Trainee GetTrainee(string trainee);
+        Tester GetTester(string id);
+
         List<Tester> getTesters();
         List<Trainee> getTrainees();
         List<Test> getTests();

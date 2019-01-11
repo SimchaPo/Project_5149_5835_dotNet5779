@@ -5,8 +5,87 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI2"
         mc:Ignorable="d"
-        Title="sign_in_trainee" Height="450" Width="800">
+        Icon="images/לוגו משרד התחבורה.jpg" Title="רישום תלמיד למערכת" Height="410" Width="350">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="149*"/>
+            <RowDefinition Height="47*"/>
+            <RowDefinition Height="128*"/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <TextBlock Text="אנא מלאו את כל הפרטים הבאים על מנת להשלים את הרישום" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" AllowDrop="True" FontWeight="Bold"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="150*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="2">
+                <Label VerticalAlignment="Center" Content="שם פרטי:" FlowDirection="RightToLeft"  Height="24"/>
+                <Label VerticalAlignment="Center" Content="שם משפחה:" FlowDirection="RightToLeft"  Height="24"/>
+                <Label VerticalAlignment="Center" Content="תעודת זהות:" FlowDirection="RightToLeft"  Height="24"/>
+                <Label VerticalAlignment="Center" Content="תאריך לידה:" FlowDirection="RightToLeft"  Height="24"/>
+                <Label VerticalAlignment="Center" Content="מין:" FlowDirection="RightToLeft"  Height="24"/>
+                <Label VerticalAlignment="Center" Content="מספר טלפון:" FlowDirection="RightToLeft"  Height="24"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <TextBox x:Name="firstNameTextBox" Text="{Binding NameTrainee.FirstName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft"/>
+                <TextBox x:Name="lastNameTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding NameTrainee.LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="idTraineeTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding IdTrainee, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
+                <DatePicker x:Name="birthDateTraineeDatePicker" VerticalAlignment="Center" FlowDirection="RightToLeft" SelectedDate="{Binding BirthDateTrainee, Mode=OneWayToSource}" Height="24" DisplayDate="2002-01-01"/>
+                <ComboBox x:Name="genderTraineeComboBox" VerticalAlignment="Center" Grid.Row="2" SelectedItem="{Binding GenderTrainee}" FlowDirection="RightToLeft" Height="24"/>
+                <TextBox x:Name="phoneNumberTraineeTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding PhoneNumberTrainee, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" MaxLength="10"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="2" Grid.Column="1" FlowDirection="RightToLeft" Orientation="Horizontal">
+                <Label Content="עיר:" Height="24"/>
+                <TextBox x:Name="cityTextBox" Text="{Binding AddressTrainee.City, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="68" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24"/>
+                <Label Content="רחוב:" Height="24"/>
+                <TextBox x:Name="streetTextBox" Text="{Binding AddressTrainee.Street, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24" Width="68"/>
+                <Label Content="מספר בית:" Height="24"/>
+                <TextBox x:Name="houseNumTextBox" Text="{Binding AddressTrainee.HouseNum, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="30" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24" MaxLength="4"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="9*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="2">
+                <Label VerticalAlignment="Center" Content="סוג הרכב:" FlowDirection="RightToLeft"  Height="24"/>
+                <Label VerticalAlignment="Center" Content="תיבת הילוכים:" FlowDirection="RightToLeft"  Height="24"/>
+                <Label VerticalAlignment="Center" Content="שם בית הספר:" FlowDirection="RightToLeft"  Height="24"/>
+                <Label VerticalAlignment="Center" Content="שם מורה הנהיגה:" FlowDirection="RightToLeft"  Height="24"/>
+                <Label VerticalAlignment="Center" Content="מספר השיעורים:" FlowDirection="RightToLeft"  Height="24"/>
+
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <ComboBox x:Name="carTypeTraineeComboBox" SelectedItem="{Binding CarTypeTrainee}" FlowDirection="RightToLeft" Height="24"/>
+                <ComboBox x:Name="gearboxTraineeComboBox" SelectedItem="{Binding GearboxTrainee}" FlowDirection="RightToLeft" Height="24"/>
+                <TextBox x:Name="schoolTraineeTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding SchoolTrainee, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
+                <TextBox x:Name="teacherTraineeTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding TeacherTrainee, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
+                <TextBox x:Name="numberOfLessonTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding NumberOfLesson, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="back" Content="חזרה" HorizontalAlignment="Center" Grid.Column="1" Width="75" VerticalAlignment="Center" Click="back_Click"/>
+            <Button x:Name="next" Content="המשך" HorizontalAlignment="Center"  Width="75" VerticalAlignment="Center" Click="next_Click"/>
+        </Grid>
     </Grid>
 </Window>
