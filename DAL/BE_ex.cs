@@ -10,7 +10,7 @@ namespace DAL
 {
     internal static class BE_ex
     {
-       //***************CLONES*************88
+       //***************CLONES*************
         //********clone for address
         public static Address Clone(this Address address)
         {
