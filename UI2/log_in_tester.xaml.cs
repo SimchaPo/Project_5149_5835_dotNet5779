@@ -26,7 +26,19 @@ namespace UI2
         {
             InitializeComponent();
             DataContext = tester;
-            m1 = new matrix(tester);
+            foreach (Button item in buttons.Children)
+            {
+                int x = item.Name[1] - 48;
+                int y = item.Name[3] - 48;
+                if (tester.mat[x, y] == true)
+                {
+                    item.Background = Brushes.Green;
+                }
+                if (tester.mat[x, y] == false)
+                {
+                    item.Background = Brushes.Red;
+                }
+            }
         }
     }
 }

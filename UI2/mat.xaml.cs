@@ -32,37 +32,8 @@ namespace UI2
                 {null , null, null, null, null, null, null },
                {null , null, null, null, null, null, null } };
         }
-
-        public matrix(Tester tester)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
-            mat1 = tester.mat;
-            for(int x = 0; x < 5; ++x)
-            {
-                for(int y = 0; y < 7; ++y)
-                {
-                    Button button = getName(x, y);
-                    button.Background = Brushes.Black;
-                }
-            }
-        }
-            /* private static SolidColorBrush brushes(object sender)
-             {
-
-                     Button button = new Button();
-                     button = sender as Button;
-                     int x = button.Name[1] - 48;
-                     int y = button.Name[3] - 48;
-                     if (mat1[x, y] == true)
-                     {
-                         return Brushes.Green;
-                     }
-                     return Brushes.Red;
-                 }
-             }*/
-            private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
             Button button = new Button();
             button = sender as Button;
             int x = button.Name[1] - 48;
@@ -78,12 +49,6 @@ namespace UI2
                 mat1[x, y] = false;
                 button.Background = Brushes.Red;
             }
-        }
-        private Button getName(int x, int y)
-        {
-            Button button = new Button();
-            button.Name = 'b' + x.ToString() + '_' + y.ToString();
-            return button;
         }
     }
 }

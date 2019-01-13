@@ -47,53 +47,61 @@ namespace UI2
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)old_user.IsChecked)
+            try
             {
-                if (userID.Text == "מספר זהות" || userFirstName.Text == "שם פרטי" || userLastName.Text == "שם משפחה") //missing detailes
+                if ((bool)old_user.IsChecked)
                 {
-                    MessageBox.Show("אנא מלא את כל הפרטים", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
+                    if (userID.Text == "מספר זהות" || userFirstName.Text == "שם פרטי" || userLastName.Text == "שם משפחה") //missing detailes
+                    {
+                        MessageBox.Show("אנא מלא את כל הפרטים", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    if (!Checks.checkID(userID.Text))
+                    {
+                        MessageBox.Show("מספר זהות לא חוקי", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    if (combo.SelectedIndex == 0)
+                    {
+                        MessageBox.Show("אנא סמן את בחירתך", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    if (combo.SelectedIndex == 1)
+                    {
+                        tester = bl.GetTester(userID.Text);
+                        log_in_tester log_in_tester = new log_in_tester(tester);
+                        log_in_tester.ShowDialog();
+                    }
+                    if (combo.SelectedIndex == 2)
+                    {
+                        trainee = bl.GetTrainee(userID.Text);
+                        log_in_trainee log_in_trainee = new log_in_trainee(trainee);
+                        log_in_trainee.ShowDialog();
+                    }
                 }
-                if(!Checks.checkID(userID.Text))
+                if ((bool)new_user.IsChecked)
                 {
-                    MessageBox.Show("מספר זהות לא חוקי", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-                if (combo.SelectedIndex == 0)
-                {
-                    MessageBox.Show("אנא סמן את בחירתך", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-                if (combo.SelectedIndex == 1)
-                {
-                    tester = bl.GetTester(userID.Text);
-                    log_in_tester log_in_tester = new log_in_tester(tester);
-                    log_in_tester.ShowDialog();
-                }
-                if (combo.SelectedIndex == 2)
-                {
-                    trainee = bl.GetTrainee(userID.Text);
-                    log_in_trainee log_in_trainee = new log_in_trainee(trainee);
-                    log_in_trainee.ShowDialog();
+                    if (combo.SelectedIndex == 0)
+                    {
+                        MessageBox.Show("אנא סמן את בחירתך", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    if (combo.SelectedIndex == 1)
+                    {
+                        sign_in_tester sign_in_tester = new sign_in_tester();
+                        sign_in_tester.ShowDialog();
+                    }
+                    if (combo.SelectedIndex == 2)
+                    {
+                        sign_in_trainee sign_in_trainee = new sign_in_trainee();
+                        sign_in_trainee.ShowDialog();
+                    }
                 }
             }
-            if ((bool)new_user.IsChecked)
+            catch(Exception ex)
             {
-                if (combo.SelectedIndex == 0)
-                {
-                    MessageBox.Show("אנא סמן את בחירתך", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-                if (combo.SelectedIndex == 1)
-                {
-                    sign_in_tester sign_in_tester = new sign_in_tester();
-                    sign_in_tester.ShowDialog();
-                }
-                if (combo.SelectedIndex == 2)
-                {
-                    sign_in_trainee sign_in_trainee = new sign_in_trainee();
-                    sign_in_trainee.ShowDialog();
-                }
+                MessageBox.Show(ex.Message, "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+
             }
         }
 

@@ -17,7 +17,7 @@
             <RowDefinition Height="149*"/>
             <RowDefinition Height="47*"/>
             <RowDefinition Height="111*"/>
-            <RowDefinition Height="257*"/>
+            <RowDefinition Height="220*"/>
             <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
@@ -83,8 +83,119 @@
                 <TextBox IsReadOnly="True" x:Name="seniorityTesterTextBox" Text="{Binding SeniorityTester, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft"/>
             </StackPanel>
         </Grid>
-            <local:matrix x:Name="m1" Grid.Row="4"/>
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="16*"/>
+                    <ColumnDefinition Width="318"/>
+                    <ColumnDefinition Width="16*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="31"/>
+                            <RowDefinition Height="189"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="53"/>
+                                <ColumnDefinition Width="53"/>
+                                <ColumnDefinition Width="53"/>
+                                <ColumnDefinition Width="53"/>
+                                <ColumnDefinition Width="53"/>
+                                <ColumnDefinition Width="53"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="ראשון" Grid.Row="0" Grid.Column="4" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                            <Label Content="שני" Grid.Row="0" Grid.Column="3" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                            <Label Content="שלישי" Grid.Row="0" Grid.Column="2" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                            <Label Content="רביעי" Grid.Row="0" Grid.Column="1" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                            <Label Content="חמישי" Grid.Row="0" Grid.Column="0" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="265"/>
+                                <ColumnDefinition Width="53*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="27"/>
+                                    <RowDefinition Height="27"/>
+                                    <RowDefinition Height="27"/>
+                                    <RowDefinition Height="27"/>
+                                    <RowDefinition Height="27"/>
+                                    <RowDefinition Height="27"/>
+                                    <RowDefinition Height="27"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="09:00" Grid.Row="0" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                                <Label Content="10:00" Grid.Row="1" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                                <Label Content="11:00" Grid.Row="2" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                                <Label Content="12:00" Grid.Row="3" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                                <Label Content="13:00" Grid.Row="4" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                                <Label Content="14:00" Grid.Row="5" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                                <Label Content="15:00" Grid.Row="6" FlowDirection="RightToLeft" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"/>
+                            </Grid>
+                            <Grid Name="buttons" Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="53"/>
+                                    <ColumnDefinition Width="53"/>
+                                    <ColumnDefinition Width="53"/>
+                                    <ColumnDefinition Width="53"/>
+                                    <ColumnDefinition Width="53"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="27"/>
+                                    <RowDefinition Height="27"/>
+                                    <RowDefinition Height="27"/>
+                                    <RowDefinition Height="27"/>
+                                    <RowDefinition Height="27"/>
+                                    <RowDefinition Height="27"/>
+                                    <RowDefinition Height="27"/>
+                                </Grid.RowDefinitions>
+                                <Button x:Name="b4_0" Grid.Row="0" Grid.Column="0" Width="53" Height="27"/>
+                                <Button x:Name="b3_0" Grid.Row="0" Grid.Column="1" Width="53" Height="27"/>
+                                <Button x:Name="b2_0" Grid.Row="0" Grid.Column="2" Width="53" Height="27"/>
+                                <Button x:Name="b1_0" Grid.Row="0" Grid.Column="3" Width="53" Height="27"/>
+                                <Button x:Name="b0_0" Grid.Row="0" Grid.Column="4" Width="53" Height="27"/>
 
+                                <Button x:Name="b4_1" Grid.Row="1" Grid.Column="0" Width="53" Height="27"/>
+                                <Button x:Name="b3_1" Grid.Row="1" Grid.Column="1" Width="53" Height="27"/>
+                                <Button x:Name="b2_1" Grid.Row="1" Grid.Column="2" Width="53" Height="27"/>
+                                <Button x:Name="b1_1" Grid.Row="1" Grid.Column="3" Width="53" Height="27"/>
+                                <Button x:Name="b0_1" Grid.Row="1" Grid.Column="4" Width="53" Height="27"/>
+
+                                <Button x:Name="b4_2" Grid.Row="2" Grid.Column="0" Width="53" Height="27"/>
+                                <Button x:Name="b3_2" Grid.Row="2" Grid.Column="1" Width="53" Height="27"/>
+                                <Button x:Name="b2_2" Grid.Row="2" Grid.Column="2" Width="53" Height="27"/>
+                                <Button x:Name="b1_2" Grid.Row="2" Grid.Column="3" Width="53" Height="27"/>
+                                <Button x:Name="b0_2" Grid.Row="2" Grid.Column="4" Width="53" Height="27"/>
+
+                                <Button x:Name="b4_3" Grid.Row="3" Grid.Column="0" Width="53" Height="27"/>
+                                <Button x:Name="b3_3" Grid.Row="3" Grid.Column="1" Width="53" Height="27"/>
+                                <Button x:Name="b2_3" Grid.Row="3" Grid.Column="2" Width="53" Height="27"/>
+                                <Button x:Name="b1_3" Grid.Row="3" Grid.Column="3" Width="53" Height="27"/>
+                                <Button x:Name="b0_3" Grid.Row="3" Grid.Column="4" Width="53" Height="27"/>
+
+                                <Button x:Name="b4_4" Grid.Row="4" Grid.Column="0" Width="53" Height="27"/>
+                                <Button x:Name="b3_4" Grid.Row="4" Grid.Column="1" Width="53" Height="27"/>
+                                <Button x:Name="b2_4" Grid.Row="4" Grid.Column="2" Width="53" Height="27"/>
+                                <Button x:Name="b1_4" Grid.Row="4" Grid.Column="3" Width="53" Height="27"/>
+                                <Button x:Name="b0_4" Grid.Row="4" Grid.Column="4" Width="53" Height="27"/>
+
+                                <Button x:Name="b4_5" Grid.Row="5" Grid.Column="0" Width="53" Height="27"/>
+                                <Button x:Name="b3_5" Grid.Row="5" Grid.Column="1" Width="53" Height="27"/>
+                                <Button x:Name="b2_5" Grid.Row="5" Grid.Column="2" Width="53" Height="27"/>
+                                <Button x:Name="b1_5" Grid.Row="5" Grid.Column="3" Width="53" Height="27"/>
+                                <Button x:Name="b0_5" Grid.Row="5" Grid.Column="4" Width="53" Height="27"/>
+
+                                <Button x:Name="b4_6" Grid.Row="6" Grid.Column="0" Width="53" Height="27"/>
+                                <Button x:Name="b3_6" Grid.Row="6" Grid.Column="1" Width="53" Height="27"/>
+                                <Button x:Name="b2_6" Grid.Row="6" Grid.Column="2" Width="53" Height="27"/>
+                                <Button x:Name="b1_6" Grid.Row="6" Grid.Column="3" Width="53" Height="27"/>
+                                <Button x:Name="b0_6" Grid.Row="6" Grid.Column="4" Width="53" Height="27"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
         </Grid>
         </Grid>
 </Window>

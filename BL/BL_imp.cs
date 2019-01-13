@@ -115,10 +115,21 @@ namespace BL
         }
         public Trainee GetTrainee(string trainee)
         {
-            return idal.GetTrainee(trainee);
+            try
+            {
+                return idal.GetTrainee(trainee);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public Tester GetTester(string id)
         {
+            if (!Checks.checkID(id))
+            {
+                throw new Exception("מספר תעודת זהות לא תקין");
+            }
             return idal.GetTester(id);
         }
 
