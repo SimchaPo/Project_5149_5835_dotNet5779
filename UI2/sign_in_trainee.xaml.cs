@@ -17,14 +17,14 @@ using BL;
 namespace UI2
 {
     /// <summary>
-    /// Interaction logic for check.xaml
+    /// Interaction logic for sign_in_trainee.xaml
     /// </summary>
-    public partial class check : Window
+    public partial class sign_in_trainee : Window
     {
         Trainee trainee;
         IBL bl;
-
-        public check()
+        Checks checks;
+        public sign_in_trainee()
         {
             InitializeComponent();
             trainee = new Trainee();
@@ -33,18 +33,25 @@ namespace UI2
             carTypeTraineeComboBox.ItemsSource = Enum.GetValues(typeof(CarType));
             gearboxTraineeComboBox.ItemsSource = Enum.GetValues(typeof(Gearbox));
             genderTraineeComboBox.ItemsSource = Enum.GetValues(typeof(Gender));
-            //birthDateTraineeDatePicker.DataContext = trainee.BirthDateTrainee;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void back_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void next_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 bl.addTrainee(trainee);
+                Close();
+                log_in_trainee log_In = new log_in_trainee(trainee);
+                log_In.ShowDialog();
             }
-            catch(Exception e2)
+            catch (Exception ex)
             {
-                MessageBox.Show(e2.Message);
+                MessageBox.Show(ex.Message);
             }
         }
     }

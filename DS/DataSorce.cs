@@ -30,7 +30,7 @@ namespace DS
             get { return trainees; }
         } //return refference of the trainee list
 
-        public void init()
+       /* public void init()
         {
             Testers.Add(new Tester
             {
@@ -59,7 +59,7 @@ namespace DS
                 );
 
 
-        }
+        }*/
 
 
 

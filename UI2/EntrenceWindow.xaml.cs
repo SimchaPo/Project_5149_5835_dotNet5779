@@ -26,21 +26,15 @@ namespace UI2
         Trainee trainee;
         Test test;
         IBL bl;
+        Checks checks;
         public MainWindow()
         {
             InitializeComponent();
             tester = new Tester();
             trainee = new Trainee();
             test = new Test();
+            checks = new Checks();
             bl = FactoryBL.GetBL();
-        }
-        private void userName_MouseEnter(object sender, MouseEventArgs e)
-        {
-            if (userName.Text == "שם")
-                userName.ClearValue(TextBox.TextProperty);
-            else if (userName.Text == "")
-                userName.Text = "שם";
-
         }
 
         private void userID_MouseEnter(object sender, MouseEventArgs e)
@@ -53,58 +47,90 @@ namespace UI2
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)old_user.IsChecked)
+            try
             {
-                if (userID.Text == "מספר זהות" || userName.Text == "שם")
+                if ((bool)old_user.IsChecked)
                 {
-                    MessageBox.Show("אנא מלא את כל הפרטים", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
+                    if (userID.Text == "מספר זהות" || userFirstName.Text == "שם פרטי" || userLastName.Text == "שם משפחה") //missing detailes
+                    {
+                        MessageBox.Show("אנא מלא את כל הפרטים", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    if (!Checks.checkID(userID.Text))
+                    {
+                        MessageBox.Show("מספר זהות לא חוקי", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    if (combo.SelectedIndex == 0)
+                    {
+                        MessageBox.Show("אנא סמן את בחירתך", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    if (combo.SelectedIndex == 1)
+                    {
+                        tester = bl.GetTester(userID.Text);
+                        log_in_tester log_in_tester = new log_in_tester(tester);
+                        log_in_tester.ShowDialog();
+                    }
+                    if (combo.SelectedIndex == 2)
+                    {
+                        trainee = bl.GetTrainee(userID.Text);
+                        log_in_trainee log_in_trainee = new log_in_trainee(trainee);
+                        log_in_trainee.ShowDialog();
+                    }
                 }
-                if (combo.SelectedIndex == 0)
+                if ((bool)new_user.IsChecked)
                 {
-                    MessageBox.Show("אנא סמן את בחירתך", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-                if (combo.SelectedIndex == 1)
-                {
-                    Conect_old_tester conect_old_tester = new Conect_old_tester();
-                    conect_old_tester.ShowDialog();
-                }
-                if (combo.SelectedIndex == 2)
-                {
-                    Conect_old_trainee conect_old_trainee = new Conect_old_trainee();
-                    conect_old_trainee.ShowDialog();
+                    if (combo.SelectedIndex == 0)
+                    {
+                        MessageBox.Show("אנא סמן את בחירתך", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    if (combo.SelectedIndex == 1)
+                    {
+                        sign_in_tester sign_in_tester = new sign_in_tester();
+                        sign_in_tester.ShowDialog();
+                    }
+                    if (combo.SelectedIndex == 2)
+                    {
+                        sign_in_trainee sign_in_trainee = new sign_in_trainee();
+                        sign_in_trainee.ShowDialog();
+                    }
                 }
             }
-            if ((bool)new_user.IsChecked)
+            catch(Exception ex)
             {
-                if (combo.SelectedIndex == 0)
-                {
-                    MessageBox.Show("אנא סמן את בחירתך", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-                if (combo.SelectedIndex == 1)
-                {
-                    New_tester new_tester = new New_tester();
-                    new_tester.ShowDialog();
-                }
-                if (combo.SelectedIndex == 2)
-                {
-                    New_trainee new_trainee = new New_trainee();
-                    new_trainee.ShowDialog();
-                }
+                MessageBox.Show(ex.Message, "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+
             }
         }
 
         private void old_user_Unchecked(object sender, RoutedEventArgs e)
         {
-            userName.Text = "שם";
+            userFirstName.Text = "שם פרטי";
+            userLastName.Text = userLastName.Text = "שם משפחה";
             userID.Text = "מספר זהות";
         }
 
         private void new_user_Unchecked(object sender, RoutedEventArgs e)
         {
             combo.SelectedIndex = 0;
+        }
+
+        private void userFirstName_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (userFirstName.Text == "שם פרטי")
+                userFirstName.ClearValue(TextBox.TextProperty);
+            else if (userFirstName.Text == "")
+                userFirstName.Text = "שם פרטי";
+        }
+
+        private void userLastName_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (userLastName.Text == "שם משפחה")
+                userLastName.ClearValue(TextBox.TextProperty);
+            else if (userLastName.Text == "")
+                userLastName.Text = "שם משפחה";
         }
     }
     

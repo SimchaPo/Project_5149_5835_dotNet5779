@@ -31,16 +31,6 @@ namespace DAL
                 LastName = name.LastName
             };
         }
-
-        
-        
-        public static bool?[,] Clone(this bool?[,] mat) //***********not complete*************
-        {
-            return new bool?[,]
-            {
-
-            };
-        }
             
         //clone for Trainee
 
@@ -78,7 +68,7 @@ namespace DAL
         }
         public static Tester Clone(this Tester t)
         {
-            return new Tester
+            Tester tester = new Tester
             {
                 IdTester = t.IdTester,
                 NameTester = t.NameTester.Clone(),
@@ -89,9 +79,10 @@ namespace DAL
                 SeniorityTester = t.SeniorityTester,
                 MaxTestsTester = t.MaxTestsTester,
                 CarTypeTester = t.CarTypeTester,
-                //mat = t.mat.Clone(), //i need to make the clone of mat*********
+                mat = (bool?[,])t.mat.Clone(), //i need to make the clone of mat*********
                 MaxFarFromTester = t.MaxFarFromTester
             };
+            return tester;
         }
 
 

@@ -12,21 +12,22 @@
             <ImageBrush ImageSource="images/לוגו משרד התחבורה.jpg" Opacity="0.6" Stretch="None"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="51*"/>
             <RowDefinition Height="318*"/>
         </Grid.RowDefinitions>
-        <TextBlock TextWrapping="Wrap" FontSize="36" TextAlignment="Center" FontWeight="Bold" Foreground="#FF8080B6" Grid.RowSpan="4" Grid.ColumnSpan="4" Text="ברוכים הבאים לאתר משרד הרישוי"/>
-        <StackPanel x:Name="stack" Grid.Row="1" Grid.Column="2" Grid.RowSpan="1" Grid.ColumnSpan="2">
+        <TextBlock TextWrapping="Wrap" FontSize="36" TextAlignment="Center" FontWeight="Bold" Foreground="#FF8080B6" Grid.RowSpan="2" Grid.ColumnSpan="4" Text="ברוכים הבאים לאתר משרד הרישוי" Margin="0,0,-0.4,0"/>
+        <StackPanel x:Name="stack" Grid.Row="1" Grid.Column="2" Grid.RowSpan="1" Grid.ColumnSpan="2" Margin="0.2,-0.4,-0.4,0">
             <TextBlock Text="כניסה למערכת" FontSize="36" TextAlignment="Center"/>
             <RadioButton Name="new_user" FontSize="20" Content="משתמש חדש" HorizontalAlignment="Right" FlowDirection="RightToLeft" Height="30" Unchecked="new_user_Unchecked" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"/>
             <RadioButton x:Name="old_user" FontSize="20" Content="משתמש קיים" HorizontalAlignment="Right" FlowDirection="RightToLeft" Height="30" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" Unchecked="old_user_Unchecked"/>
-            <TextBox x:Name="userName" Text="שם" FlowDirection="RightToLeft" FontSize="20" MouseEnter="userName_MouseEnter" MouseLeave="userName_MouseEnter" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="{Binding ElementName=old_user, Path=IsChecked}" Width="253"/>
-            <TextBox x:Name="userID" Text="מספר זהות" FlowDirection="RightToLeft" FontSize="20"  MouseEnter="userID_MouseEnter" MouseLeave="userID_MouseEnter" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="{Binding ElementName=old_user, Path=IsChecked}" Width="253"/>
+            <TextBox x:Name="userFirstName" Text="שם פרטי" FlowDirection="RightToLeft" FontSize="20" MouseEnter="userFirstName_MouseEnter" MouseLeave="userFirstName_MouseEnter" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="{Binding ElementName=old_user, Path=IsChecked}" Width="253"/>
+            <TextBox x:Name="userLastName" Text="שם משפחה" FlowDirection="RightToLeft" FontSize="20" MouseEnter="userLastName_MouseEnter" MouseLeave="userLastName_MouseEnter" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="{Binding ElementName=old_user, Path=IsChecked}" Width="253"/>
+            <TextBox x:Name="userID" MaxLength="9" Text="מספר זהות" FlowDirection="RightToLeft" FontSize="20"  MouseEnter="userID_MouseEnter" MouseLeave="userID_MouseEnter" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="{Binding ElementName=old_user, Path=IsChecked}" Width="253"/>
             <ComboBox x:Name="combo" Width="253" FontSize="20" SelectedIndex="0" FlowDirection="RightToLeft" Margin="0,30,0,0">
                 <ComboBoxItem Content="אנא בחר.." FontSize="20" FlowDirection="RightToLeft"/>
                 <ComboBoxItem Content="בוחן נהיגה" FontSize="20" FlowDirection="RightToLeft"/>

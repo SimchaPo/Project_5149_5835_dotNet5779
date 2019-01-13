@@ -8,6 +8,16 @@ namespace BE
 {
     public class Tester
     {
+        public Tester()
+        {
+            NameTester = new FullName();
+            AddresTester = new Address();
+            mat = new bool?[5, 7] { {null , null, null, null, null, null, null },
+                {null , null, null, null, null, null, null },
+                {null , null, null, null, null, null, null },
+                {null , null, null, null, null, null, null },
+               {null , null, null, null, null, null, null } };
+        }
         public string IdTester { get; set; }
         public FullName NameTester { get; set; }
         public DateTime BirthDateTester { get; set; }
@@ -17,7 +27,7 @@ namespace BE
         public int SeniorityTester { get; set; } //שנות וותק
         public int MaxTestsTester { get; set; } 
         public CarType CarTypeTester { get; set; }
-        public bool?[,] mat { get; set; } // צריך לאתחל את גודל המטריצה
+        public bool?[,] mat { get; set; }
         public int MaxFarFromTester { get; set; }
     }
 }
