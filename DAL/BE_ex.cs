@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using BE;
 
+
 namespace DAL
 {
     internal static class BE_ex
     {
+       //***************CLONES*************88
         //********clone for address
         public static Address Clone(this Address address)
         {
@@ -30,7 +32,7 @@ namespace DAL
             };
         }
 
-        //we are not need to to clone to address bacause it is a struct and not a class
+        
         
         public static bool?[,] Clone(this bool?[,] mat) //***********not complete*************
         {
@@ -50,7 +52,7 @@ namespace DAL
                 NameTrainee = t.NameTrainee.Clone(),
                 GenderTrainee = t.GenderTrainee,
                 PhoneNumberTrainee = t.PhoneNumberTrainee,
-                AddressTrainee = t.AddressTrainee,//we not using a clone bacasue it is a struct
+                AddressTrainee = t.AddressTrainee.Clone(),
                 BirthDateTrainee = t.BirthDateTrainee, //did datetime return reffence or copy???????????????????
                 CarTypeTrainee = t.CarTypeTrainee,
                 GearboxTrainee = t.GearboxTrainee,
@@ -68,7 +70,7 @@ namespace DAL
                 TraineeId = t.TraineeId,
                 TestDate = t.TestDate,//did datetime return reffence or copy???????????????????
                 HourTest = t.HourTest,
-                AddresTest = t.AddresTest,
+                AddresTest = t.AddresTest.Clone(),
                 TestTime = t.TestTime,//did datetime return reffence or copy???????????????????
                 NoteTester = t.NoteTester
 
@@ -83,7 +85,7 @@ namespace DAL
                 BirthDateTester = t.BirthDateTester,
                 GenderTester = t.GenderTester,//did datetime return reffence or copy???????????????????
                 PhoneNumberTester = t.PhoneNumberTester,
-                AddresTester = t.AddresTester,
+                AddresTester = t.AddresTester.Clone(),
                 SeniorityTester = t.SeniorityTester,
                 MaxTestsTester = t.MaxTestsTester,
                 CarTypeTester = t.CarTypeTester,
@@ -134,22 +136,25 @@ namespace DAL
             throw new Exception("not implemented func");
         }
 
-        public static bool didStudentPassThisSortVehicle(this Trainee t, Gearbox gear, CarType carType)
+#if false
+        public static bool didStudentPassThisSortVehicle(this Trainee t, Test test)
         {
-            return ((t.GearboxTrainee == gear)||(t.GearboxTrainee==Gearbox.גיר_ידני)) //if the student pass exam on manual gear it also good for automatic gear
-                & (t.CarTypeTrainee == carType); 
-        }
 
-        public static bool didStudentsExist(this Trainee t)
+            return ((t.GearboxTrainee == gear) || (t.GearboxTrainee == Gearbox.גיר_ידני)) //if the student pass exam on manual gear it also good for automatic gear
+                & (t.CarTypeTrainee == carType);
+        } 
+#endif
+
+        public static bool didStudentsExist(this Trainee t)//***IF I MOVE THIS CHECK FUNCTION TO CLASS OF CHEECK, I NEED TO CHANGE THIS FUNCTION
         {
             return DS.DataSource.Trainees.Exists(item => item.IdTrainee == t.IdTrainee);
         }
-        public static bool didTesterExist(this Tester t)
+        public static bool didTesterExist(this Tester t)//***IF I MOVE THIS CHECK FUNCTION TO CLASS OF CHEECK, I NEED TO CHANGE THIS FUNCTION
         {
             return DS.DataSource.Testers.Exists(item => item.IdTester == t.IdTester);
         }
 
-        public static bool didTestExist(this Test t)
+        public static bool didTestExist(this Test t)//***IF I MOVE THIS CHECK FUNCTION TO CLASS OF CHEECK, I NEED TO CHANGE THIS FUNCTION
         {
             return DS.DataSource.Tests.Exists(item => item.TestNum == t.TestNum);
         } 
