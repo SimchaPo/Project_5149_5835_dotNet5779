@@ -89,10 +89,22 @@ namespace DAL
                 throw new Exception("שגיאה בטעינת קובץ המבחנים");
             }
         }
-
-        public void addTester(Tester newTester)
+ 
+        public void addTester(Tester newTester) // i need to think how to store the matrix (meybe with convert to string)
         {
-             
+            XElement id = new XElement("idTester", newTester.IdTester);
+            XElement NameTester = newTester.NameTester.ToXElement();
+            // *****in birthday i need to think how to convert this to string***\
+            // *****in gender I need to thinl how convert***
+            XElement PhoneNumberTester = new XElement("phoneNumberTester", newTester.PhoneNumberTester);
+            XElement Addrees = newTester.AddresTester.ToXElement();
+            XElement SeniorityTester = new XElement("SeniorityTester", newTester.SeniorityTester);
+            XElement MaxTestsTester = new XElement("MaxTestsTester", newTester.MaxTestsTester);
+            //// *****in carType I need to thinl how convert***
+            //**in matrix i need to think how to convert***
+            XElement MaxFarFromTester = new XElement("MaxFarFromTester", newTester.MaxFarFromTester);
+            TesterRoot.Add(new XElement("Tester", id, NameTester, PhoneNumberTester, Addrees, SeniorityTester, MaxTestsTester, MaxFarFromTester)); 
+            //*** I need to Add the other element that already i not did ********
         }
 
         public void removeTester(string idTester)
@@ -107,7 +119,18 @@ namespace DAL
 
         public void addTrainee(Trainee newTrainee)
         {
-            
+            XElement NameTrainee = newTrainee.NameTrainee.ToXElement();
+            XElement IdTrainee = new XElement("IdTrainee", newTrainee.IdTrainee);
+            // *****in birthday i need to think how to convert this to string***\
+            // *****in gender I need to thinl how convert***
+            XElement PhoneNumberTrainee = new XElement("PhoneNumberTrainee", newTrainee.PhoneNumberTrainee);
+            XElement AddressTrainee = newTrainee.AddressTrainee.ToXElement();
+            XElement SchoolTrainee= new XElement("SchoolTrainee", newTrainee.SchoolTrainee);
+            XElement TeacherTrainee = new XElement("TeacherTrainee", newTrainee.TeacherTrainee);
+            //// *****in carType I need to think how convert***
+            //// *****in Gearbox I need to think how convert***
+            XElement NumberOfLesson = new XElement("NumberOfLesson", newTrainee.NumberOfLesson);
+            //// *****in LastExamDate I need to think how convert***
         }
 
         public void removeTrainee(string iTrainee)
@@ -159,5 +182,9 @@ namespace DAL
         {
             throw new NotImplementedException();
         }
+
+ 
     }
+
+    
 }
