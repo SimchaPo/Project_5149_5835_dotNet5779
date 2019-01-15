@@ -45,9 +45,9 @@ namespace UI2
             {
                 tester.mat = m2.mat1;
                 bl.addTester(tester);
-                Close();
                 log_in_tester log_In = new log_in_tester(tester);
                 log_In.ShowDialog();
+                Close();
             }
             catch(Exception ex)
             {

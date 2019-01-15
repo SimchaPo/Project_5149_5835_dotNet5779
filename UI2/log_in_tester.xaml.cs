@@ -52,17 +52,17 @@ namespace UI2
 
         private void exit_Click(object sender, RoutedEventArgs e)
         {
-            Close();
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
+            Close();
         }
 
         private void delete_tester_Click(object sender, RoutedEventArgs e)
         {
             bl.removeTester(tester1.IdTester);
-            Close();
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
+            Close();
         }
 
         private void update_test_Click(object sender, RoutedEventArgs e)
