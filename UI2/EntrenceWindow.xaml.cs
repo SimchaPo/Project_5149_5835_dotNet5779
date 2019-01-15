@@ -65,15 +65,15 @@ namespace UI2
                     {
                         tester = bl.GetTester(userID.Text);
                         log_in_tester log_in_tester = new log_in_tester(tester);
-                        Close();
                         log_in_tester.Show();
+                        Close();
                     }
                     if (combo.SelectedIndex == 2)
                     {
                         trainee = bl.GetTrainee(userID.Text);
                         log_in_trainee log_in_trainee = new log_in_trainee(trainee);
-                        Close();
                         log_in_trainee.Show();
+                        Close();
                     }
                 }
                 if ((bool)new_user.IsChecked)
@@ -84,15 +84,15 @@ namespace UI2
                     }
                     if (combo.SelectedIndex == 1)
                     {
-                        Close();
                         sign_in_tester sign_in_tester = new sign_in_tester();
                         sign_in_tester.Show();
+                        Close();
                     }
                     if (combo.SelectedIndex == 2)
                     {
-                        Close();
                         sign_in_trainee sign_in_trainee = new sign_in_trainee();
                         sign_in_trainee.Show();
+                        Close();
                     }
                 }
             }
