@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI2"
         mc:Ignorable="d"
-        Title="log_in_trainee" Height="450" Width="800" Icon="images/לוגו משרד התחבורה.jpg" >
+        Title="איזור אישי - תלמיד" Height="450" Width="600" Icon="images/לוגו משרד התחבורה.jpg" >
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -20,7 +20,7 @@
                     <RowDefinition Height="128*"/>
                     <RowDefinition Height="30*"/>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
+                <Grid Grid.Row="0" >
                     <TextBlock Text="פרטיך כפי שמופיעים במערכת" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" AllowDrop="True" FontWeight="Bold"/>
                 </Grid>
                 <Grid Grid.Row="1">
@@ -81,10 +81,36 @@
                         <TextBox IsReadOnly="True" x:Name="gearboxTraineeComboBox" Text="{Binding GearboxTrainee}" FlowDirection="RightToLeft" Height="24" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
                         <TextBox IsReadOnly="True" x:Name="schoolTraineeTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding SchoolTrainee, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
                         <TextBox IsReadOnly="True" x:Name="teacherTraineeTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding TeacherTrainee, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
-                        <TextBox IsReadOnly="True" x:Name="numberOfLessonTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding NumberOfLesson, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
-
+                        <TextBox IsReadOnly="True" x:Name="numberOfLessonTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding NumberOfLesson, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
                     </StackPanel>
-
+                </Grid>
+                <Grid Grid.Row="4">
+                    <Button Name="updateTrainee" Content="עדכן פרטים" HorizontalAlignment="Center" VerticalAlignment="Center" Click="updateTrainee_Click"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1" HorizontalAlignment="Center" FlowDirection="RightToLeft" Width="205">
+                    <TextBlock Text="בקשת מבחן באמצעות המערכת" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                    <Button Name="order_test" Content="בקשת מבחן" HorizontalAlignment="Center" VerticalAlignment="Center" Click="order_test_Click"/>
+                </Grid>
+                <Grid Grid.Row="2" HorizontalAlignment="Center" FlowDirection="RightToLeft" Width="205">
+                    <TextBlock Text="קבלת תוצאות מבחן באמצעות המערכת" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                    <Button Name="get_score" Content="קבלת תוצאות מבחן" HorizontalAlignment="Center" VerticalAlignment="Center" Click="get_score_Click"/>
+                </Grid>
+                <Grid Grid.Row="3" HorizontalAlignment="Center" FlowDirection="RightToLeft" Width="205">
+                    <TextBlock Text="מחיקת פרטי תלמיד מן המערכת" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                    <Button Name="delete_trainee" Content="מחיקת תלמיד מהמערכת" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Click="delete_trainee_Click"/>
+                </Grid>
+                <Grid Grid.Row="4" HorizontalAlignment="Center" FlowDirection="RightToLeft" Width="205">
+                    <TextBlock Text="יציאה מהאיזור האישי לתפריט הראשי" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                    <Button Name="exit" Content="חזרה לתפריט הראשי" HorizontalAlignment="Center" VerticalAlignment="Center" Click="exit_Click"/>
                 </Grid>
             </Grid>
         </Grid>

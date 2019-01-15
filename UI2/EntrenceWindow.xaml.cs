@@ -26,14 +26,12 @@ namespace UI2
         Trainee trainee;
         Test test;
         IBL bl;
-        Checks checks;
         public MainWindow()
         {
             InitializeComponent();
             tester = new Tester();
             trainee = new Trainee();
             test = new Test();
-            checks = new Checks();
             bl = FactoryBL.GetBL();
         }
 
@@ -53,48 +51,48 @@ namespace UI2
                 {
                     if (userID.Text == "מספר זהות" || userFirstName.Text == "שם פרטי" || userLastName.Text == "שם משפחה") //missing detailes
                     {
-                        MessageBox.Show("אנא מלא את כל הפרטים", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
+                        throw new Exception("אנא מלא את כל הפרטים");
                     }
                     if (!Checks.checkID(userID.Text))
                     {
-                        MessageBox.Show("מספר זהות לא חוקי", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
+                        throw new Exception("מספר זהות לא חוקי");
                     }
                     if (combo.SelectedIndex == 0)
                     {
-                        MessageBox.Show("אנא סמן את בחירתך", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
+                        throw new Exception("אנא סמן את בחירתך");
                     }
                     if (combo.SelectedIndex == 1)
                     {
                         tester = bl.GetTester(userID.Text);
                         log_in_tester log_in_tester = new log_in_tester(tester);
-                        log_in_tester.ShowDialog();
+                        Close();
+                        log_in_tester.Show();
                     }
                     if (combo.SelectedIndex == 2)
                     {
                         trainee = bl.GetTrainee(userID.Text);
                         log_in_trainee log_in_trainee = new log_in_trainee(trainee);
-                        log_in_trainee.ShowDialog();
+                        Close();
+                        log_in_trainee.Show();
                     }
                 }
                 if ((bool)new_user.IsChecked)
                 {
                     if (combo.SelectedIndex == 0)
                     {
-                        MessageBox.Show("אנא סמן את בחירתך", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
+                        throw new Exception("אנא סמן את בחירתך");
                     }
                     if (combo.SelectedIndex == 1)
                     {
+                        Close();
                         sign_in_tester sign_in_tester = new sign_in_tester();
-                        sign_in_tester.ShowDialog();
+                        sign_in_tester.Show();
                     }
                     if (combo.SelectedIndex == 2)
                     {
+                        Close();
                         sign_in_trainee sign_in_trainee = new sign_in_trainee();
-                        sign_in_trainee.ShowDialog();
+                        sign_in_trainee.Show();
                     }
                 }
             }

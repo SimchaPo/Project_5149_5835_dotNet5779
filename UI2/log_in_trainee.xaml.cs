@@ -21,14 +21,44 @@ namespace UI2
     /// </summary>
     public partial class log_in_trainee : Window
     {
-        public log_in_trainee()
-        {
-            InitializeComponent();
-        }
+        Trainee trainee1;
+        IBL bl;
         public log_in_trainee(Trainee trainee)
         {
             InitializeComponent();
+            trainee1 = trainee;
             DataContext = trainee;
+            bl = FactoryBL.GetBL();
+        }
+        private void updateTrainee_Click(object sender, RoutedEventArgs e)
+        {
+            update_trainee update_Trainee = new update_trainee(trainee1.Clone(), this);
+            update_Trainee.ShowDialog();
+        }
+
+        private void order_test_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void get_score_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void delete_trainee_Click(object sender, RoutedEventArgs e)
+        {
+            bl.removeTrainee(trainee1.IdTrainee);
+            Close();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+        }
+
+        private void exit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
         }
     }
 }

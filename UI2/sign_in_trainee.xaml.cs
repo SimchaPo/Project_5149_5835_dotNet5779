@@ -23,7 +23,6 @@ namespace UI2
     {
         Trainee trainee;
         IBL bl;
-        Checks checks;
         public sign_in_trainee()
         {
             InitializeComponent();
