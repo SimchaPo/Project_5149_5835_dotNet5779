@@ -24,7 +24,7 @@ namespace UI2
         Tester tester;
         IBL bl;
         log_in_tester log;
-        public bool?[,] mat1 { set; get; }
+        public bool[,] mat1 { set; get; }
         public update_tester(Tester oldTester, log_in_tester log_In)
         {
             InitializeComponent();
@@ -35,8 +35,8 @@ namespace UI2
             mat1 = tester.mat;
             foreach (Button item in buttons.Children)
             {
-                int x = item.Name[1] - 48;
-                int y = item.Name[3] - 48;
+                int x = int.Parse(item.Name[1].ToString());
+                int y = int.Parse(item.Name[3].ToString());
                 if (mat1[x, y] == true)
                 {
                     item.Background = Brushes.Green;
@@ -61,10 +61,10 @@ namespace UI2
             {
                 tester.mat = mat1;
                 bl.changeTester(tester);
-                Close();
-                log.Close();
                 log_in_tester log_In = new log_in_tester(tester);
                 log_In.ShowDialog();
+                log.Close();
+                Close();
             }
             catch (Exception ex)
             {

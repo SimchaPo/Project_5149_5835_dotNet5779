@@ -18,13 +18,6 @@ namespace BE
         }
         public static bool CheckForNullTester(Tester t)
         {
-            foreach (bool? item in t.mat)
-            {
-                if (item == null)
-                {
-                    return true;
-                }
-            }
             return t.IdTester == null || t.NameTester.FirstName == null || t.NameTester.LastName == null
                 || t.PhoneNumberTester == null || t.AddresTester.City == null ||
                 t.AddresTester.Street == null;
@@ -48,7 +41,7 @@ namespace BE
                 SeniorityTester = t.SeniorityTester,
                 MaxTestsTester = t.MaxTestsTester,
                 CarTypeTester = t.CarTypeTester,
-                mat = (bool?[,])t.mat.Clone(), //i need to make the clone of mat*********
+                mat = (bool[,])t.mat.Clone(), //i need to make the clone of mat*********
                 MaxFarFromTester = t.MaxFarFromTester
             };
             return tester;

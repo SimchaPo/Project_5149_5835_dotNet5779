@@ -44,9 +44,9 @@ namespace UI2
             try
             {
                 bl.addTrainee(trainee);
-                Close();
                 log_in_trainee log_In = new log_in_trainee(trainee);
                 log_In.ShowDialog();
+                Close();
             }
             catch (Exception ex)
             {

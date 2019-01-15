@@ -79,7 +79,7 @@ namespace DAL
                 SeniorityTester = t.SeniorityTester,
                 MaxTestsTester = t.MaxTestsTester,
                 CarTypeTester = t.CarTypeTester,
-                mat = (bool?[,])t.mat.Clone(), //i need to make the clone of mat*********
+                mat = (bool[,])t.mat.Clone(), //i need to make the clone of mat*********
                 MaxFarFromTester = t.MaxFarFromTester
             };
             return tester;
@@ -198,7 +198,7 @@ namespace DAL
                 { false, false, false, false, false, false, false },
                 { false, false, false, false, false, false, false },
                 { false, false, false, false, false, false, false }, { false, false, false, false, false, false, false } };
-            int i = -1, j = 0, s = work.Length;
+            int i = -1;
             foreach (char a in work)
             {
                 if (a == 'd')

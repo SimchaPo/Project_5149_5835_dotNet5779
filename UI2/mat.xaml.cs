@@ -22,32 +22,44 @@ namespace UI2
     /// </summary>
     public partial class matrix : UserControl
     {
-        public bool?[,] mat1 { set; get; }
+        public bool[,] mat1 { set; get; }
+        ImageBrush notWorking = new ImageBrush();
+        Image imageNotWorking = new Image();
+        ImageBrush working = new ImageBrush();
+        Image imageWorking = new Image();
         public matrix()
         {
             InitializeComponent();
-            mat1 = new bool?[5, 7] { {null , null, null, null, null, null, null },
-                {null , null, null, null, null, null, null },
-                {null , null, null, null, null, null, null },
-                {null , null, null, null, null, null, null },
-               {null , null, null, null, null, null, null } };
+            mat1 = new bool[5, 7] {
+                { false, false, false, false, false, false, false },
+                { false, false, false, false, false, false, false },
+                { false, false, false, false, false, false, false },
+                { false, false, false, false, false, false, false },
+                { false, false, false, false, false, false, false } };
+
+            imageNotWorking.Source = new BitmapImage(new Uri("C:/Users/OWNER/source/repos/SimchaPo/Project_5149_5835_dotNet5779/UI2/images/עובד לא.jpg"));
+            notWorking.ImageSource = imageNotWorking.Source;
+            imageWorking.Source = new BitmapImage(new Uri("C:/Users/OWNER/source/repos/SimchaPo/Project_5149_5835_dotNet5779/UI2/images/עובד.jpg"));
+            working.ImageSource = imageWorking.Source;
         }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             Button button = new Button();
             button = sender as Button;
-            int x = button.Name[1] - 48;
-            int y = button.Name[3] - 48;
-            if (mat1[x, y] != true)
+            int x = int.Parse(button.Name[1].ToString());
+            int y = int.Parse(button.Name[3].ToString());
+            if (mat1[x, y] == false)
             {
                 mat1[x, y] = true;
-                button.Background = Brushes.Green;
+                button.Background = working;
                 return;
             }
             if (mat1[x, y] == true)
             {
                 mat1[x, y] = false;
-                button.Background = Brushes.Red;
+                button.Background = notWorking;
             }
         }
     }

@@ -49,16 +49,16 @@ namespace UI2
         private void delete_trainee_Click(object sender, RoutedEventArgs e)
         {
             bl.removeTrainee(trainee1.IdTrainee);
-            Close();
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
+            Close();
         }
 
         private void exit_Click(object sender, RoutedEventArgs e)
         {
-            Close();
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
+            Close();
         }
     }
 }
