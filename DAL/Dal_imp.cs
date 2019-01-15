@@ -53,7 +53,10 @@ namespace DAL
             //**in this place i need to do all of the checks
             DS.DataSource.Tests.Add(newTest.Clone());
         }
-
+        public void removeTest(string idTest)
+        {
+            throw new NotImplementedException();
+        }
         public void addTester(Tester newTester)
         {
             //**** check if this tester already exist
@@ -160,6 +163,7 @@ namespace DAL
 
         List<Trainee> Idal.getTrainees() => DataSource.Trainees.Select(t => t.Clone()).ToList<Trainee>();
 
-        List<Test> Idal.getTests() => DataSource.Tests.Select(t => t.Clone()).ToList<Test>();       
+        List<Test> Idal.getTests() => DataSource.Tests.Select(t => t.Clone()).ToList<Test>();
+       
     }
 }

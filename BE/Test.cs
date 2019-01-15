@@ -15,7 +15,7 @@ namespace BE
         public string TraineeId { get; set; }
         public DateTime TestDate { get; set; }
         public string HourTest { get; set; }
-        public Address AddresTest { get; set; }
+        public Address AddressTest { get; set; }
         public DateTime TestTime { get; set; }
         public string NoteTester { get; set; }
     }

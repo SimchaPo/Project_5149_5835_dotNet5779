@@ -15,10 +15,11 @@ namespace DAL
         void changeTester(Tester updateTester);
 
         void addTrainee(Trainee newTrainee);
-        void removeTrainee(string iTrainee);
+        void removeTrainee(string idTrainee);
         void changeTrainee(Trainee updateTrainee);
 
         void AddTest(Test newTest);
+        void removeTest(string idTest);
         void updateTest(Test updateTest);
 
         Test GetTest(string id);
