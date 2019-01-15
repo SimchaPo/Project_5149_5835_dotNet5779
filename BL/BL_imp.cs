@@ -149,5 +149,31 @@ namespace BL
         {
             idal.updateTest(updateTest);
         }
+
+        public bool farFromAddress(Address traineeAddress)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool testerAvilable(DateTime dateTime, Tester tester)
+        {
+                int day = (int)dateTime.DayOfWeek;
+                int hour = dateTime.Hour - 9;
+                if (day > 4)
+                    throw new Exception("מבחנים מתקיימים בין יום ראשון לחמישי בלבד");
+                if (hour < 0 || hour > 6)
+                    throw new Exception("מבחנים מתקיימים בין השעות 09:00 - 15:00 בלבד");
+                return tester.mat[day, hour] == true;            
+        }
+
+        public int amountOfTests(string traineeID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool pastTest(string traineeID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

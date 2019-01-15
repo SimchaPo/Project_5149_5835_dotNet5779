@@ -22,11 +22,13 @@ namespace UI2
     public partial class log_in_tester : Window
     {
         Tester tester1;
+        IBL bl;
         public log_in_tester(Tester tester)
         {
             InitializeComponent();
             tester1 = tester;
             DataContext = tester;
+            bl = FactoryBL.GetBL();
             foreach (Button item in buttons.Children)
             {
                 int x = item.Name[1] - 48;
@@ -46,6 +48,31 @@ namespace UI2
         {
             update_tester update_Tester = new update_tester(tester1.Clone(), this);
             update_Tester.ShowDialog();
+        }
+
+        private void exit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+        }
+
+        private void delete_tester_Click(object sender, RoutedEventArgs e)
+        {
+            bl.removeTester(tester1.IdTester);
+            Close();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+        }
+
+        private void update_test_Click(object sender, RoutedEventArgs e)
+        {
+           // bl.updateTest();
+        }
+
+        private void get_tests_Click(object sender, RoutedEventArgs e)
+        {
+            bl.getTests();
         }
     }
 }

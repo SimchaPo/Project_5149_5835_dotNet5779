@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI2"
         mc:Ignorable="d"
-        Title="איזור אישי - בוחן" Height="650" Width="450">
+        Title="איזור אישי - בוחן" Height="650" Width="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -209,18 +209,21 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="1" HorizontalAlignment="Center" FlowDirection="RightToLeft">
-                <TextBlock Text="בקשת מבחן באמצעות המערכת" TextWrapping="Wrap"/>
-                <Button Content="בקשת מבחן" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid Grid.Row="1" HorizontalAlignment="Center" FlowDirection="RightToLeft" Width="205">
+                <TextBlock Text="רשימת מבחנים" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                <Button Name="get_tests" Content="קבלת מבחנים" HorizontalAlignment="Center" VerticalAlignment="Center" Click="get_tests_Click"/>
             </Grid>
-            <Grid Grid.Row="2">
-                <Button Content="קבלת תוצאות מבחן" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid Grid.Row="2" HorizontalAlignment="Center" FlowDirection="RightToLeft" Width="205">
+                <TextBlock Text="עדכון תוצאות מבחן באמצעות המערכת" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                <Button Name="update_test" Content="עדכון תוצאות מבחן" HorizontalAlignment="Center" VerticalAlignment="Center" Click="update_test_Click"/>
             </Grid>
-            <Grid Grid.Row="3">
-                <Button Content="מחיקת תלמיד מהמערכת" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft"/>
+            <Grid Grid.Row="3" HorizontalAlignment="Center" FlowDirection="RightToLeft" Width="205">
+                <TextBlock Text="מחיקת פרטי בוחן מן המערכת" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                <Button Name="delete_tester" Content="מחיקת בוחן מהמערכת" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Click="delete_tester_Click"/>
             </Grid>
-            <Grid Grid.Row="4">
-                <Button Content="חזרה לתפריט הראשי" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid Grid.Row="4" HorizontalAlignment="Center" FlowDirection="RightToLeft" Width="205">
+                <TextBlock Text="יציאה מהאיזור האישי לתפריט הראשי" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                <Button Name="exit" Content="חזרה לתפריט הראשי" HorizontalAlignment="Center" VerticalAlignment="Center" Click="exit_Click"/>
             </Grid>
         </Grid>
     </Grid>

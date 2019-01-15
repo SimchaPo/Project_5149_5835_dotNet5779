@@ -98,19 +98,19 @@
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="1" HorizontalAlignment="Center" FlowDirection="RightToLeft" Width="205">
                     <TextBlock Text="בקשת מבחן באמצעות המערכת" TextWrapping="Wrap" HorizontalAlignment="Center"/>
-                    <Button Content="בקשת מבחן" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Button Name="order_test" Content="בקשת מבחן" HorizontalAlignment="Center" VerticalAlignment="Center" Click="order_test_Click"/>
                 </Grid>
                 <Grid Grid.Row="2" HorizontalAlignment="Center" FlowDirection="RightToLeft" Width="205">
                     <TextBlock Text="קבלת תוצאות מבחן באמצעות המערכת" TextWrapping="Wrap" HorizontalAlignment="Center"/>
-                    <Button Content="קבלת תוצאות מבחן" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Button Name="get_score" Content="קבלת תוצאות מבחן" HorizontalAlignment="Center" VerticalAlignment="Center" Click="get_score_Click"/>
                 </Grid>
                 <Grid Grid.Row="3" HorizontalAlignment="Center" FlowDirection="RightToLeft" Width="205">
                     <TextBlock Text="מחיקת פרטי תלמיד מן המערכת" TextWrapping="Wrap" HorizontalAlignment="Center"/>
-                    <Button Content="מחיקת תלמיד מהמערכת" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft"/>
+                    <Button Name="delete_trainee" Content="מחיקת תלמיד מהמערכת" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Click="delete_trainee_Click"/>
                 </Grid>
                 <Grid Grid.Row="4" HorizontalAlignment="Center" FlowDirection="RightToLeft" Width="205">
                     <TextBlock Text="יציאה מהאיזור האישי לתפריט הראשי" TextWrapping="Wrap" HorizontalAlignment="Center"/>
-                    <Button Content="חזרה לתפריט הראשי" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Button Name="exit" Content="חזרה לתפריט הראשי" HorizontalAlignment="Center" VerticalAlignment="Center" Click="exit_Click"/>
                 </Grid>
             </Grid>
         </Grid>
