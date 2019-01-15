@@ -21,14 +21,17 @@ namespace UI2
     /// </summary>
     public partial class log_in_trainee : Window
     {
-        public log_in_trainee()
-        {
-            InitializeComponent();
-        }
+        Trainee trainee1;
         public log_in_trainee(Trainee trainee)
         {
             InitializeComponent();
+            trainee1 = trainee;
             DataContext = trainee;
+        }
+        private void updateTrainee_Click(object sender, RoutedEventArgs e)
+        {
+            update_trainee update_Trainee = new update_trainee(trainee1.Clone(), this);
+            update_Trainee.ShowDialog();
         }
     }
 }

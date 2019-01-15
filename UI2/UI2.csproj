@@ -78,15 +78,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="check.xaml.cs">
-      <DependentUpon>check.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Conect_old_tester.xaml.cs">
-      <DependentUpon>Conect_old_tester.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Conect_old_trainee.xaml.cs">
-      <DependentUpon>Conect_old_trainee.xaml</DependentUpon>
-    </Compile>
     <Compile Include="log_in_tester.xaml.cs">
       <DependentUpon>log_in_tester.xaml</DependentUpon>
     </Compile>
@@ -96,26 +87,18 @@
     <Compile Include="mat.xaml.cs">
       <DependentUpon>mat.xaml</DependentUpon>
     </Compile>
-    <Compile Include="New_tester.xaml.cs">
-      <DependentUpon>New_tester.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="New_trainee.xaml.cs">
-      <DependentUpon>New_trainee.xaml</DependentUpon>
-    </Compile>
     <Compile Include="sign_in_tester.xaml.cs">
       <DependentUpon>sign_in_tester.xaml</DependentUpon>
     </Compile>
     <Compile Include="sign_in_trainee.xaml.cs">
       <DependentUpon>sign_in_trainee.xaml</DependentUpon>
     </Compile>
-    <Page Include="check.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Conect_old_trainee.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="update_tester.xaml.cs">
+      <DependentUpon>update_tester.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="update_trainee.xaml.cs">
+      <DependentUpon>update_trainee.xaml</DependentUpon>
+    </Compile>
     <Page Include="EntrenceWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -128,10 +111,6 @@
       <DependentUpon>EntrenceWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Conect_old_tester.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="log_in_tester.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -144,19 +123,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="New_tester.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="New_trainee.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="sign_in_tester.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="sign_in_trainee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="update_tester.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="update_trainee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

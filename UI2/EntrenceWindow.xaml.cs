@@ -26,14 +26,12 @@ namespace UI2
         Trainee trainee;
         Test test;
         IBL bl;
-        Checks checks;
         public MainWindow()
         {
             InitializeComponent();
             tester = new Tester();
             trainee = new Trainee();
             test = new Test();
-            checks = new Checks();
             bl = FactoryBL.GetBL();
         }
 
@@ -53,18 +51,15 @@ namespace UI2
                 {
                     if (userID.Text == "מספר זהות" || userFirstName.Text == "שם פרטי" || userLastName.Text == "שם משפחה") //missing detailes
                     {
-                        MessageBox.Show("אנא מלא את כל הפרטים", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
+                        throw new Exception("אנא מלא את כל הפרטים");
                     }
                     if (!Checks.checkID(userID.Text))
                     {
-                        MessageBox.Show("מספר זהות לא חוקי", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
+                        throw new Exception("מספר זהות לא חוקי");
                     }
                     if (combo.SelectedIndex == 0)
                     {
-                        MessageBox.Show("אנא סמן את בחירתך", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
+                        throw new Exception("אנא סמן את בחירתך");
                     }
                     if (combo.SelectedIndex == 1)
                     {
@@ -83,8 +78,7 @@ namespace UI2
                 {
                     if (combo.SelectedIndex == 0)
                     {
-                        MessageBox.Show("אנא סמן את בחירתך", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
+                        throw new Exception("אנא סמן את בחירתך");
                     }
                     if (combo.SelectedIndex == 1)
                     {

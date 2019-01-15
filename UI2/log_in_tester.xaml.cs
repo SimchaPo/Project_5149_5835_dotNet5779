@@ -21,10 +21,11 @@ namespace UI2
     /// </summary>
     public partial class log_in_tester : Window
     {
-        public string buttonName { get; set; }
+        Tester tester1;
         public log_in_tester(Tester tester)
         {
             InitializeComponent();
+            tester1 = tester;
             DataContext = tester;
             foreach (Button item in buttons.Children)
             {
@@ -39,6 +40,12 @@ namespace UI2
                     item.Background = Brushes.Red;
                 }
             }
+        }
+
+        private void updateTester_Click(object sender, RoutedEventArgs e)
+        {
+            update_tester update_Tester = new update_tester(tester1.Clone(), this);
+            update_Tester.ShowDialog();
         }
     }
 }

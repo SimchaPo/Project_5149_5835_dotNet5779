@@ -23,13 +23,11 @@ namespace UI2
     {
         Tester tester;
         IBL bl;
-        Checks checks;
         
         public sign_in_tester()
         {
             InitializeComponent();
             tester = new Tester();
-            checks = new Checks();
             bl = FactoryBL.GetBL();
             DataContext = tester;
             carTypeTesterComboBox.ItemsSource = Enum.GetValues(typeof(CarType));
