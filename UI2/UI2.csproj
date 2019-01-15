@@ -78,6 +78,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="create_a_test.xaml.cs">
+      <DependentUpon>create_a_test.xaml</DependentUpon>
+    </Compile>
     <Compile Include="log_in_tester.xaml.cs">
       <DependentUpon>log_in_tester.xaml</DependentUpon>
     </Compile>
@@ -99,6 +102,10 @@
     <Compile Include="update_trainee.xaml.cs">
       <DependentUpon>update_trainee.xaml</DependentUpon>
     </Compile>
+    <Page Include="create_a_test.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EntrenceWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -197,6 +204,10 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\עובד לא.jpg" />
+    <Resource Include="images\עובד.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

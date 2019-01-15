@@ -103,13 +103,6 @@ namespace UI2
             }
         }
 
-        private void old_user_Unchecked(object sender, RoutedEventArgs e)
-        {
-            userFirstName.Text = "שם פרטי";
-            userLastName.Text = userLastName.Text = "שם משפחה";
-            userID.Text = "מספר זהות";
-        }
-
         private void new_user_Unchecked(object sender, RoutedEventArgs e)
         {
             combo.SelectedIndex = 0;
@@ -129,6 +122,22 @@ namespace UI2
                 userLastName.ClearValue(TextBox.TextProperty);
             else if (userLastName.Text == "")
                 userLastName.Text = "שם משפחה";
+        }
+
+        private void old_user_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton button = sender as RadioButton;
+            if ((bool)button.IsChecked)
+            {
+                old_user_detailes.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                userFirstName.Text = "שם פרטי";
+                userLastName.Text = userLastName.Text = "שם משפחה";
+                userID.Text = "מספר זהות";
+                old_user_detailes.Visibility = Visibility.Collapsed;
+            }
         }
     }
     

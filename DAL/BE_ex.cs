@@ -175,6 +175,44 @@ namespace DAL
             XElement HouseNum = new XElement("HouseNum", address.HouseNum);
             return new XElement("Address", City, Street, HouseNum);
         }
+        public static string ToString(this bool[,] mat)
+        {
+            string time = "";
+            for (int i = 0; i < 5; ++i)
+            {
+                time += "d " + i;
+                for (int j = 0; j < 7; ++j)
+                {
+                    if (mat[i, j] == true)
+                    {
+                        time += " h " + j;
+                    }
+                }
+                time += "\n";
+            }
+            return time;
+        }
+        public static bool[,] ToMatrix(this string work)
+        {
+            bool[,] mat = new bool[5, 7] { { false, false, false, false, false, false, false},
+                { false, false, false, false, false, false, false },
+                { false, false, false, false, false, false, false },
+                { false, false, false, false, false, false, false }, { false, false, false, false, false, false, false } };
+            int i = -1, j = 0, s = work.Length;
+            foreach (char a in work)
+            {
+                if (a == 'd')
+                {
+                    ++i;
+                }
+                if (char.IsDigit(a))
+                {
+                    mat[i, int.Parse(a.ToString())] = true;
+                }
+            }
+            return mat;
+        }
     };
    
+
 }

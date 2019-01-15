@@ -155,7 +155,7 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public bool testerAvilable(DateTime dateTime, Tester tester)
+        public bool testerAvailable(DateTime dateTime, Tester tester)
         {
                 int day = (int)dateTime.DayOfWeek;
                 int hour = dateTime.Hour - 9;
