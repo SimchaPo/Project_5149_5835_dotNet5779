@@ -114,7 +114,7 @@ namespace DAL
         }
         public static bool didTraineeMinLessons(this Trainee t)
         {
-            return (t.NumberOfLesson >Configuration.minLessons);
+            return t.NumberOfLesson > Configuration.minLessons;
         }
 
 

@@ -93,8 +93,6 @@ namespace DAL
             DataSource.Testers.RemoveAll(t => t.IdTester == updatedTester.IdTester);
             //***add the updated tester to the list
             DataSource.Testers.Add(updatedTester);
-
-       
         }
 
         public void changeTrainee(Trainee updatedTrainee)
@@ -111,11 +109,17 @@ namespace DAL
 
         public void removeTester(string idTester)
         {
+            //***check if this tester exist
+            if (!DS.DataSource.Testers.Exists(t => idTester == t.IdTester))
+                throw new Exception("This tester did not exist");
             DataSource.Testers.RemoveAll(t => t.IdTester == idTester);
         }
 
         public void removeTrainee(string idTrainee)
         {
+            //***check if this student exist
+            if (!DS.DataSource.Trainees.Exists(t => idTrainee == t.IdTrainee))
+                throw new Exception("This student did not exist");
             DataSource.Trainees.RemoveAll(t => t.IdTrainee == idTrainee);
         }
 
@@ -156,7 +160,6 @@ namespace DAL
 
         List<Trainee> Idal.getTrainees() => DataSource.Trainees.Select(t => t.Clone()).ToList<Trainee>();
 
-        List<Test> Idal.getTests() => DataSource.Tests.Select(t => t.Clone()).ToList<Test>();
-       
+        List<Test> Idal.getTests() => DataSource.Tests.Select(t => t.Clone()).ToList<Test>();       
     }
 }
