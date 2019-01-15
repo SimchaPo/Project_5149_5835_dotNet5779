@@ -20,6 +20,11 @@ namespace BL
         void AddTest(Test newTest);
         void updateTest(Test updateTest);
 
+        bool farFromAddress(Address traineeAddress);
+        bool testerAvilable(DateTime dateTime, Tester tester);
+
+        int amountOfTests(string traineeID);
+        bool pastTest(string traineeID);
         Test GetTest(string id);
         Trainee GetTrainee(string trainee);
         Tester GetTester(string id);
