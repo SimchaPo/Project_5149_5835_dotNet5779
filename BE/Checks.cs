@@ -95,7 +95,7 @@ namespace BE
                 TraineeId = t.TraineeId,
                 TestDate = t.TestDate,//did datetime return reffence or copy???????????????????
                 HourTest = t.HourTest,
-               // AddresTest = t.AddresTest,
+                AddressTest = t.AddressTest,
                 TestTime = t.TestTime,//did datetime return reffence or copy???????????????????
                 NoteTester = t.NoteTester
 

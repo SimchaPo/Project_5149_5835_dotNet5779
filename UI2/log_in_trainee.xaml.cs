@@ -32,8 +32,8 @@ namespace UI2
         }
         private void updateTrainee_Click(object sender, RoutedEventArgs e)
         {
-            update_trainee update_Trainee = new update_trainee(trainee1.Clone(), this);
-            update_Trainee.ShowDialog();
+          //  update_trainee update_Trainee = new update_trainee(trainee1.Clone(), this);
+            //update_Trainee.ShowDialog();
         }
 
         private void order_test_Click(object sender, RoutedEventArgs e)

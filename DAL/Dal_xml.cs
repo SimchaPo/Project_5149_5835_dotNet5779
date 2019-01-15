@@ -100,7 +100,7 @@ namespace DAL
             XElement SeniorityTester = new XElement("SeniorityTester", newTester.SeniorityTester);
             XElement MaxTestsTester = new XElement("MaxTestsTester", newTester.MaxTestsTester);
             //// *****in carType I need to thinl how convert***
-            //**in matrix i need to think how to convert***
+            XElement mat = new XElement("mat", newTester.mat.ToString());
             XElement MaxFarFromTester = new XElement("MaxFarFromTester", newTester.MaxFarFromTester);
             TesterRoot.Add(new XElement("Tester", id, NameTester, PhoneNumberTester, Address, SeniorityTester, MaxTestsTester, MaxFarFromTester));
             //*** I need to Add the other element that already i not did ********
@@ -160,7 +160,7 @@ namespace DAL
         {
             XElement NameTrainee = newTrainee.NameTrainee.ToXElement();
             XElement IdTrainee = new XElement("IdTrainee", newTrainee.IdTrainee);
-            // *****in birthday i need to think how to convert this to string***\
+            XElement BirthDateTrainee = new XElement("BirthDateTrainee", newTrainee.BirthDateTrainee.ToString());
             // *****in gender I need to thinl how convert***
             XElement PhoneNumberTrainee = new XElement("PhoneNumberTrainee", newTrainee.PhoneNumberTrainee);
             XElement AddressTrainee = newTrainee.AddressTrainee.ToXElement();
@@ -169,7 +169,7 @@ namespace DAL
             //// *****in carType I need to think how convert***
             //// *****in Gearbox I need to think how convert***
             XElement NumberOfLesson = new XElement("NumberOfLesson", newTrainee.NumberOfLesson);
-            //// *****in LastExamDate I need to think how convert***
+            XElement LastExamDate = new XElement("LastExamDate", newTrainee.LastExamDate.ToString());
 
             TraineeRoot.Add(new XElement("trainee", NameTrainee, IdTrainee, PhoneNumberTrainee, AddressTrainee, SchoolTrainee, TeacherTrainee, NumberOfLesson));
             //*** I need to Add the other element that already i not did ********
@@ -214,7 +214,7 @@ namespace DAL
 
             tra.Element("IdTrainee").Value = updatedTrainee.IdTrainee;
             //Gender Trainee ***i need to think how to work with enum
-            ////BirthdayTrainee ***i need to think about the convertion of date
+            tra.Element("BirthDateTrainee").Value = updatedTrainee.BirthDateTrainee.ToString();
             tra.Element("PhoneNumberTrainee").Value = updatedTrainee.PhoneNumberTrainee;
 
             tra.Element("Address").Element("City").Value = updatedTrainee.AddressTrainee.City;
@@ -228,7 +228,7 @@ namespace DAL
             //and Gear box ***i need to think how to work with enum
             
             tra.Element("NumberOfLesson").Value = updatedTrainee.NumberOfLesson.ToString();
-            // LastExamDate ***i need to think about the convertion of date
+            tra.Element("LastExamDate").Value = updatedTrainee.LastExamDate.ToString();
             TraineeRoot.Save(TraineePath);
         }
 
@@ -278,22 +278,22 @@ namespace DAL
             Test result;
 
             result = (from anyTest in TesterRoot.Elements()
-                      where anyTest.Element("TestNum").Value==id
+                      where anyTest.Element("TestNum").Value == id
                       select new Test()
                       {
-                          TestNum=anyTest.Element("TestNum").Value,
-                          TesterId=anyTest.Element("TesterId").Value,
-                          TraineeId=anyTest.Element("TraineeId").Value,
-                          // TestDate I need to think how convert date from string
+                          TestNum = anyTest.Element("TestNum").Value,
+                          TesterId = anyTest.Element("TesterId").Value,
+                          TraineeId = anyTest.Element("TraineeId").Value,
+                          TestDate = DateTime.Parse(anyTest.Element("TestDate").Value),
                           HourTest = anyTest.Element("HourTest").Value,
-                          AddressTest= new Address
+                          AddressTest = new Address
                           {
-                              City     =anyTest.Element("Address").Element("City").Value,
-                              Street   =anyTest.Element("Address").Element("Street").Value,
-                              HouseNum =int.Parse(anyTest.Element("Address").Element("HouseNum").Value)
+                              City = anyTest.Element("Address").Element("City").Value,
+                              Street = anyTest.Element("Address").Element("Street").Value,
+                              HouseNum = int.Parse(anyTest.Element("Address").Element("HouseNum").Value)
                           },
-                          // TestTime*** i need to think how to convert date to string and back
-                          NoteTester=anyTest.Element("NoteTester").Value
+                          TestTime = DateTime.Parse(anyTest.Element("TestTime").Value),
+                          NoteTester =anyTest.Element("NoteTester").Value
                       }).FirstOrDefault();
 
             if (result != null)
@@ -320,8 +320,8 @@ namespace DAL
                           },
                           IdTrainee = tra.Element("IdTrainee").Value,
                            //Gender Trainee ***i need to think how to work with enum
-                           ////BirthdayTrainee ***i need to think about the convertion of date
-                           PhoneNumberTrainee=tra.Element("PhoneNumberTrainee").Value,
+                           BirthDateTrainee=DateTime.Parse(tra.Element("BirthDateTrainee").Value),
+                           PhoneNumberTrainee =tra.Element("PhoneNumberTrainee").Value,
                            AddressTrainee= new Address
                            {
                                City = tra.Element("Address").Element("City").Value,
@@ -333,7 +333,8 @@ namespace DAL
                            //car Type ***i need to think how to work with enum
                            //and Gear box ***i need to think how to work with enum
                            NumberOfLesson=int.Parse(tra.Element("NumberOfLesson").Value),
-                           // LastExamDate ***i need to think about the convertion of date
+                           LastExamDate=DateTime.Parse(tra.Element("LastExamDate").Value)
+
                        }).FirstOrDefault();
             if (rainee != null)
                 return rainee;
@@ -358,7 +359,7 @@ namespace DAL
                               LastName = anyTester.Element("FullName").Element("LastName").Value
                           }
                           ,
-                          //birthday*** i need to think about conversion of date
+                          BirthDateTester=DateTime.Parse(anyTester.Element("BirthDateTester").Value),
                           //gender **i need to think about enum
                           PhoneNumberTester = anyTester.Element("PhoneNumberTester").Value,
                           AddresTester = new Address
@@ -396,7 +397,7 @@ namespace DAL
                                   LastName = anyTester.Element("FullName").Element("LastName").Value
                               }
                               ,
-                              //birthday*** i need to think about conversion of date
+                              BirthDateTester= DateTime.Parse(anyTester.Element("BirthDateTester").Value),
                               //gender **i need to think about enum
                               PhoneNumberTester = anyTester.Element("PhoneNumberTester").Value,
                               AddresTester = new Address
@@ -431,7 +432,7 @@ namespace DAL
                                },
                                IdTrainee = tra.Element("IdTrainee").Value,
                                //Gender Trainee ***i need to think how to work with enum
-                               ////BirthdayTrainee ***i need to think about the convertion of date
+                               BirthDateTrainee = DateTime.Parse(tra.Element("BirthDateTrainee").Value),
                                PhoneNumberTrainee = tra.Element("PhoneNumberTrainee").Value,
                                AddressTrainee = new Address
                                {
@@ -444,7 +445,7 @@ namespace DAL
                                //car Type ***i need to think how to work with enum
                                //and Gear box ***i need to think how to work with enum
                                NumberOfLesson = int.Parse(tra.Element("NumberOfLesson").Value),
-                               // LastExamDate ***i need to think about the convertion of date
+                               LastExamDate = DateTime.Parse(tra.Element("LastExamDate").Value)
                            }).ToList();
   
             return trainees;
