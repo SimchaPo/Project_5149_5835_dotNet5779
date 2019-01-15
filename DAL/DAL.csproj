@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BE_ex.cs" />
     <Compile Include="Dal_imp.cs" />
+    <Compile Include="Dal_xml.cs" />
     <Compile Include="FactoryDal.cs" />
     <Compile Include="Idal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
