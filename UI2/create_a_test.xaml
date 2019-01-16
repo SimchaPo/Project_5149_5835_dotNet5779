@@ -72,9 +72,12 @@
                     <TextBlock Text="בקשת מבחן" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" AllowDrop="True" FontWeight="Bold"/>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <DatePicker/>
+                    <DatePicker x:Name="testDate" VerticalAlignment="Center" FlowDirection="RightToLeft" SelectedDate="{Binding BirthDateTester, Mode=OneWayToSource}" Height="24" DisplayDate="1990-01-01"/>
                 </Grid>
             </Grid>
+        </Grid>
+        <Grid Grid.Column="0">
+        <ListBox ItemsSource="{Binding testers}"/>
         </Grid>
     </Grid>
 </Window>

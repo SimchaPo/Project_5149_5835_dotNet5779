@@ -38,7 +38,8 @@ namespace UI2
 
         private void order_test_Click(object sender, RoutedEventArgs e)
         {
-
+            create_a_test create = new create_a_test(trainee1);
+            create.ShowDialog();
         }
 
         private void get_score_Click(object sender, RoutedEventArgs e)

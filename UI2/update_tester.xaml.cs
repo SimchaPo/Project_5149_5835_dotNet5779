@@ -25,6 +25,10 @@ namespace UI2
         IBL bl;
         log_in_tester log;
         public bool[,] mat1 { set; get; }
+        ImageBrush notWorking = new ImageBrush();
+        Image imageNotWorking = new Image();
+        ImageBrush working = new ImageBrush();
+        Image imageWorking = new Image();
         public update_tester(Tester oldTester, log_in_tester log_In)
         {
             InitializeComponent();
@@ -33,17 +37,21 @@ namespace UI2
             bl = FactoryBL.GetBL();
             DataContext = tester;
             mat1 = tester.mat;
+            imageNotWorking.Source = new BitmapImage(new Uri("C:/Users/OWNER/source/repos/SimchaPo/Project_5149_5835_dotNet5779/UI2/images/עובד לא.jpg"));
+            notWorking.ImageSource = imageNotWorking.Source;
+            imageWorking.Source = new BitmapImage(new Uri("C:/Users/OWNER/source/repos/SimchaPo/Project_5149_5835_dotNet5779/UI2/images/עובד.jpg"));
+            working.ImageSource = imageWorking.Source;
             foreach (Button item in buttons.Children)
             {
                 int x = int.Parse(item.Name[1].ToString());
                 int y = int.Parse(item.Name[3].ToString());
                 if (mat1[x, y] == true)
                 {
-                    item.Background = Brushes.Green;
+                    item.Background = working;
                 }
                 if (mat1[x, y] == false)
                 {
-                    item.Background = Brushes.Red;
+                    item.Background = notWorking;
                 }
             }
             carTypeTesterComboBox.ItemsSource = Enum.GetValues(typeof(CarType));
@@ -61,10 +69,10 @@ namespace UI2
             {
                 tester.mat = mat1;
                 bl.changeTester(tester);
-                log_in_tester log_In = new log_in_tester(tester);
-                log_In.ShowDialog();
                 log.Close();
                 Close();
+                log_in_tester _log = new log_in_tester(tester);
+                _log.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -80,13 +88,13 @@ namespace UI2
             if (mat1[x, y] == false)
             {
                 mat1[x, y] = true;
-                button.Background = Brushes.Green;
+                button.Background = working;
                 return;
             }
             if (mat1[x, y] == true)
             {
                 mat1[x, y] = false;
-                button.Background = Brushes.Red;
+                button.Background = notWorking;
             }
         }
     }

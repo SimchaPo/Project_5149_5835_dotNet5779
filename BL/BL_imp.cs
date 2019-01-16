@@ -11,11 +11,13 @@ namespace BL
     public class BL_imp : IBL
     {
         Idal idal = FactoryDal.GetDal();
-        public void AddTest(Test newTest)
+        public void AddTest(Test test)
         {
+
+            
             // טסטר זמין
             //בדיקה שעברו 7 ימים מטסט קודם
-            idal.AddTest(newTest);
+           // idal.AddTest(newTest);
         }
 
         public void addTester(Tester newTester)
@@ -87,6 +89,17 @@ namespace BL
         public void changeTrainee(Trainee updateTrainee)
         {
             idal.changeTrainee(updateTrainee);
+        }
+
+        public List<Tester> getTestersAvailable(DateTime dateTime)
+        {
+            List<Tester> testers = new List<Tester>();
+            var v = from item in idal.getTesters()
+                    where testerAvailable(dateTime, item)
+                    select item;
+            foreach (var item in v)
+                testers.Add(item);
+            return testers;
         }
 
         public List<Tester> getTesters()

@@ -10,7 +10,7 @@ namespace DAL
 {
     internal static class BE_ex
     {
-       //***************CLONES*************
+        //***************CLONES*************
         //********clone for address
         public static Address Clone(this Address address)
         {
@@ -31,10 +31,10 @@ namespace DAL
                 LastName = name.LastName
             };
         }
-            
+
         //clone for Trainee
 
-        public static  Trainee Clone(this Trainee t)
+        public static Trainee Clone(this Trainee t)
         {
             return new Trainee
             {
@@ -49,7 +49,7 @@ namespace DAL
                 SchoolTrainee = t.SchoolTrainee,
                 TeacherTrainee = t.TeacherTrainee
             };
-           
+
         }
         public static Test Clone(this Test t)
         {
@@ -101,16 +101,16 @@ namespace DAL
 
         public static void isCorrectAgeTrainee(this Trainee t)
         {
-        if (t.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) > DateTime.Now)
+            if (t.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) > DateTime.Now)
                 throw new Exception("This student can't do a test, he is too young");
         }
 
 
         public static void DidTraineeExamInRecentTime(this Trainee t)
         {
-            
+
             if (t.LastExamDate.AddDays(-Configuration.minDaysPassFromLastTest) > DateTime.Now) //we need to check if it is correct
-            throw new Exception("The studenet did exam in the last " + Configuration.minDaysPassFromLastTest + " days, please wait to correct time");//*** I need to change this
+                throw new Exception("The studenet did exam in the last " + Configuration.minDaysPassFromLastTest + " days, please wait to correct time");//*** I need to change this
         }
         public static bool didTraineeMinLessons(this Trainee t)
         {
@@ -148,12 +148,12 @@ namespace DAL
         public static bool didTestExist(this Test t)//***IF I MOVE THIS CHECK FUNCTION TO CLASS OF CHEECK, I NEED TO CHANGE THIS FUNCTION
         {
             return DS.DataSource.Tests.Exists(item => item.TestNum == t.TestNum);
-        } 
+        }
 
         public static void DidtesterFitToTrainee(this Tester tester, Trainee trainee)
         {
             if (tester.CarTypeTester != trainee.CarTypeTrainee)
-                 throw new Exception("התמחות הבוחן אינה מתאימה לרכב עליו למד הנבחן");
+                throw new Exception("התמחות הבוחן אינה מתאימה לרכב עליו למד הנבחן");
         }
 
 
@@ -175,7 +175,7 @@ namespace DAL
             XElement HouseNum = new XElement("HouseNum", address.HouseNum);
             return new XElement("Address", City, Street, HouseNum);
         }
-        public static string ToString(this bool[,] mat)
+        public static string ToString(bool[,] mat)
         {
             string time = "";
             for (int i = 0; i < 5; ++i)
@@ -192,27 +192,31 @@ namespace DAL
             }
             return time;
         }
-        public static bool[,] ToMatrix(this string work)
+        public static bool[,] ToMatrix(string work)
         {
             bool[,] mat = new bool[5, 7] { { false, false, false, false, false, false, false},
                 { false, false, false, false, false, false, false },
                 { false, false, false, false, false, false, false },
                 { false, false, false, false, false, false, false }, { false, false, false, false, false, false, false } };
             int i = -1;
+            bool flag = false;
             foreach (char a in work)
             {
                 if (a == 'd')
                 {
                     ++i;
+                    flag = false;
                 }
                 if (char.IsDigit(a))
                 {
-                    mat[i, int.Parse(a.ToString())] = true;
+                    if (flag == true)
+                    {
+                        mat[i, int.Parse(a.ToString())] = true;
+                    }
+                    flag = true;
                 }
             }
             return mat;
         }
-    };
-   
-
+    }
 }

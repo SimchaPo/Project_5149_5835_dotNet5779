@@ -23,23 +23,31 @@ namespace UI2
     {
         Tester tester1;
         IBL bl;
+        ImageBrush notWorking = new ImageBrush();
+        Image imageNotWorking = new Image();
+        ImageBrush working = new ImageBrush();
+        Image imageWorking = new Image();
         public log_in_tester(Tester tester)
         {
             InitializeComponent();
             tester1 = tester;
             DataContext = tester;
             bl = FactoryBL.GetBL();
+            imageNotWorking.Source = new BitmapImage(new Uri("C:/Users/OWNER/source/repos/SimchaPo/Project_5149_5835_dotNet5779/UI2/images/עובד לא.jpg"));
+            notWorking.ImageSource = imageNotWorking.Source;
+            imageWorking.Source = new BitmapImage(new Uri("C:/Users/OWNER/source/repos/SimchaPo/Project_5149_5835_dotNet5779/UI2/images/עובד.jpg"));
+            working.ImageSource = imageWorking.Source;
             foreach (Button item in buttons.Children)
             {
                 int x = item.Name[1] - 48;
                 int y = item.Name[3] - 48;
                 if (tester.mat[x, y] == true)
                 {
-                    item.Background = Brushes.Green;
+                    item.Background = working;
                 }
                 if (tester.mat[x, y] == false)
                 {
-                    item.Background = Brushes.Red;
+                    item.Background = notWorking;
                 }
             }
         }
@@ -52,16 +60,16 @@ namespace UI2
 
         private void exit_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
+           // MainWindow mainWindow = new MainWindow();
+           // mainWindow.Show();
             Close();
         }
 
         private void delete_tester_Click(object sender, RoutedEventArgs e)
         {
             bl.removeTester(tester1.IdTester);
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
+            //MainWindow mainWindow = new MainWindow();
+            //mainWindow.Show();
             Close();
         }
 

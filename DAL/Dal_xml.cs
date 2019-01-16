@@ -100,7 +100,7 @@ namespace DAL
             XElement SeniorityTester = new XElement("SeniorityTester", newTester.SeniorityTester);
             XElement MaxTestsTester = new XElement("MaxTestsTester", newTester.MaxTestsTester);
             //// *****in carType I need to thinl how convert***
-            XElement mat = new XElement("mat", newTester.mat.ToString());
+            XElement mat = new XElement("mat", BE_ex.ToString(newTester.mat));
             XElement MaxFarFromTester = new XElement("MaxFarFromTester", newTester.MaxFarFromTester);
             TesterRoot.Add(new XElement("Tester", id, NameTester, PhoneNumberTester, Address, SeniorityTester, MaxTestsTester, MaxFarFromTester));
             //*** I need to Add the other element that already i not did ********

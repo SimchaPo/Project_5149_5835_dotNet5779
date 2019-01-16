@@ -101,6 +101,48 @@ namespace BE
 
             };
         }
-
+        public static string ToString(bool[,]mat)
+        {
+            string time = "";
+            for (int i = 0; i < 5; ++i)
+            {
+                time += "d " + i;
+                for (int j = 0; j < 7; ++j)
+                {
+                    if (mat[i, j] == true)
+                    {
+                        time += " h " + j;
+                    }
+                }
+                time += "\n";
+            }
+            return time;
+        }
+        public static bool[,] ToMatrix(string work)
+        {
+            bool[,] mat = new bool[5, 7] { { false, false, false, false, false, false, false},
+                { false, false, false, false, false, false, false },
+                { false, false, false, false, false, false, false },
+                { false, false, false, false, false, false, false }, { false, false, false, false, false, false, false } };
+            int i = -1;
+            bool flag = false;
+            foreach (char a in work)
+            {
+                if (a == 'd')
+                {
+                    ++i;
+                    flag = false;
+                }
+                if (char.IsDigit(a))
+                {
+                    if (flag == true)
+                    {
+                        mat[i, int.Parse(a.ToString())] = true;
+                    }
+                    flag = true;
+                }
+            }
+            return mat;
+        }
     }
 }
