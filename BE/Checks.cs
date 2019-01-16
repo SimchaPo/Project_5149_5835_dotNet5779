@@ -144,5 +144,27 @@ namespace BE
             }
             return mat;
         }
+
+        public static void DidTraineeExamInRecentTime(this Trainee t)
+        {
+
+            if (t.LastExamDate.AddDays(-Configuration.minDaysPassFromLastTest) > DateTime.Now) //we need to check if it is correct
+                throw new Exception("The studenet did exam in the last " + Configuration.minDaysPassFromLastTest + " days, please wait to correct time");//*** I need to change this
+        }
+        public static bool didTraineeMinLessons(this Trainee t)
+        {
+            return t.NumberOfLesson > Configuration.minLessons;
+        }
+
+
+        public static void didTesterPassLimitExam(this Tester t)
+        {
+            throw new Exception("not implemented func");
+        }
+        public static void didTesterVacatedInThisDate(this Tester t, DateTime time)
+        {
+            throw new Exception("not implemented func");
+        }
+
     }
 }

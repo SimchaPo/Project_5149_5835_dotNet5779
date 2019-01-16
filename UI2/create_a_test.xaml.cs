@@ -33,6 +33,7 @@ namespace UI2
             bl = FactoryBL.GetBL();
             trainee = trainee6;
             DataContext = trainee;
+            list.DataContext = testers;
             testers.AddRange(bl.getTesters());
         }
     }

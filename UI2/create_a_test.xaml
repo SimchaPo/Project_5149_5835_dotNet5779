@@ -6,6 +6,22 @@
         xmlns:local="clr-namespace:UI2"
         mc:Ignorable="d"
         Title="הזמנת מבחן" Height="450" Width="800" Icon="images/לוגו משרד התחבורה.jpg">
+    <Window.Resources>
+        <DataTemplate DataType="Tester">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <TextBlock Text="{Binding Path=NameTester.FirstName}"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBlock Text="{Binding Path=NameTester.lastName}"/>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -76,8 +92,8 @@
                 </Grid>
             </Grid>
         </Grid>
-        <Grid Grid.Column="0">
-        <ListBox ItemsSource="{Binding testers}"/>
+        <Grid Name="list" Grid.Column="0">
+        <ListBox ItemsSource="{Binding}"/>
         </Grid>
     </Grid>
 </Window>
