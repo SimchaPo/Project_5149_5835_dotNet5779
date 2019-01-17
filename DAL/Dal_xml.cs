@@ -93,18 +93,25 @@ namespace DAL
         {
             XElement id = new XElement("IdTester", newTester.IdTester);
             XElement NameTester = newTester.NameTester.ToXElement();
-            // *****in birthday i need to think how to convert this to string***\
-            // *****in gender I need to thinl how convert***
+            XElement BirthDateTester = new XElement("BirthDateTester", newTester.BirthDateTester.ToString());
+            XElement GenderTester = new XElement("GenderTester", newTester.GenderTester.ToString());
             XElement PhoneNumberTester = new XElement("PhoneNumberTester", newTester.PhoneNumberTester);
             XElement Address = newTester.AddresTester.ToXElement();
             XElement SeniorityTester = new XElement("SeniorityTester", newTester.SeniorityTester);
             XElement MaxTestsTester = new XElement("MaxTestsTester", newTester.MaxTestsTester);
-            //// *****in carType I need to thinl how convert***
-            XElement mat = new XElement("mat", newTester.mat.ToString());
+            XElement CarTypeTester = new XElement("CarTypeTester", newTester.CarTypeTester.ToString());
+            XElement mat = new XElement("mat",newTester.mat.ToStringMat());
             XElement MaxFarFromTester = new XElement("MaxFarFromTester", newTester.MaxFarFromTester);
-            TesterRoot.Add(new XElement("Tester", id, NameTester, PhoneNumberTester, Address, SeniorityTester, MaxTestsTester, MaxFarFromTester));
+            TesterRoot.Add(new XElement("Tester", id, NameTester, BirthDateTester,GenderTester, PhoneNumberTester, Address, SeniorityTester,
+                MaxTestsTester,CarTypeTester, mat,MaxFarFromTester));
             //*** I need to Add the other element that already i not did ********
             TesterRoot.Save(TesterPath);
+
+            Tester some= GetTester("333333333");
+           List<Tester> list= getTesters();
+            removeTester("333333333");
+            
+
         }
 
         public void removeTester(string idTester)
@@ -129,7 +136,7 @@ namespace DAL
             XElement ToChangeTester;
 
             ToChangeTester = (from AnyTester in TesterRoot.Elements()
-                         where AnyTester.Element("TesterId").Value==updatedTester.IdTester select AnyTester).FirstOrDefault();
+                         where AnyTester.Element("IdTester").Value==updatedTester.IdTester select AnyTester).FirstOrDefault();
             ToChangeTester.Element("IdTester").Value = updatedTester.IdTester;
 
 
@@ -138,8 +145,8 @@ namespace DAL
 
 
 
-            //birthday*** i need to think about conversion of date
-            //gender **i need to think about enum
+            ToChangeTester.Element("BirthDateTester").Value = updatedTester.BirthDateTester.ToString();
+            ToChangeTester.Element("GenderTester").Value = updatedTester.GenderTester.ToString();
             ToChangeTester.Element("PhoneNumberTester").Value = updatedTester.PhoneNumberTester;
 
             ToChangeTester.Element("Address").Element("City").Value = updatedTester.AddresTester.City;
@@ -148,8 +155,9 @@ namespace DAL
 
             ToChangeTester.Element("SeniorityTester").Value = updatedTester.SeniorityTester.ToString();
             ToChangeTester.Element("MaxTestsTester").Value = updatedTester.MaxTestsTester.ToString();
-            ////carType **i need to thinl about enum
-            ////mat ** i need to think about the convertion of mat
+            ToChangeTester.Element("CarTypeTester").Value = updatedTester.CarTypeTester.ToString();
+            
+            ToChangeTester.Element("mat").Value = updatedTester.mat.ToStringMat();
             ToChangeTester.Element("MaxFarFromTester").Value = updatedTester.MaxFarFromTester.ToString();
 
             TesterRoot.Save(TesterPath);
@@ -161,26 +169,24 @@ namespace DAL
             XElement NameTrainee = newTrainee.NameTrainee.ToXElement();
             XElement IdTrainee = new XElement("IdTrainee", newTrainee.IdTrainee);
             XElement BirthDateTrainee = new XElement("BirthDateTrainee", newTrainee.BirthDateTrainee.ToString());
-            // *****in gender I need to thinl how convert***
+            XElement GenderTrainee = new XElement("GenderTrainee", newTrainee.GenderTrainee.ToString());
             XElement PhoneNumberTrainee = new XElement("PhoneNumberTrainee", newTrainee.PhoneNumberTrainee);
             XElement AddressTrainee = newTrainee.AddressTrainee.ToXElement();
             XElement SchoolTrainee= new XElement("SchoolTrainee", newTrainee.SchoolTrainee);
             XElement TeacherTrainee = new XElement("TeacherTrainee", newTrainee.TeacherTrainee);
-            //// *****in carType I need to think how convert***
-            //// *****in Gearbox I need to think how convert***
+            XElement CarTypeTrainee = new XElement("CarTypeTrainee", newTrainee.CarTypeTrainee.ToString());
+            XElement GearboxTrainee = new XElement("GearboxTrainee", newTrainee.GearboxTrainee.ToString());
+
             XElement NumberOfLesson = new XElement("NumberOfLesson", newTrainee.NumberOfLesson);
             XElement LastExamDate = new XElement("LastExamDate", newTrainee.LastExamDate.ToString());
 
-            TraineeRoot.Add(new XElement("trainee", NameTrainee, IdTrainee, PhoneNumberTrainee, AddressTrainee, SchoolTrainee, TeacherTrainee, NumberOfLesson));
-            //*** I need to Add the other element that already i not did ********
+            TraineeRoot.Add(new XElement("trainee", NameTrainee, IdTrainee,BirthDateTrainee,GenderTrainee, PhoneNumberTrainee,
+                AddressTrainee,SchoolTrainee, TeacherTrainee,CarTypeTrainee,GearboxTrainee, NumberOfLesson,LastExamDate));
+            
             TraineeRoot.Save(TraineePath);
 
-            Trainee zadoknet = GetTrainee("304123456");
+         
             
-            zadoknet.AddressTrainee.City = "new york";
-            zadoknet.AddressTrainee.Street = "הועד הועד";
-            zadoknet.TeacherTrainee = "מורהאחר";
-            changeTrainee(zadoknet);
 
         }
 
@@ -213,7 +219,7 @@ namespace DAL
             tra.Element("FullName").Element("LastName").Value = updatedTrainee.NameTrainee.LastName;
 
             tra.Element("IdTrainee").Value = updatedTrainee.IdTrainee;
-            //Gender Trainee ***i need to think how to work with enum
+            tra.Element("GenderTrainee").Value = updatedTrainee.GenderTrainee.ToString();
             tra.Element("BirthDateTrainee").Value = updatedTrainee.BirthDateTrainee.ToString();
             tra.Element("PhoneNumberTrainee").Value = updatedTrainee.PhoneNumberTrainee;
 
@@ -224,9 +230,9 @@ namespace DAL
 
             tra.Element("SchoolTrainee").Value = updatedTrainee.SchoolTrainee;
             tra.Element("TeacherTrainee").Value = updatedTrainee.TeacherTrainee;
-            //car Type ***i need to think how to work with enum
-            //and Gear box ***i need to think how to work with enum
-            
+            tra.Element("CarTypeTrainee").Value = updatedTrainee.CarTypeTrainee.ToString();
+            tra.Element("GearboxTrainee").Value = updatedTrainee.GearboxTrainee.ToString();
+
             tra.Element("NumberOfLesson").Value = updatedTrainee.NumberOfLesson.ToString();
             tra.Element("LastExamDate").Value = updatedTrainee.LastExamDate.ToString();
             TraineeRoot.Save(TraineePath);
@@ -239,10 +245,11 @@ namespace DAL
             XElement TestNum = new XElement("TestNum", newTest.TestNum); //***we need to create function to create a test num****8
             XElement TesterId = new XElement("TesterId", newTest.TesterId); 
             XElement TraineeId = new XElement("TraineeId", newTest.TraineeId);
-            //**** i need to think how to convert the date of TestDate****
+            XElement TestDate = new XElement("TraineeId", newTest.TestDate.ToString());
+            
             XElement HourTest = new XElement("HourTest", newTest.HourTest);
             XElement AddressTest = newTest.AddressTest.ToXElement();
-            //**** i need to think how to convert the date of TestTime****
+            XElement TestTime = new XElement("TraineeId", newTest.TestTime.ToString());
             XElement NoteTester = new XElement("NoteTester", newTest.NoteTester);
 
             TestRoot.Add(TestNum, TesterId, TraineeId, HourTest, AddressTest, NoteTester);
@@ -315,11 +322,11 @@ namespace DAL
                        {
                           NameTrainee = new FullName()
                           {
-                               FirstName= tra.Element("FullName").Element("FirstName").Value,
+                              FirstName = tra.Element("FullName").Element("FirstName").Value,
                               LastName = tra.Element("FullName").Element("LastName").Value
                           },
                           IdTrainee = tra.Element("IdTrainee").Value,
-                           //Gender Trainee ***i need to think how to work with enum
+                          GenderTrainee = (Gender)Enum.Parse(typeof(Gender),tra.Element("GenderTrainee").Value),
                            BirthDateTrainee=DateTime.Parse(tra.Element("BirthDateTrainee").Value),
                            PhoneNumberTrainee =tra.Element("PhoneNumberTrainee").Value,
                            AddressTrainee= new Address
@@ -329,13 +336,16 @@ namespace DAL
                                HouseNum = int.Parse(tra.Element("Address").Element("HouseNum").Value)
                            },
                            SchoolTrainee =tra.Element("SchoolTrainee").Value,
-                           TeacherTrainee=tra.Element("TeacherTrainee").Value,
-                           //car Type ***i need to think how to work with enum
-                           //and Gear box ***i need to think how to work with enum
-                           NumberOfLesson=int.Parse(tra.Element("NumberOfLesson").Value),
-                           LastExamDate=DateTime.Parse(tra.Element("LastExamDate").Value)
+                           TeacherTrainee=tra.Element("TeacherTrainee").Value
+                           ,
 
-                       }).FirstOrDefault();
+                          CarTypeTrainee = (CarType)Enum.Parse(typeof(CarType), tra.Element("CarTypeTrainee").Value),
+                          GearboxTrainee = (Gearbox)Enum.Parse(typeof(Gearbox), tra.Element("GearboxTrainee").Value),
+
+                          NumberOfLesson = int.Parse(tra.Element("NumberOfLesson").Value),
+                          LastExamDate = DateTime.Parse(tra.Element("LastExamDate").Value)
+
+                      }).FirstOrDefault();
             if (rainee != null)
                 return rainee;
             else
@@ -359,8 +369,8 @@ namespace DAL
                               LastName = anyTester.Element("FullName").Element("LastName").Value
                           }
                           ,
-                          BirthDateTester=DateTime.Parse(anyTester.Element("BirthDateTester").Value),
-                          //gender **i need to think about enum
+                          BirthDateTester = DateTime.Parse(anyTester.Element("BirthDateTester").Value),
+                          GenderTester=(Gender)Enum.Parse(typeof(Gender),anyTester.Element("GenderTester").Value),
                           PhoneNumberTester = anyTester.Element("PhoneNumberTester").Value,
                           AddresTester = new Address
                           {
@@ -370,8 +380,8 @@ namespace DAL
                           },
                           SeniorityTester = int.Parse(anyTester.Element("SeniorityTester").Value),
                           MaxTestsTester = int.Parse(anyTester.Element("MaxTestsTester").Value),
-                          ////carType **i need to thinl about enum
-                          ////mat ** i need to think about the convertion of mat
+                          CarTypeTester=(CarType)Enum.Parse(typeof(CarType),anyTester.Element("CarTypeTester").Value),
+                          mat = anyTester.Element("mat").Value.ToMatrix(),
                           MaxFarFromTester = int.Parse(anyTester.Element("MaxFarFromTester").Value)
                       }).FirstOrDefault();
             if (result != null)
@@ -398,7 +408,7 @@ namespace DAL
                               }
                               ,
                               BirthDateTester= DateTime.Parse(anyTester.Element("BirthDateTester").Value),
-                              //gender **i need to think about enum
+                              GenderTester=(Gender)Enum.Parse(typeof(Gender),anyTester.Element("GenderTester").Value),
                               PhoneNumberTester = anyTester.Element("PhoneNumberTester").Value,
                               AddresTester = new Address
                               {
@@ -408,8 +418,8 @@ namespace DAL
                               },
                               SeniorityTester = int.Parse(anyTester.Element("SeniorityTester").Value),
                               MaxTestsTester = int.Parse(anyTester.Element("MaxTestsTester").Value),
-                              ////carType **i need to thinl about enum
-                              ////mat ** i need to think about the convertion of mat
+                              CarTypeTester=(CarType)Enum.Parse(typeof(CarType),anyTester.Element("CarTypeTester").Value),
+                              mat = anyTester.Element("mat").Value.ToMatrix(),
                               MaxFarFromTester = int.Parse(anyTester.Element("MaxFarFromTester").Value)
                           }).ToList();
 
@@ -431,7 +441,7 @@ namespace DAL
                                    LastName = tra.Element("FullName").Element("LastName").Value
                                },
                                IdTrainee = tra.Element("IdTrainee").Value,
-                               //Gender Trainee ***i need to think how to work with enum
+                               GenderTrainee=(Gender)Enum.Parse(typeof(Gender),tra.Element("GenderTrainee").Value),
                                BirthDateTrainee = DateTime.Parse(tra.Element("BirthDateTrainee").Value),
                                PhoneNumberTrainee = tra.Element("PhoneNumberTrainee").Value,
                                AddressTrainee = new Address
@@ -442,8 +452,8 @@ namespace DAL
                                },
                                SchoolTrainee = tra.Element("SchoolTrainee").Value,
                                TeacherTrainee = tra.Element("TeacherTrainee").Value,
-                               //car Type ***i need to think how to work with enum
-                               //and Gear box ***i need to think how to work with enum
+                               CarTypeTrainee=(CarType)Enum.Parse(typeof(CarType),tra.Element("CarTypeTrainee").Value),
+                               GearboxTrainee=(Gearbox)Enum.Parse(typeof(Gearbox),tra.Element("GearboxTrainee").Value),
                                NumberOfLesson = int.Parse(tra.Element("NumberOfLesson").Value),
                                LastExamDate = DateTime.Parse(tra.Element("LastExamDate").Value)
                            }).ToList();
@@ -453,11 +463,44 @@ namespace DAL
 
         public List<Test> getTests()
         {
-            throw new NotImplementedException();
+            LoadDataTest();
+            List<Test> tests;
+
+            try
+            {
+                tests = (from anyTest in TesterRoot.Elements()
+
+                         select new Test()
+                         {
+                             TestNum = anyTest.Element("TestNum").Value,
+                             TesterId = anyTest.Element("TesterId").Value,
+                             TraineeId = anyTest.Element("TraineeId").Value,
+                             TestDate = DateTime.Parse(anyTest.Element("TestDate").Value),
+                             HourTest = anyTest.Element("HourTest").Value,
+                             AddressTest = new Address
+                             {
+                                 City = anyTest.Element("Address").Element("City").Value,
+                                 Street = anyTest.Element("Address").Element("Street").Value,
+                                 HouseNum = int.Parse(anyTest.Element("Address").Element("HouseNum").Value)
+                             },
+                             TestTime = DateTime.Parse(anyTest.Element("TestTime").Value),
+                             NoteTester = anyTest.Element("NoteTester").Value
+                         }).ToList();
+            }
+            catch (Exception)
+            {
+
+                
+                throw new Exception("לא קיימים מבחנים במערכת");
+            }
+            
+                return tests;
+      
         }
 
       
     }
+
 
  
     }
