@@ -70,6 +70,20 @@ namespace BE
         {
             if (!(myID.Any(c => char.IsDigit(c)) && myID.Length == 9))
             throw new Exception("מספר זהות לא תקין");
+            int sum = 0, j;
+            int[] arr = new int[8];
+            for(int i = 0; i <= 6; i += 2)
+            {
+                sum += int.Parse(myID[i].ToString());
+                j = 2*int.Parse(myID[i + 1].ToString());
+                if (j > 9)
+                {
+                    j = 1 + j % 10;
+                }
+                sum += j;
+            }
+            if (10 - (sum % 10) != int.Parse(myID[8].ToString()))
+                throw new Exception ("מספר זהות לא חוקי");
         }
         public static void CheckPhoneNumber(string myNumber)
         {
