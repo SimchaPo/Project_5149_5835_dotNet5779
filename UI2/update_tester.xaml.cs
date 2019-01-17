@@ -76,15 +76,15 @@ namespace UI2
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button button = new Button();
             button = sender as Button;
-            int x = button.Name[1] - 48;
-            int y = button.Name[3] - 48;
+            int x = int.Parse(button.Name[1].ToString());
+            int y = int.Parse(button.Name[3].ToString());
             if (mat1[x, y] == false)
             {
                 mat1[x, y] = true;

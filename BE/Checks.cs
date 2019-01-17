@@ -8,26 +8,82 @@ namespace BE
 {
     public static class Checks
     {
-        public static bool checkID(string myID)
+        public static void CheckTesterInput(Tester newTester)
         {
-            return myID.Any(c => char.IsDigit(c)) && myID.Length == 9;
+            if(newTester.NameTester.FirstName == null || newTester.NameTester.LastName == null ||
+                newTester.AddresTester.City == null || newTester.AddresTester.Street == null)
+            {
+                throw new Exception("אנא השלם את כל הפרטים");
+            }
+             else if (!(newTester.NameTester.FirstName.Length > 0 && newTester.NameTester.LastName.Length > 0
+                 && newTester.AddresTester.City.Length > 0 && newTester.AddresTester.Street.Length > 0))
+            {
+                throw new Exception("אנא השלם את כל הפרטים");
+            }
+            CheckString(newTester.NameTester.FirstName, "השם הפרטי");
+            CheckString(newTester.NameTester.LastName, "שם המשפחה");
+            CheckID(newTester.IdTester);
+            CheckPhoneNumber(newTester.PhoneNumberTester);
+            CheckString(newTester.AddresTester.City, "שם העיר");
+            CheckString(newTester.AddresTester.Street, "שם הרחוב");
+            if (newTester.AddresTester.HouseNum == 0)
+                throw new Exception("מספר בית לא תקין");
+            if (newTester.BirthDateTester.AddYears(Configuration.minAgetester) > DateTime.Now)
+            {
+                throw new Exception("צעיר מדי להיות בוחן");
+            }
+            if (newTester.BirthDateTester.AddYears(Configuration.maxAgeTester) < DateTime.Now)
+            {
+                throw new Exception("מבוגר מדי להיות בוחן");
+            }
         }
-        public static bool checkPhoneNumber(string myNumber)
+        public static void CheckTraineeInput(Trainee newTrainee)
         {
-            return myNumber.Any(c => char.IsDigit(c)) && myNumber.Length == 10;
+            if(newTrainee.NameTrainee.FirstName == null || newTrainee.NameTrainee.LastName == null ||
+                newTrainee.AddressTrainee.City == null || newTrainee.AddressTrainee.Street == null ||
+                newTrainee.SchoolTrainee == null || newTrainee.TeacherTrainee == null)
+            {
+                throw new Exception("אנא השלם את כל הפרטים");
+            }
+            else if(!(newTrainee.NameTrainee.FirstName.Length > 0 && newTrainee.NameTrainee.LastName.Length > 0 &&
+                newTrainee.AddressTrainee.City.Length > 0 && newTrainee.AddressTrainee.Street.Length > 0 &&
+                newTrainee.SchoolTrainee.Length > 0 && newTrainee.TeacherTrainee.Length > 0))
+            {
+                throw new Exception("אנא השלם את כל הפרטים");
+            }
+            CheckString(newTrainee.NameTrainee.FirstName, "השם הפרטי");
+            CheckString(newTrainee.NameTrainee.LastName, "שם המשפחה");
+            CheckID(newTrainee.IdTrainee);
+            CheckPhoneNumber(newTrainee.PhoneNumberTrainee);
+            CheckString(newTrainee.AddressTrainee.City, "שם העיר");
+            CheckString(newTrainee.AddressTrainee.Street, "שם הרחוב");
+            if (newTrainee.AddressTrainee.HouseNum == 0)
+                throw new Exception("מספר בית לא תקין");
+            CheckString(newTrainee.SchoolTrainee, "שם בית הספר");
+            CheckString(newTrainee.TeacherTrainee, "שם המורה");
+            if (newTrainee.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) > DateTime.Now)
+            {
+                throw new Exception("תלמיד צעיר מדי");
+            }
         }
-        public static bool CheckForNullTester(Tester t)
+        public static void CheckID(string myID)
         {
-            return t.IdTester == null || t.NameTester.FirstName == null || t.NameTester.LastName == null
-                || t.PhoneNumberTester == null || t.AddresTester.City == null ||
-                t.AddresTester.Street == null;
+            if (!(myID.Any(c => char.IsDigit(c)) && myID.Length == 9))
+            throw new Exception("מספר זהות לא תקין");
         }
-        public static bool CheckForNullTrainee(Trainee t)
+        public static void CheckPhoneNumber(string myNumber)
         {
-            return t.IdTrainee == null || t.NameTrainee.FirstName == null || t.NameTrainee.LastName == null
-                || t.PhoneNumberTrainee == null || t.AddressTrainee.City == null ||
-                t.AddressTrainee.Street == null || t.SchoolTrainee == null || t.TeacherTrainee == null;
+            if(!(myNumber.Any(c => char.IsDigit(c)) && myNumber[0] == '0' &&
+                ((myNumber.Length == 10 && myNumber[1] == '5')  || (myNumber.Length == 9 && myNumber[1] != '5'))))
+            throw new Exception("מספר טלפון לא תקין");
         }
+
+        public static void CheckString(string myString, string item)
+        {
+            if (myString.Any(c => !(char.IsLetter(c) || char.IsWhiteSpace(c))))
+                throw new Exception(item + " לא תקין");
+        }
+
         public static Tester Clone(this Tester t)
         {
             Tester tester = new Tester

@@ -9,19 +9,45 @@
     <Window.Resources>
         <DataTemplate x:Key="myTester" DataType="Tester" >
             <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
+                    <Grid Grid.Column="0">
                     <TextBlock Text="{Binding Path=IdTester}" FlowDirection="RightToLeft"/>
                 </Grid>
                 <Grid Grid.Column="1">
-                    <TextBlock Text="{Binding Path=NameTester.LastName}" FlowDirection="RightToLeft" />
+                    <TextBlock Text="{Binding Path=NameTester.LastName}" FlowDirection="RightToLeft"/>
                 </Grid>
                 <Grid Grid.Column="2">
-                    <TextBlock Text="{Binding Path=NameTester.FirstName}" FlowDirection="RightToLeft" />
+                    <TextBlock Text="{Binding Path=NameTester.FirstName}" FlowDirection="RightToLeft"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <TextBlock FlowDirection="RightToLeft" Text="{Binding Path=BirthDateTester, StringFormat=\{0:d\}}"/>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <TextBlock Text="{Binding GenderTester}" FlowDirection="RightToLeft"/>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+                            <TextBlock Text="וותק: " FlowDirection="RightToLeft"/>
+                            <TextBlock Text="{Binding SeniorityTester}" FlowDirection="RightToLeft"/>
+                            <TextBlock Text=" שנים" FlowDirection="RightToLeft"/>
+                        </StackPanel>
+                    </Grid>
                 </Grid>
             </Grid>
         </DataTemplate>

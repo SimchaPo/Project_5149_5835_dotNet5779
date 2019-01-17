@@ -12,7 +12,7 @@ namespace BE
         public string Street { get; set; }
         public int HouseNum { get; set; }
 
-        public string ToString()
+        public override string ToString()
         {
             return Street + " " + HouseNum + " " + City + " israel";
         }

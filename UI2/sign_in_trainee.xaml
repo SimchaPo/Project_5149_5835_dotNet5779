@@ -36,7 +36,7 @@
                 <TextBox x:Name="firstNameTextBox" Text="{Binding NameTrainee.FirstName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft"/>
                 <TextBox x:Name="lastNameTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding NameTrainee.LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center"/>
                 <TextBox x:Name="idTraineeTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding IdTrainee, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
-                <DatePicker x:Name="birthDateTraineeDatePicker" VerticalAlignment="Center" FlowDirection="RightToLeft" SelectedDate="{Binding BirthDateTrainee, Mode=OneWayToSource}" Height="24" DisplayDate="2002-01-01"/>
+                <DatePicker x:Name="birthDateTraineeDatePicker" Validation.ErrorTemplate="{x:Null}" VerticalAlignment="Center" FlowDirection="RightToLeft" SelectedDate="{Binding BirthDateTrainee, Mode=OneWayToSource}" Height="24" DisplayDate="2002-01-01"/>
                 <ComboBox x:Name="genderTraineeComboBox" VerticalAlignment="Center" Grid.Row="2" SelectedItem="{Binding GenderTrainee}" FlowDirection="RightToLeft" Height="24"/>
                 <TextBox x:Name="phoneNumberTraineeTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding PhoneNumberTrainee, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" MaxLength="10"/>
             </StackPanel>
@@ -53,7 +53,7 @@
                 <Label Content="רחוב:" Height="24"/>
                 <TextBox x:Name="streetTextBox" Text="{Binding AddressTrainee.Street, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24" Width="68"/>
                 <Label Content="מספר בית:" Height="24"/>
-                <TextBox x:Name="houseNumTextBox" Text="{Binding AddressTrainee.HouseNum, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="30" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24" MaxLength="4"/>
+                <TextBox x:Name="houseNumTextBox" Validation.ErrorTemplate="{x:Null}" Text="{Binding AddressTrainee.HouseNum, Mode=OneWayToSource, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="30" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24" MaxLength="4"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="3">
@@ -76,7 +76,7 @@
                 <ComboBox x:Name="gearboxTraineeComboBox" SelectedItem="{Binding GearboxTrainee}" FlowDirection="RightToLeft" Height="24"/>
                 <TextBox x:Name="schoolTraineeTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding SchoolTrainee, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
                 <TextBox x:Name="teacherTraineeTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding TeacherTrainee, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
-                <TextBox x:Name="numberOfLessonTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding NumberOfLesson, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
+                <TextBox x:Name="numberOfLessonTextBox" Validation.ErrorTemplate="{x:Null}" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding NumberOfLesson, Mode=OneWayToSource, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="4">

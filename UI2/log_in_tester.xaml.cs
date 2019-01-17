@@ -39,8 +39,8 @@ namespace UI2
             working.ImageSource = imageWorking.Source;
             foreach (Button item in buttons.Children)
             {
-                int x = item.Name[1] - 48;
-                int y = item.Name[3] - 48;
+                int x = int.Parse(item.Name[1].ToString());
+                int y = int.Parse(item.Name[3].ToString());
                 if (tester.mat[x, y] == true)
                 {
                     item.Background = working;
@@ -60,16 +60,12 @@ namespace UI2
 
         private void exit_Click(object sender, RoutedEventArgs e)
         {
-           // MainWindow mainWindow = new MainWindow();
-           // mainWindow.Show();
             Close();
         }
 
         private void delete_tester_Click(object sender, RoutedEventArgs e)
         {
             bl.removeTester(tester1.IdTester);
-            //MainWindow mainWindow = new MainWindow();
-            //mainWindow.Show();
             Close();
         }
 

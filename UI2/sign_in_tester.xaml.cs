@@ -43,6 +43,8 @@ namespace UI2
         {
             try
             {
+                if (birthDateTesterDatePicker.SelectedDate == null)
+                    throw new Exception("אנא השלם את כל הפרטים");
                 tester.mat = m2.mat1;
                 bl.addTester(tester);
                 log_in_tester log_In = new log_in_tester(tester);
@@ -51,7 +53,7 @@ namespace UI2
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

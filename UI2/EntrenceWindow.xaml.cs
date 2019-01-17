@@ -35,14 +35,6 @@ namespace UI2
             bl = FactoryBL.GetBL();
         }
 
-        private void userID_MouseEnter(object sender, MouseEventArgs e)
-        {
-            if (userID.Text == "מספר זהות")
-                userID.ClearValue(TextBox.TextProperty);
-            else if (userID.Text == "")
-                userID.Text = "מספר זהות";
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -53,23 +45,26 @@ namespace UI2
                     {
                         throw new Exception("אנא מלא את כל הפרטים");
                     }
-                    if (!Checks.checkID(userID.Text))
-                    {
-                        throw new Exception("מספר זהות לא חוקי");
-                    }
+                    Checks.CheckID(userID.Text);
+
                     if (combo.SelectedIndex == 0)
                     {
                         throw new Exception("אנא סמן את בחירתך");
                     }
                     if (combo.SelectedIndex == 1)
                     {
+                        
                         tester = bl.GetTester(userID.Text);
+                        if (tester.NameTester.FirstName != userFirstName.Text || tester.NameTester.LastName != userLastName.Text)
+                            throw new Exception("אחד או יותר מהנתונים שהוזנו שגויים");
                         log_in_tester log_in_tester = new log_in_tester(tester);
                         log_in_tester.ShowDialog();
                     }
                     if (combo.SelectedIndex == 2)
                     {
                         trainee = bl.GetTrainee(userID.Text);
+                        if (trainee.NameTrainee.FirstName != userFirstName.Text || trainee.NameTrainee.LastName != userLastName.Text)
+                            throw new Exception("אחד או יותר מהנתונים שהוזנו שגויים");
                         log_in_trainee log_in_trainee = new log_in_trainee(trainee);
                         log_in_trainee.ShowDialog();
                     }
@@ -95,29 +90,12 @@ namespace UI2
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-
             }
         }
 
         private void new_user_Unchecked(object sender, RoutedEventArgs e)
         {
             combo.SelectedIndex = 0;
-        }
-
-        private void userFirstName_MouseEnter(object sender, MouseEventArgs e)
-        {
-            if (userFirstName.Text == "שם פרטי")
-                userFirstName.ClearValue(TextBox.TextProperty);
-            else if (userFirstName.Text == "")
-                userFirstName.Text = "שם פרטי";
-        }
-
-        private void userLastName_MouseEnter(object sender, MouseEventArgs e)
-        {
-            if (userLastName.Text == "שם משפחה")
-                userLastName.ClearValue(TextBox.TextProperty);
-            else if (userLastName.Text == "")
-                userLastName.Text = "שם משפחה";
         }
 
         private void old_user_Checked(object sender, RoutedEventArgs e)
@@ -134,6 +112,30 @@ namespace UI2
                 userID.Text = "מספר זהות";
                 old_user_detailes.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private void userFirstName_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            if (userFirstName.Text == "שם פרטי")
+                userFirstName.ClearValue(TextBox.TextProperty);
+            else if (userFirstName.Text == "")
+                userFirstName.Text = "שם פרטי";
+        }
+
+        private void userLastName_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            if (userLastName.Text == "שם משפחה")
+                userLastName.ClearValue(TextBox.TextProperty);
+            else if (userLastName.Text == "")
+                userLastName.Text = "שם משפחה";
+        }
+
+        private void userID_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            if (userID.Text == "מספר זהות")
+                userID.ClearValue(TextBox.TextProperty);
+            else if (userID.Text == "")
+                userID.Text = "מספר זהות";
         }
     }
     

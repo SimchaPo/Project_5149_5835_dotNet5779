@@ -22,72 +22,25 @@ namespace BL
 
         public void addTester(Tester newTester)
         {
-            try
-            {
-                if (Checks.CheckForNullTester(newTester))
-                {
-                    throw new Exception("אנא השלם את כל הפרטים");
-                }
-                if (!Checks.checkID(newTester.IdTester))
-                {
-                    throw new Exception("מספר תעודת זהות לא חוקי");
-                }
-                if (!Checks.checkPhoneNumber(newTester.PhoneNumberTester))
-                {
-                    throw new Exception("מספר טלפון לא חוקי");
-                }
-                if (newTester.BirthDateTester.AddYears(Configuration.minAgetester) > DateTime.Now)
-                {
-                    throw new Exception("בוחן צעיר מדי");
-                }
-                if (newTester.BirthDateTester.AddYears(Configuration.maxAgeTester) < DateTime.Now)
-                {
-                    throw new Exception("בוחן מבוגר מדי");
-                }
-                idal.addTester(newTester);
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
+            Checks.CheckTesterInput(newTester);
+            idal.addTester(newTester);
         }
 
         public void addTrainee(Trainee newTrainee)
         {
-            try
-            {
-                if (Checks.CheckForNullTrainee(newTrainee))
-                {
-                    throw new Exception("אנא השלם את כל הפרטים");
-                }
-                if (!Checks.checkID(newTrainee.IdTrainee))
-                {
-                    throw new Exception("מספר תעודת זהות לא חוקי");
-                }
-                if (!Checks.checkPhoneNumber(newTrainee.PhoneNumberTrainee))
-                {
-                    throw new Exception("מספר טלפון לא חוקי");
-                }
-                if (newTrainee.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) > DateTime.Now)
-                {
-                    throw new Exception("תלמיד צעיר מדי");
-                }
-
-                idal.addTrainee(newTrainee);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            Checks.CheckTraineeInput(newTrainee);
+            idal.addTrainee(newTrainee);
         }
 
-        public void changeTester(Tester newTester)
+        public void changeTester(Tester updateTester)
         {
-            idal.changeTester(newTester);
+            Checks.CheckTesterInput(updateTester);
+            idal.changeTester(updateTester);
         }
 
         public void changeTrainee(Trainee updateTrainee)
         {
+            Checks.CheckTraineeInput(updateTrainee);
             idal.changeTrainee(updateTrainee);
         }
 
@@ -139,10 +92,7 @@ namespace BL
         }
         public Tester GetTester(string id)
         {
-            if (!Checks.checkID(id))
-            {
-                throw new Exception("מספר תעודת זהות לא תקין");
-            }
+            Checks.CheckID(id);
             return idal.GetTester(id);
         }
 
