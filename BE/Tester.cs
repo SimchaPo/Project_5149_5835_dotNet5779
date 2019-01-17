@@ -12,11 +12,12 @@ namespace BE
         {
             NameTester = new FullName();
             AddresTester = new Address();
-            mat = new bool?[5, 7] { {null , null, null, null, null, null, null },
-                {null , null, null, null, null, null, null },
-                {null , null, null, null, null, null, null },
-                {null , null, null, null, null, null, null },
-               {null , null, null, null, null, null, null } };
+            mat = new bool[5, 7] {
+                { false, false, false, false, false, false, false},
+                { false, false, false, false, false, false, false },
+                { false, false, false, false, false, false, false },
+                { false, false, false, false, false, false, false },
+                { false, false, false, false, false, false, false } };
         }
         public string IdTester { get; set; }
         public FullName NameTester { get; set; }
@@ -27,7 +28,7 @@ namespace BE
         public int SeniorityTester { get; set; } //שנות וותק
         public int MaxTestsTester { get; set; } 
         public CarType CarTypeTester { get; set; }
-        public bool?[,] mat { get; set; }
+        public bool[,] mat { get; set; }
         public int MaxFarFromTester { get; set; }
     }
 }

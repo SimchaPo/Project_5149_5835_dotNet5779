@@ -18,13 +18,6 @@ namespace BE
         }
         public static bool CheckForNullTester(Tester t)
         {
-            foreach (bool? item in t.mat)
-            {
-                if (item == null)
-                {
-                    return true;
-                }
-            }
             return t.IdTester == null || t.NameTester.FirstName == null || t.NameTester.LastName == null
                 || t.PhoneNumberTester == null || t.AddresTester.City == null ||
                 t.AddresTester.Street == null;
@@ -48,7 +41,7 @@ namespace BE
                 SeniorityTester = t.SeniorityTester,
                 MaxTestsTester = t.MaxTestsTester,
                 CarTypeTester = t.CarTypeTester,
-                mat = (bool?[,])t.mat.Clone(), //i need to make the clone of mat*********
+                mat = (bool[,])t.mat.Clone(), //i need to make the clone of mat*********
                 MaxFarFromTester = t.MaxFarFromTester
             };
             return tester;
@@ -107,6 +100,70 @@ namespace BE
                 NoteTester = t.NoteTester
 
             };
+        }
+        public static string ToString(bool[,]mat)
+        {
+            string time = "";
+            for (int i = 0; i < 5; ++i)
+            {
+                time += "d " + i;
+                for (int j = 0; j < 7; ++j)
+                {
+                    if (mat[i, j] == true)
+                    {
+                        time += " h " + j;
+                    }
+                }
+                time += "\n";
+            }
+            return time;
+        }
+        public static bool[,] ToMatrix(string work)
+        {
+            bool[,] mat = new bool[5, 7] { { false, false, false, false, false, false, false},
+                { false, false, false, false, false, false, false },
+                { false, false, false, false, false, false, false },
+                { false, false, false, false, false, false, false }, { false, false, false, false, false, false, false } };
+            int i = -1;
+            bool flag = false;
+            foreach (char a in work)
+            {
+                if (a == 'd')
+                {
+                    ++i;
+                    flag = false;
+                }
+                if (char.IsDigit(a))
+                {
+                    if (flag == true)
+                    {
+                        mat[i, int.Parse(a.ToString())] = true;
+                    }
+                    flag = true;
+                }
+            }
+            return mat;
+        }
+
+        public static void DidTraineeExamInRecentTime(this Trainee t)
+        {
+
+            if (t.LastExamDate.AddDays(-Configuration.minDaysPassFromLastTest) > DateTime.Now) //we need to check if it is correct
+                throw new Exception("The studenet did exam in the last " + Configuration.minDaysPassFromLastTest + " days, please wait to correct time");//*** I need to change this
+        }
+        public static bool didTraineeMinLessons(this Trainee t)
+        {
+            return t.NumberOfLesson > Configuration.minLessons;
+        }
+
+
+        public static void didTesterPassLimitExam(this Tester t)
+        {
+            throw new Exception("not implemented func");
+        }
+        public static void didTesterVacatedInThisDate(this Tester t, DateTime time)
+        {
+            throw new Exception("not implemented func");
         }
 
     }

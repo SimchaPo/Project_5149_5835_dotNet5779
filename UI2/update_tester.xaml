@@ -198,7 +198,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="back" Content="ביטול" HorizontalAlignment="Center" Grid.Column="1" Width="75" VerticalAlignment="Center" Click="back_Click"/>
-            <Button x:Name="next" Content="עדכן" HorizontalAlignment="Center"  Width="75" VerticalAlignment="Center" Click="next_Click"/>
+            <Button x:Name="next" Content="עדכן" HorizontalAlignment="Center" Grid.Column="0" Width="75" VerticalAlignment="Center" Click="next_Click"/>
         </Grid>
     </Grid>
 </Window>

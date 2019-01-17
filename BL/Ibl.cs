@@ -29,6 +29,8 @@ namespace BL
         Trainee GetTrainee(string trainee);
         Tester GetTester(string id);
 
+        List<Tester> getTestersAvailable(DateTime dateTime);
+
         List<Tester> getTesters();
         List<Trainee> getTrainees();
         List<Test> getTests();

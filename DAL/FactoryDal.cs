@@ -8,13 +8,13 @@ namespace DAL
 {
     public class FactoryDal
     {
-        protected static Dal_xml myDal = null;
+        protected static Dal_imp myDal = null;
 
         public static Idal GetDal()
         {
             if (myDal == null)
             {
-                myDal = new Dal_xml();
+                myDal = new Dal_imp();
             }
             return myDal;
         }
