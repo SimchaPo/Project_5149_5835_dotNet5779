@@ -226,5 +226,6 @@
                 <Button Name="exit" Content="חזרה לתפריט הראשי" HorizontalAlignment="Center" VerticalAlignment="Center" Click="exit_Click"/>
             </Grid>
         </Grid>
+        <Label Content="את הכתובת יש לכתוב באנגלית" Grid.Column="1" HorizontalAlignment="Left" Margin="158,177,0,0" VerticalAlignment="Top" Width="182"/>
     </Grid>
 </Window>

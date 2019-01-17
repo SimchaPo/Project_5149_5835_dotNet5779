@@ -175,7 +175,7 @@ namespace DAL
             XElement HouseNum = new XElement("HouseNum", address.HouseNum);
             return new XElement("Address", City, Street, HouseNum);
         }
-        public static string ToString(bool[,] mat)
+        public static string ToStringMat(this bool[,] mat)
         {
             string time = "";
             for (int i = 0; i < 5; ++i)
@@ -192,7 +192,7 @@ namespace DAL
             }
             return time;
         }
-        public static bool[,] ToMatrix(string work)
+        public static bool[,] ToMatrix(this string work)
         {
             bool[,] mat = new bool[5, 7] { { false, false, false, false, false, false, false},
                 { false, false, false, false, false, false, false },
@@ -218,5 +218,9 @@ namespace DAL
             }
             return mat;
         }
-    }
+
+        
+    };
+   
+
 }

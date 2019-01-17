@@ -11,6 +11,11 @@ namespace BE
         public string City { get; set; }
         public string Street { get; set; }
         public int HouseNum { get; set; }
+
+        public string ToString()
+        {
+            return Street + " " + HouseNum + " " + City + " israel";
+        }
     }
 
 }
