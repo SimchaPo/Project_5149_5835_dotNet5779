@@ -50,15 +50,11 @@ namespace UI2
         private void delete_trainee_Click(object sender, RoutedEventArgs e)
         {
             bl.removeTrainee(trainee1.IdTrainee);
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
             Close();
         }
 
         private void exit_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
             Close();
         }
     }

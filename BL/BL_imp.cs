@@ -94,7 +94,7 @@ namespace BL
         public List<Tester> getTestersAvailable(DateTime dateTime)
         {
             List<Tester> testers = new List<Tester>();
-            var v = from item in idal.getTesters()
+            var v = from item in getTesters()
                     where testerAvailable(dateTime, item)
                     select item;
             foreach (var item in v)
