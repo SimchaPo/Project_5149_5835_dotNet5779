@@ -14,75 +14,90 @@ namespace DAL
         //********clone for address
         public static Address Clone(this Address address)
         {
-            return new Address
-            {
-                City = address.City,
-                Street = address.City,
-                HouseNum = address.HouseNum
-
-            };
+            if (address != null) {
+                return new Address
+                {
+                    City = address.City,
+                    Street = address.City,
+                    HouseNum = address.HouseNum
+                };
+            }
+            return null;
         }
         //*********clone for name**********
         public static FullName Clone(this FullName name)
         {
-            return new FullName
+            if (name != null)
             {
-                FirstName = name.FirstName,
-                LastName = name.LastName
-            };
+                return new FullName
+                {
+                    FirstName = name.FirstName,
+                    LastName = name.LastName
+                };
+            }
+            return null;
         }
 
         //clone for Trainee
 
         public static Trainee Clone(this Trainee t)
         {
-            return new Trainee
+            if (t != null)
             {
-                IdTrainee = t.IdTrainee,
-                NameTrainee = t.NameTrainee.Clone(),
-                GenderTrainee = t.GenderTrainee,
-                PhoneNumberTrainee = t.PhoneNumberTrainee,
-                AddressTrainee = t.AddressTrainee.Clone(),
-                BirthDateTrainee = t.BirthDateTrainee, //did datetime return reffence or copy???????????????????
-                CarTypeTrainee = t.CarTypeTrainee,
-                GearboxTrainee = t.GearboxTrainee,
-                SchoolTrainee = t.SchoolTrainee,
-                TeacherTrainee = t.TeacherTrainee
-            };
-
+                return new Trainee
+                {
+                    IdTrainee = t.IdTrainee,
+                    NameTrainee = t.NameTrainee.Clone(),
+                    GenderTrainee = t.GenderTrainee,
+                    PhoneNumberTrainee = t.PhoneNumberTrainee,
+                    AddressTrainee = t.AddressTrainee.Clone(),
+                    BirthDateTrainee = t.BirthDateTrainee, //did datetime return reffence or copy???????????????????
+                    CarTypeTrainee = t.CarTypeTrainee,
+                    GearboxTrainee = t.GearboxTrainee,
+                    SchoolTrainee = t.SchoolTrainee,
+                    TeacherTrainee = t.TeacherTrainee
+                };
+            }
+            return null;
         }
         public static Test Clone(this Test t)
         {
-            return new Test
+            if (t != null)
             {
-                TestNum = t.TestNum,
-                TesterId = t.TesterId,
-                TraineeId = t.TraineeId,
-                TestDate = t.TestDate,//did datetime return reffence or copy???????????????????
-                HourTest = t.HourTest,
-                AddressTest = t.AddressTest.Clone(),
-                TestTime = t.TestTime,//did datetime return reffence or copy???????????????????
-                NoteTester = t.NoteTester
-
-            };
+                return new Test
+                {
+                    TestNum = t.TestNum,
+                    TesterId = t.TesterId,
+                    TraineeId = t.TraineeId,
+                    TestDate = t.TestDate,//did datetime return reffence or copy???????????????????
+                    HourTest = t.HourTest,
+                    AddressTest = t.AddressTest.Clone(),
+                    TestTime = t.TestTime,//did datetime return reffence or copy???????????????????
+                    NoteTester = t.NoteTester
+                };
+            }
+            return null;
         }
         public static Tester Clone(this Tester t)
         {
-            Tester tester = new Tester
+            if (t != null)
             {
-                IdTester = t.IdTester,
-                NameTester = t.NameTester.Clone(),
-                BirthDateTester = t.BirthDateTester,
-                GenderTester = t.GenderTester,//did datetime return reffence or copy???????????????????
-                PhoneNumberTester = t.PhoneNumberTester,
-                AddresTester = t.AddresTester.Clone(),
-                SeniorityTester = t.SeniorityTester,
-                MaxTestsTester = t.MaxTestsTester,
-                CarTypeTester = t.CarTypeTester,
-                mat = (bool[,])t.mat.Clone(), //i need to make the clone of mat*********
-                MaxFarFromTester = t.MaxFarFromTester
-            };
-            return tester;
+                return new Tester
+                {
+                    IdTester = t.IdTester,
+                    NameTester = t.NameTester.Clone(),
+                    BirthDateTester = t.BirthDateTester,
+                    GenderTester = t.GenderTester,//did datetime return reffence or copy???????????????????
+                    PhoneNumberTester = t.PhoneNumberTester,
+                    AddresTester = t.AddresTester.Clone(),
+                    SeniorityTester = t.SeniorityTester,
+                    MaxTestsTester = t.MaxTestsTester,
+                    CarTypeTester = t.CarTypeTester,
+                    mat = (bool[,])t.mat.Clone(), //i need to make the clone of mat*********
+                    MaxFarFromTester = t.MaxFarFromTester
+                };
+            }
+            return null;
         }
 
 

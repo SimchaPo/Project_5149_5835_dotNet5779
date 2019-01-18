@@ -41,22 +41,26 @@ ObservableCollection<Tester> testers = new ObservableCollection<Tester>();
 
         private void test_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(tester.IdTester + " " + tester.NameTester.FirstName);
-        }
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
             try
             {
-                tester = listBox.SelectedItem as Tester;
+                tester = listBox.SelectedValue as Tester;
                 testToCreate.TesterId = tester.IdTester;
                 testToCreate.TraineeId = trainee.IdTrainee;
                 testToCreate.TestDate = dateTime;
                 bl.AddTest(testToCreate);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            MessageBox.Show(testToCreate.TestNum);
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (listBox.SelectedValue != null)
+            {
+                buttonTest.IsEnabled = true;
             }
         }
 

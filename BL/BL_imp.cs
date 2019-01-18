@@ -13,11 +13,19 @@ namespace BL
         Idal idal = FactoryDal.GetDal();
         public void AddTest(Test test)
         {
-
-            
-            // טסטר זמין
-            //בדיקה שעברו 7 ימים מטסט קודם
-           // idal.AddTest(newTest);
+            List<Test> traineeTests = new List<Test>(getTestsOfTrainee(GetTrainee(test.TraineeId)));
+            if (traineeTests.Count > 0)
+            {
+                if (traineeTests.Last().TestDate > DateTime.Now)
+                {
+                    throw new Exception("כבר רשום למבחן, לא ניתן לקבוע מבחן נוסף");
+                }
+                if (traineeTests.Last().TestDate.AddDays(7) > test.TestDate)
+                {
+                    throw new Exception("לא ניתן לקבוע מבחן בטווח של שבוע מהמבחן הקודם");
+                }
+            }
+            idal.AddTest(test);
         }
 
         public void addTester(Tester newTester)
@@ -48,13 +56,17 @@ namespace BL
         {
             List<Tester> testers = new List<Tester>();
             var v = from item in getTesters()
-                    where testerAvailable(dateTime, item)
+                    where testerWorksAtDayAndHour(dateTime, item) && testerIsAvailableAtDate(dateTime, item)
                     select item;
             foreach (var item in v)
                 testers.Add(item);
             return testers;
         }
-
+        public bool testerIsAvailableAtDate(DateTime dateTime, Tester tester)
+        {
+            List<Test> tests = new List<Test>(getTestsOfTester(tester));
+            return tests.All(t => t.TestDate != dateTime);
+        }
         public List<Tester> getTesters()
         {
             return idal.getTesters();
@@ -64,7 +76,32 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-
+        public List<Test> getTestsOfTester(Tester tester)
+        {
+            List<Test> testsOfTester = new List<Test>();
+            var v = from tests in getTests()
+                    orderby tests.TestDate
+                    where tests.TesterId == tester.IdTester
+                    select tests;
+            foreach (var item in v)
+            {
+                testsOfTester.Add(item);
+            }
+            return testsOfTester;
+        }
+        public List<Test> getTestsOfTrainee(Trainee trainee)
+        {
+            List<Test> testsOfTrainee = new List<Test>();
+            var v = from tests in getTests()
+                    orderby tests.TestDate
+                    where tests.TraineeId == trainee.IdTrainee
+                    select tests;
+            foreach (var item in v)
+            {
+                testsOfTrainee.Add(item);
+            }
+            return testsOfTrainee;
+        }
         public List<Test> getTests()
         {
             return idal.getTests();
@@ -118,7 +155,7 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public bool testerAvailable(DateTime dateTime, Tester tester)
+        public bool testerWorksAtDayAndHour(DateTime dateTime, Tester tester)
         {
                 int day = (int)dateTime.DayOfWeek;
                 int hour = dateTime.Hour - 9;

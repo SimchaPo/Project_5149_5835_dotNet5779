@@ -146,8 +146,8 @@
         </Grid>
         <Grid Name="list" Grid.Column="0">
             <StackPanel>
-                <ListBox Name="listBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource myTester}" HorizontalContentAlignment="Stretch" SelectionChanged="ListBox_SelectionChanged"/>
-                <Button Name="test" Content="הזמן מבחן" Click="test_Click"/>
+                <ListBox Name="listBox" ItemsSource="{Binding}"  ItemTemplate="{StaticResource myTester}" HorizontalContentAlignment="Stretch" SelectionChanged="ListBox_SelectionChanged"/>
+                <Button Name="buttonTest" Content="הזמן מבחן" Click="test_Click" IsEnabled="False"/>
             </StackPanel>
         </Grid>
     </Grid>
