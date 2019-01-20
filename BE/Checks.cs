@@ -159,14 +159,13 @@ namespace BE
                     TesterId = t.TesterId,
                     TraineeId = t.TraineeId,
                     TestDate = t.TestDate,//did datetime return reffence or copy???????????????????
-                    HourTest = t.HourTest,
                     AddressTest = t.AddressTest.Clone(),
-                    TestTime = t.TestTime,//did datetime return reffence or copy???????????????????
                     NoteTester = t.NoteTester
                 };
             }
             return null;
         }
+
         public static Tester Clone(this Tester t)
         {
             if (t != null)

@@ -46,6 +46,7 @@
     <Compile Include="Configuration.cs" />
     <Compile Include="Checks.cs" />
     <Compile Include="enums.cs" />
+    <Compile Include="examResults.cs" />
     <Compile Include="FullName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test.cs" />

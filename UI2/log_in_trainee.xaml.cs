@@ -38,12 +38,34 @@ namespace UI2
 
         private void order_test_Click(object sender, RoutedEventArgs e)
         {
-            create_a_test create = new create_a_test(trainee1);
-            create.ShowDialog();
+            try
+            {
+                bl.checkTraineeDoTest(trainee1);
+                create_a_test create = new create_a_test(trainee1);
+                create.ShowDialog();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void get_score_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                List<Test> traineeTests = new List<Test>(bl.getTestsOfTrainee(trainee1));
+                if (traineeTests.Count == 0)
+                {
+                    throw new Exception("אין מבחנים להצגה");
+                }
+                show_trainees_tests trainees_Tests = new show_trainees_tests(traineeTests);
+                trainees_Tests.ShowDialog();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
         }
 

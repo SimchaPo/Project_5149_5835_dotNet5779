@@ -30,7 +30,8 @@ namespace BL
         Tester GetTester(string id);
 
         List<Tester> getTestersAvailable(DateTime dateTime);
-
+        void checkTraineeDoTest(Trainee trainee);
+        List<Test> getTestsOfTrainee(Trainee trainee);
         List<Tester> getTesters();
         List<Trainee> getTrainees();
         List<Test> getTests();

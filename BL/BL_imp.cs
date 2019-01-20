@@ -17,18 +17,10 @@ namespace BL
             List<Test> traineeTests = new List<Test>(getTestsOfTrainee(trainee));
             if (traineeTests.Count > 0)
             {
-                if (traineeTests.Last().TestDate > DateTime.Now)
-                {
-                    throw new Exception("כבר רשום למבחן, לא ניתן לקבוע מבחן נוסף");
-                }
                 if (traineeTests.Last().TestDate.AddDays(7) > test.TestDate)
                 {
                     throw new Exception("לא ניתן לקבוע מבחן בטווח של שבוע מהמבחן הקודם");
                 }
-            }
-            if (trainee.NumberOfLesson < Configuration.minLessons)
-            {
-                throw new Exception("תלמיד לא עשה מספיק שיעורים בשביל לגשת למבחן");
             }
             idal.AddTest(test);
         }
@@ -56,7 +48,7 @@ namespace BL
             Checks.CheckTraineeInput(updateTrainee);
             idal.changeTrainee(updateTrainee);
         }
-
+        
         public List<Tester> getTestersAvailable(DateTime dateTime)
         {
             List<Tester> testers = new List<Tester>();
@@ -66,6 +58,35 @@ namespace BL
             foreach (var item in v)
                 testers.Add(item);
             return testers;
+        }
+
+        public void checkTraineeDoTest(Trainee trainee)
+        {
+            List<Test> traineeTests = new List<Test>(getTestsOfTrainee(trainee));
+            if (traineeTests.Count > 0)
+            {
+                if (traineeTests.Last().TestDate > DateTime.Now)
+                {
+                    throw new Exception("כבר רשום למבחן, לא ניתן לקבוע מבחן נוסף");
+                }
+                var v = from item in traineeTests
+                        where item.Results.passTest == true
+                        select item;
+                foreach (var item in v)
+                {
+                    if (item.carType == trainee.CarTypeTrainee)
+                    {
+                        if (item.gearbox == Gearbox.גיר_ידני || trainee.GearboxTrainee == Gearbox.תיבת_הילוכים_אוטומטית)
+                        {
+                            throw new Exception("תלמיד כבר עבר בהצלחה מבחן ברכב מסוג זה");
+                        }
+                    }
+                }
+            }
+            if (trainee.NumberOfLesson < Configuration.minLessons)
+            {
+                throw new Exception("תלמיד לא עשה מספיק שיעורים בשביל לגשת למבחן");
+            }
         }
         public bool testerIsAvailableAtDate(DateTime dateTime, Tester tester)
         {

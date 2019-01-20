@@ -247,12 +247,10 @@ namespace DAL
             XElement TraineeId = new XElement("TraineeId", newTest.TraineeId);
             XElement TestDate = new XElement("TraineeId", newTest.TestDate.ToString());
             
-            XElement HourTest = new XElement("HourTest", newTest.HourTest);
             XElement AddressTest = newTest.AddressTest.ToXElement();
-            XElement TestTime = new XElement("TraineeId", newTest.TestTime.ToString());
             XElement NoteTester = new XElement("NoteTester", newTest.NoteTester);
 
-            TestRoot.Add(TestNum, TesterId, TraineeId, HourTest, AddressTest, NoteTester);
+            TestRoot.Add(TestNum, TesterId, TraineeId, AddressTest, NoteTester);
 
             TestRoot.Save(TestPath);
         }
@@ -292,14 +290,12 @@ namespace DAL
                           TesterId = anyTest.Element("TesterId").Value,
                           TraineeId = anyTest.Element("TraineeId").Value,
                           TestDate = DateTime.Parse(anyTest.Element("TestDate").Value),
-                          HourTest = anyTest.Element("HourTest").Value,
                           AddressTest = new Address
                           {
                               City = anyTest.Element("Address").Element("City").Value,
                               Street = anyTest.Element("Address").Element("Street").Value,
                               HouseNum = int.Parse(anyTest.Element("Address").Element("HouseNum").Value)
                           },
-                          TestTime = DateTime.Parse(anyTest.Element("TestTime").Value),
                           NoteTester =anyTest.Element("NoteTester").Value
                       }).FirstOrDefault();
 
@@ -476,14 +472,12 @@ namespace DAL
                              TesterId = anyTest.Element("TesterId").Value,
                              TraineeId = anyTest.Element("TraineeId").Value,
                              TestDate = DateTime.Parse(anyTest.Element("TestDate").Value),
-                             HourTest = anyTest.Element("HourTest").Value,
                              AddressTest = new Address
                              {
                                  City = anyTest.Element("Address").Element("City").Value,
                                  Street = anyTest.Element("Address").Element("Street").Value,
                                  HouseNum = int.Parse(anyTest.Element("Address").Element("HouseNum").Value)
                              },
-                             TestTime = DateTime.Parse(anyTest.Element("TestTime").Value),
                              NoteTester = anyTest.Element("NoteTester").Value
                          }).ToList();
             }

@@ -38,6 +38,20 @@ namespace DAL
             return null;
         }
 
+        public static examResults Clone(this examResults results)
+        {
+            if(results != null)
+            {
+                return new examResults
+                {
+                    mirrors = results.mirrors,
+                    blinker = results.blinker,
+                    distance = results.distance,
+                    passTest = results.passTest
+                };
+            }
+            return null;
+        }
         //clone for Trainee
 
         public static Trainee Clone(this Trainee t)
@@ -70,10 +84,9 @@ namespace DAL
                     TesterId = t.TesterId,
                     TraineeId = t.TraineeId,
                     TestDate = t.TestDate,//did datetime return reffence or copy???????????????????
-                    HourTest = t.HourTest,
                     AddressTest = t.AddressTest.Clone(),
-                    TestTime = t.TestTime,//did datetime return reffence or copy???????????????????
-                    NoteTester = t.NoteTester
+                    NoteTester = t.NoteTester,
+                    Results = t.Results
                 };
             }
             return null;
