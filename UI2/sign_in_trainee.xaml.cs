@@ -43,6 +43,8 @@ namespace UI2
         {
             try
             {
+                if (birthDateTraineeDatePicker.SelectedDate == null)
+                    throw new Exception("אנא השלם את כל הפרטים");
                 bl.addTrainee(trainee);
                 log_in_trainee log_In = new log_in_trainee(trainee);
                 log_In.ShowDialog();
@@ -50,7 +52,7 @@ namespace UI2
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

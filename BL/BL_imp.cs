@@ -13,95 +13,65 @@ namespace BL
         Idal idal = FactoryDal.GetDal();
         public void AddTest(Test test)
         {
-
-            
-            // טסטר זמין
-            //בדיקה שעברו 7 ימים מטסט קודם
-           // idal.AddTest(newTest);
+            Trainee trainee = GetTrainee(test.TraineeId);
+            List<Test> traineeTests = new List<Test>(getTestsOfTrainee(trainee));
+            if (traineeTests.Count > 0)
+            {
+                if (traineeTests.Last().TestDate > DateTime.Now)
+                {
+                    throw new Exception("כבר רשום למבחן, לא ניתן לקבוע מבחן נוסף");
+                }
+                if (traineeTests.Last().TestDate.AddDays(7) > test.TestDate)
+                {
+                    throw new Exception("לא ניתן לקבוע מבחן בטווח של שבוע מהמבחן הקודם");
+                }
+            }
+            if (trainee.NumberOfLesson < Configuration.minLessons)
+            {
+                throw new Exception("תלמיד לא עשה מספיק שיעורים בשביל לגשת למבחן");
+            }
+            idal.AddTest(test);
         }
 
         public void addTester(Tester newTester)
         {
-            try
-            {
-                if (Checks.CheckForNullTester(newTester))
-                {
-                    throw new Exception("אנא השלם את כל הפרטים");
-                }
-                if (!Checks.checkID(newTester.IdTester))
-                {
-                    throw new Exception("מספר תעודת זהות לא חוקי");
-                }
-                if (!Checks.checkPhoneNumber(newTester.PhoneNumberTester))
-                {
-                    throw new Exception("מספר טלפון לא חוקי");
-                }
-                if (newTester.BirthDateTester.AddYears(Configuration.minAgetester) > DateTime.Now)
-                {
-                    throw new Exception("בוחן צעיר מדי");
-                }
-                if (newTester.BirthDateTester.AddYears(Configuration.maxAgeTester) < DateTime.Now)
-                {
-                    throw new Exception("בוחן מבוגר מדי");
-                }
-                idal.addTester(newTester);
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
+            Checks.CheckTesterInput(newTester);
+            idal.addTester(newTester);
         }
 
         public void addTrainee(Trainee newTrainee)
         {
-            try
-            {
-                if (Checks.CheckForNullTrainee(newTrainee))
-                {
-                    throw new Exception("אנא השלם את כל הפרטים");
-                }
-                if (!Checks.checkID(newTrainee.IdTrainee))
-                {
-                    throw new Exception("מספר תעודת זהות לא חוקי");
-                }
-                if (!Checks.checkPhoneNumber(newTrainee.PhoneNumberTrainee))
-                {
-                    throw new Exception("מספר טלפון לא חוקי");
-                }
-                if (newTrainee.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) > DateTime.Now)
-                {
-                    throw new Exception("תלמיד צעיר מדי");
-                }
-
-                idal.addTrainee(newTrainee);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            Checks.CheckTraineeInput(newTrainee);
+            idal.addTrainee(newTrainee);
         }
 
-        public void changeTester(Tester newTester)
+        public void changeTester(Tester updateTester)
         {
-            idal.changeTester(newTester);
+            Checks.CheckTesterInput(updateTester);
+            idal.changeTester(updateTester);
         }
 
         public void changeTrainee(Trainee updateTrainee)
         {
+            Checks.CheckTraineeInput(updateTrainee);
             idal.changeTrainee(updateTrainee);
         }
 
         public List<Tester> getTestersAvailable(DateTime dateTime)
         {
             List<Tester> testers = new List<Tester>();
-            var v = from item in idal.getTesters()
-                    where testerAvailable(dateTime, item)
+            var v = from item in getTesters()
+                    where testerWorksAtDayAndHour(dateTime, item) && testerIsAvailableAtDate(dateTime, item)
                     select item;
             foreach (var item in v)
                 testers.Add(item);
             return testers;
         }
-
+        public bool testerIsAvailableAtDate(DateTime dateTime, Tester tester)
+        {
+            List<Test> tests = new List<Test>(getTestsOfTester(tester));
+            return tests.All(t => t.TestDate != dateTime);
+        }
         public List<Tester> getTesters()
         {
             return idal.getTesters();
@@ -111,7 +81,32 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-
+        public List<Test> getTestsOfTester(Tester tester)
+        {
+            List<Test> testsOfTester = new List<Test>();
+            var v = from tests in getTests()
+                    orderby tests.TestDate
+                    where tests.TesterId == tester.IdTester
+                    select tests;
+            foreach (var item in v)
+            {
+                testsOfTester.Add(item);
+            }
+            return testsOfTester;
+        }
+        public List<Test> getTestsOfTrainee(Trainee trainee)
+        {
+            List<Test> testsOfTrainee = new List<Test>();
+            var v = from tests in getTests()
+                    orderby tests.TestDate
+                    where tests.TraineeId == trainee.IdTrainee
+                    select tests;
+            foreach (var item in v)
+            {
+                testsOfTrainee.Add(item);
+            }
+            return testsOfTrainee;
+        }
         public List<Test> getTests()
         {
             return idal.getTests();
@@ -139,10 +134,7 @@ namespace BL
         }
         public Tester GetTester(string id)
         {
-            if (!Checks.checkID(id))
-            {
-                throw new Exception("מספר תעודת זהות לא תקין");
-            }
+            Checks.CheckID(id);
             return idal.GetTester(id);
         }
 
@@ -168,7 +160,7 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public bool testerAvailable(DateTime dateTime, Tester tester)
+        public bool testerWorksAtDayAndHour(DateTime dateTime, Tester tester)
         {
                 int day = (int)dateTime.DayOfWeek;
                 int hour = dateTime.Hour - 9;

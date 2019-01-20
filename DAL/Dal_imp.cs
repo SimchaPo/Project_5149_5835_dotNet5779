@@ -10,7 +10,7 @@ namespace DAL
 {
 
 
-    public class Dal_imp: Idal
+    public class Dal_imp : Idal
     {
 
         static int examIDNum = Configuration.minIDNum;
@@ -18,9 +18,9 @@ namespace DAL
         {
             if (examIDNum < 10000000) //reset IDnum - need to check what to do with old tests
             {
-            return examIDNum++.ToString().PadLeft(8, '0'); //return examIDnum as a string and adds '0' to left of the number
+                return examIDNum++.ToString().PadLeft(8, '0'); //return examIDnum as a string and adds '0' to left of the number
             }
-            return examIDNum++.ToString();  
+            return examIDNum++.ToString();
         }
 
         public void AddTest(Test newTest)
@@ -28,12 +28,12 @@ namespace DAL
             // give idNum to the exam
             newTest.TestNum = getExamIDNum();
 
-            Trainee CurrentTrainee = GetTrainee(newTest.TraineeId).Clone();
+            /*Trainee CurrentTrainee = GetTrainee(newTest.TraineeId).Clone();
             Tester CurrnetTester = GetTester(newTest.TesterId).Clone();
 
             /* set of checks if the input is proper
              if the check failed the function will throw exception
-             */
+             
            
             //checks about the student
 
@@ -50,8 +50,8 @@ namespace DAL
                 CurrnetTester.didTesterPassLimitExam();
                 //check if the the 
 
-            //**in this place i need to do all of the checks
-            DS.DataSource.Tests.Add(newTest.Clone());
+            //**in this place i need to do all of the checks*/
+            DS.DataSource.Tests.Add(newTest);
         }
         public void removeTest(string idTest)
         {
@@ -64,13 +64,13 @@ namespace DAL
                 if (item.IdTester == newTester.IdTester)
                     throw new Exception("בוחן כבר רשום במערכת");
             //**check if the the tester in correct age
-            if (newTester.BirthDateTester.AddYears(Configuration.minAgetester )> DateTime.Now)//check about the min age
+            if (newTester.BirthDateTester.AddYears(Configuration.minAgetester) > DateTime.Now)//check about the min age
                 throw new Exception("בוחן צעיר מדי");
             if (newTester.BirthDateTester.AddYears(Configuration.maxAgeTester) < DateTime.Now)//check about the max age
                 throw new Exception("בוחן מבוגר מדי");
 
             //**in this place i need to do all of the checks
-            DataSource.Testers.Add(newTester.Clone());
+            DataSource.Testers.Add(newTester);
         }
 
 
@@ -84,7 +84,7 @@ namespace DAL
                 throw new Exception("התלמיד צעיר מדי בשביל לגשת לטסט");
 
             //**in this place i need to do all of the checks
-            DS.DataSource.Trainees.Add(newTrainee.Clone());
+            DS.DataSource.Trainees.Add(newTrainee);
         }
 
         public void changeTester(Tester updatedTester)
@@ -145,25 +145,25 @@ namespace DAL
         }
         public Tester GetTester(string id)
         {
-            var v = DS.DataSource.Testers.Where(t => t.IdTester==id);
+            var v = DS.DataSource.Testers.Where(t => t.IdTester == id);
             foreach (var item in v)
                 return item;
             throw new Exception("בוחן זה אינו קיים במערכת");
         }
         public Test GetTest(string id)
         {
-            var v = DataSource.Tests.Where(t => t.TestNum==id);
+            var v = DataSource.Tests.Where(t => t.TestNum == id);
             foreach (var item in v)
                 return item;
             throw new Exception("מבחן זה אינו קיים במערכת");
         }
 
         //******************all of this getters need change to clone************
-        List<Tester> Idal.getTesters() => DataSource.Testers.Select(t=>t.Clone()).ToList<Tester>();
+        List<Tester> Idal.getTesters() => DataSource.Testers.Select(t => t.Clone()).ToList<Tester>();
 
         List<Trainee> Idal.getTrainees() => DataSource.Trainees.Select(t => t.Clone()).ToList<Trainee>();
 
         List<Test> Idal.getTests() => DataSource.Tests.Select(t => t.Clone()).ToList<Test>();
-       
+
     }
 }

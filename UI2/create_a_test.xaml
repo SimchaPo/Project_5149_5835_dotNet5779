@@ -5,19 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI2"
         mc:Ignorable="d"
-        Title="הזמנת מבחן" Height="450" Width="800" Icon="images/לוגו משרד התחבורה.jpg">
+        Title="הזמנת מבחן" Height="380" Width="800" Icon="images/לוגו משרד התחבורה.jpg">
     <Window.Resources>
-        <DataTemplate DataType="Tester">
+        <DataTemplate x:Key="myTester" DataType="Tester" >
             <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
-                    <TextBlock Text="{Binding Path=NameTester.FirstName}"/>
+                    <Grid Grid.Column="0">
+                    <TextBlock Text="{Binding Path=IdTester}" FlowDirection="RightToLeft"/>
                 </Grid>
                 <Grid Grid.Column="1">
-                    <TextBlock Text="{Binding Path=NameTester.lastName}"/>
+                    <TextBlock Text="{Binding Path=NameTester.LastName}" FlowDirection="RightToLeft"/>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <TextBlock Text="{Binding Path=NameTester.FirstName}" FlowDirection="RightToLeft"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <TextBlock FlowDirection="RightToLeft" Text="{Binding Path=BirthDateTester, StringFormat=\{0:d\}}"/>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <TextBlock Text="{Binding GenderTester}" FlowDirection="RightToLeft"/>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+                            <TextBlock Text="וותק: " FlowDirection="RightToLeft"/>
+                            <TextBlock Text="{Binding SeniorityTester}" FlowDirection="RightToLeft"/>
+                            <TextBlock Text=" שנים" FlowDirection="RightToLeft"/>
+                        </StackPanel>
+                    </Grid>
                 </Grid>
             </Grid>
         </DataTemplate>
@@ -30,9 +60,9 @@
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="26*"/>
-                <RowDefinition Height="90*"/>
-                <RowDefinition Height="110*"/>
-                <RowDefinition Height="150*"/>
+                <RowDefinition Height="80*"/>
+                <RowDefinition Height="100*"/>
+                <RowDefinition Height="80*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" >
                 <TextBlock Text="פרטיך כפי שמופיעים במערכת" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" AllowDrop="True" FontWeight="Bold"/>
@@ -81,19 +111,44 @@
             </Grid>
             <Grid Grid.Row="3">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="30*"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <TextBlock Text="בקשת מבחן" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" AllowDrop="True" FontWeight="Bold"/>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <DatePicker x:Name="testDate" VerticalAlignment="Center" FlowDirection="RightToLeft" SelectedDate="{Binding BirthDateTester, Mode=OneWayToSource}" Height="24" DisplayDate="1990-01-01"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1">
+                    <DatePicker x:Name="testDate" FlowDirection="RightToLeft" SelectedDateFormat="Short" Height="24" DisplayDate="2019-02-01" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    </Grid>
+                    <Grid Grid.Column="0">
+                        <ComboBox Name="hour" VerticalAlignment="Top" SelectedIndex="0" FlowDirection="RightToLeft" HorizontalAlignment="Center">
+                            <ComboBoxItem Content="אנא בחר.." FlowDirection="RightToLeft"/>
+                            <ComboBoxItem Content="9:00" FlowDirection="RightToLeft"/>
+                            <ComboBoxItem Content="10:00" FlowDirection="RightToLeft"/>
+                            <ComboBoxItem Content="11:00" FlowDirection="RightToLeft"/>
+                            <ComboBoxItem Content="12:00" FlowDirection="RightToLeft"/>
+                            <ComboBoxItem Content="13:00" FlowDirection="RightToLeft"/>
+                            <ComboBoxItem Content="14:00" FlowDirection="RightToLeft"/>
+                            <ComboBoxItem Content="15:00" FlowDirection="RightToLeft"/>
+                        </ComboBox>
+                    </Grid>
+                </Grid>
+                    <Grid Grid.Row="2">
+                    <Button Name="getAvailableTesters" Content="קבל בוחנים זמינים" FlowDirection="RightToLeft" Click="getAvailableTesters_Click"/>
                 </Grid>
             </Grid>
         </Grid>
         <Grid Name="list" Grid.Column="0">
-        <ListBox ItemsSource="{Binding}"/>
+            <StackPanel>
+                <ListBox Name="listBox" ItemsSource="{Binding}"  ItemTemplate="{StaticResource myTester}" HorizontalContentAlignment="Stretch" SelectionChanged="ListBox_SelectionChanged"/>
+                <Button Name="buttonTest" Content="הזמן מבחן" Click="test_Click" IsEnabled="False"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>

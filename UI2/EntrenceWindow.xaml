@@ -36,13 +36,13 @@
                     <TextBlock Text="כניסה למערכת" FontSize="36" TextAlignment="Center"/>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <StackPanel x:Name="stack" VerticalAlignment="Center" >
+                    <StackPanel x:Name="stack">
                     <RadioButton Name="new_user" FontSize="20" Content="משתמש חדש" HorizontalAlignment="Right" FlowDirection="RightToLeft" Height="30" Unchecked="new_user_Unchecked" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"/>
                         <RadioButton x:Name="old_user" FontSize="20" Content="משתמש קיים" HorizontalAlignment="Right"  Checked="old_user_Checked" Unchecked="old_user_Checked" FlowDirection="RightToLeft" Height="30" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" />
                             <StackPanel  Name="old_user_detailes" Height="86.2" Width="253" Visibility="Collapsed">
-                                <TextBox x:Name="userFirstName" Text="שם פרטי" FlowDirection="RightToLeft" FontSize="20" MouseEnter="userFirstName_MouseEnter" MouseLeave="userFirstName_MouseEnter" HorizontalAlignment="Center" VerticalAlignment="Center" Width="253" />
-                                <TextBox x:Name="userLastName" Text="שם משפחה" FlowDirection="RightToLeft" FontSize="20" MouseEnter="userLastName_MouseEnter" MouseLeave="userLastName_MouseEnter" HorizontalAlignment="Center" VerticalAlignment="Center" Width="253"/>
-                                <TextBox x:Name="userID" MaxLength="9" Text="מספר זהות" FlowDirection="RightToLeft" FontSize="20"  MouseEnter="userID_MouseEnter" MouseLeave="userID_MouseEnter" HorizontalAlignment="Center" VerticalAlignment="Center" Width="253"/>
+                                <TextBox x:Name="userFirstName" Text="שם פרטי" FlowDirection="RightToLeft" FontSize="20" GotKeyboardFocus="userFirstName_GotKeyboardFocus" LostKeyboardFocus="userFirstName_GotKeyboardFocus" HorizontalAlignment="Center" VerticalAlignment="Center" Width="253" />
+                                <TextBox x:Name="userLastName" Text="שם משפחה" FlowDirection="RightToLeft" FontSize="20" GotKeyboardFocus="userLastName_GotKeyboardFocus" LostKeyboardFocus="userLastName_GotKeyboardFocus" HorizontalAlignment="Center" VerticalAlignment="Center" Width="253"/>
+                                <TextBox x:Name="userID" MaxLength="9" Text="מספר זהות" FlowDirection="RightToLeft" FontSize="20" GotKeyboardFocus="userID_GotKeyboardFocus" LostKeyboardFocus="userID_GotKeyboardFocus" HorizontalAlignment="Center" VerticalAlignment="Center" Width="253"/>
                             </StackPanel>
                     </StackPanel>
                 </Grid>
