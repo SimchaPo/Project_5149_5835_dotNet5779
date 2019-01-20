@@ -14,7 +14,7 @@ namespace BE
 
         public string ToString()
         {
-            return Street + " " + HouseNum + " " + City + " israel";
+            return Street + " " + HouseNum + "st. " + City + " israel";
         }
     }
 
