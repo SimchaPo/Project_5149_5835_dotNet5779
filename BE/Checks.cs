@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace BE
 {
@@ -252,6 +255,82 @@ namespace BE
         {
             throw new Exception("not implemented func");
         }
+
+        private static void checkAdress(Address Address1) //this function to check integrity of the address, 
+                                                          //for the check, I operate the query between the current address and a permanent address and check the response of the server
+        {
+
+            int NetErrorCounter = 0;
+            Address address2 = new Address { City = "beit shemesh", Street = "nachal ein gedi", HouseNum = 40 };
+            string origin = Address1.ToString();
+            string destination = address2.ToString();
+            string KEY = "I9bGtjvRjpNi6GmzMWqcPHb0ACEnGjKx";
+            string url = @"https://www.mapquestapi.com/directions/v2/route" +
+            @"?key=" + KEY +
+            @"&from=" + origin +
+            @"&to=" + destination +
+            @"&outFormat=xml" +
+            @"&ambiguities=ignore&routeType=fastest&doReverseGeocode=false" +
+            @"&enhancedNarrative=false&avoidTimedConditions=false";
+            for (int i = 0; i < 3; i++)
+            {
+                //request from MapQuest service the distance between the 2 addresses
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+
+                WebResponse response;
+                try
+                {
+                    response = request.GetResponse();
+                }
+                catch (Exception)
+                {
+
+                    throw new Exception("שגיאה בחיבור לרשת");
+                }
+                Stream dataStream = response.GetResponseStream();
+                StreamReader sreader = new StreamReader(dataStream);
+                string responsereader = sreader.ReadToEnd();
+                response.Close();
+                //the response is given in an XML format
+                XmlDocument xmldoc = new XmlDocument();
+                xmldoc.LoadXml(responsereader);
+                if (xmldoc.GetElementsByTagName("statusCode")[0].ChildNodes[0].InnerText == "0")
+                //we have the expected answer
+                {
+                    //display the returned distance
+                    XmlNodeList distance = xmldoc.GetElementsByTagName("distance");
+                    double distInMiles = Convert.ToDouble(distance[0].ChildNodes[0].InnerText);
+                    // Console.WriteLine("Distance In KM: " + distInMiles * 1.609344);
+                    Console.WriteLine(distInMiles * 1.609344);
+                    if ((distInMiles == 3.162) || (distInMiles * 1.609344 > 550)) //3.162 miles is usualy when there is some error,
+                        //and 550 Km is most long route that can a be in israel
+                        throw new Exception("הכתובת אינה תקינה או שאינה קיימת \n נא וודא שאכן הכתובת כתובה באופן תקין ובאותיות אנגליות");
+
+
+
+                    //display the returned driving time
+                    // XmlNodeList formattedTime = xmldoc.GetElementsByTagName("formattedTime");
+                    // string fTime = formattedTime[0].ChildNodes[0].InnerText;
+                    //  Console.WriteLine("Driving Time: " + fTime);
+                }
+                else if (xmldoc.GetElementsByTagName("statusCode")[0].ChildNodes[0].InnerText == "402")
+                //we have an answer that an error occurred, one of the addresses is not found
+                {
+                    // Console.WriteLine("an error occurred, one of the addresses is not found. try again.");
+                    throw new Exception("הכתובת אינה תקינה או שאינה קיימת \n נא וודא שאכן הכתובת כתובה באופן תקין ובאותיות אנגליות");
+                }
+                else //busy network or other error...
+                {
+                    // Console.WriteLine("We have'nt got an answer, maybe the net is busy...");
+                    if (NetErrorCounter <= 3)
+                        NetErrorCounter++;
+                    else
+                        throw new Exception("שגיאה בשרת");
+                }
+
+            }
+        }
+
 
     }
 }
