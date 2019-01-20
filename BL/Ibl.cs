@@ -21,7 +21,7 @@ namespace BL
         void updateTest(Test updateTest);
 
         bool farFromAddress(Address traineeAddress);
-        bool testerAvailable(DateTime dateTime, Tester tester);
+        bool testerWorksAtDayAndHour(DateTime dateTime, Tester tester);
 
         int amountOfTests(string traineeID);
         bool pastTest(string traineeID);

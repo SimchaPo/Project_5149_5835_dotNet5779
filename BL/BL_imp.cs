@@ -13,7 +13,8 @@ namespace BL
         Idal idal = FactoryDal.GetDal();
         public void AddTest(Test test)
         {
-            List<Test> traineeTests = new List<Test>(getTestsOfTrainee(GetTrainee(test.TraineeId)));
+            Trainee trainee = GetTrainee(test.TraineeId);
+            List<Test> traineeTests = new List<Test>(getTestsOfTrainee(trainee));
             if (traineeTests.Count > 0)
             {
                 if (traineeTests.Last().TestDate > DateTime.Now)
@@ -24,6 +25,10 @@ namespace BL
                 {
                     throw new Exception("לא ניתן לקבוע מבחן בטווח של שבוע מהמבחן הקודם");
                 }
+            }
+            if (trainee.NumberOfLesson < Configuration.minLessons)
+            {
+                throw new Exception("תלמיד לא עשה מספיק שיעורים בשביל לגשת למבחן");
             }
             idal.AddTest(test);
         }
