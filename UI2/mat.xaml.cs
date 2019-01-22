@@ -41,6 +41,7 @@ namespace UI2
             notWorking.ImageSource = imageNotWorking.Source;
             imageWorking.Source = new BitmapImage(new Uri("C:/Users/OWNER/source/repos/SimchaPo/Project_5149_5835_dotNet5779/UI2/images/עובד.jpg"));
             working.ImageSource = imageWorking.Source;
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

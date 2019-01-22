@@ -246,18 +246,43 @@ namespace DAL
             XElement TesterId = new XElement("TesterId", newTest.TesterId); 
             XElement TraineeId = new XElement("TraineeId", newTest.TraineeId);
             XElement TestDate = new XElement("TraineeId", newTest.TestDate.ToString());
-            
             XElement AddressTest = newTest.AddressTest.ToXElement();
             XElement NoteTester = new XElement("NoteTester", newTest.NoteTester);
 
-            TestRoot.Add(TestNum, TesterId, TraineeId, AddressTest, NoteTester);
+            XElement carType = new XElement("carType", newTest.carType.ToString());
+            XElement gearbox = new XElement("gearbox", newTest.gearbox.ToString());
+            XElement Result = newTest.Results.ToXElement();
+
+            TestRoot.Add(TestNum, TesterId, TraineeId, AddressTest, NoteTester,carType,gearbox,Result);
 
             TestRoot.Save(TestPath);
         }
 
         public void updateTest(Test updatedTest)
         {
-            throw new NotImplementedException();
+            XElement ToChangeTest;
+
+            ToChangeTest = (from anyTest in TestRoot.Elements()
+                            where anyTest.Element("TestNum").Value == updatedTest.TestNum
+                            select anyTest).FirstOrDefault();
+            ToChangeTest.Element("TestNum").Value=updatedTest.TestNum; //***we need to create function to create a test num****8
+            ToChangeTest.Element("TesterId").Value=updatedTest.TesterId;
+            ToChangeTest.Element("TraineeId").Value=updatedTest.TraineeId;
+            ToChangeTest.Element("TraineeId").Value=updatedTest.TestDate.ToString();
+            
+             ToChangeTest.Element("Address").Element("City").Value = updatedTest.AddressTest.City;
+            ToChangeTest.Element("Address").Element("Street").Value = updatedTest.AddressTest.Street;
+            ToChangeTest.Element("Address").Element("HouseNum").Value = updatedTest.AddressTest.HouseNum.ToString();
+
+
+
+            ToChangeTest.Element("NoteTester").Value=updatedTest.NoteTester;
+
+            ToChangeTest.Element("carType").Value=updatedTest.carType.ToString();
+            ToChangeTest.Element("gearbox").Value=updatedTest.gearbox.ToString();
+
+            ToChangeTest.Element("Result").Remove();
+            ToChangeTest.Add(updatedTest.Results.ToXElement()); 
         }
 
         public void removeTest(string idTest)
@@ -296,7 +321,10 @@ namespace DAL
                               Street = anyTest.Element("Address").Element("Street").Value,
                               HouseNum = int.Parse(anyTest.Element("Address").Element("HouseNum").Value)
                           },
-                          NoteTester =anyTest.Element("NoteTester").Value
+                          NoteTester = anyTest.Element("NoteTester").Value,
+                          carType = (CarType)Enum.Parse(typeof(CarType),anyTest.Element("carType").Value),
+                          gearbox=(Gearbox)Enum.Parse(typeof(Gearbox),anyTest.Element("gearbox").Value),
+                          Results = anyTest.Element("Results").ToExamResults()
                       }).FirstOrDefault();
 
             if (result != null)
