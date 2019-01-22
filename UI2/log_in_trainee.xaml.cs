@@ -71,8 +71,13 @@ namespace UI2
 
         private void delete_trainee_Click(object sender, RoutedEventArgs e)
         {
-            bl.removeTrainee(trainee1.IdTrainee);
-            Close();
+            MessageBoxResult result;
+            result = MessageBox.Show("האם אתה רוצה למחוק את עצמך מהמערכת", "מחיקת תלמיד", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.None, MessageBoxOptions.RtlReading);
+            if (result == MessageBoxResult.Yes)
+            {
+                bl.removeTrainee(trainee1.IdTrainee);
+                Close();
+            }
         }
 
         private void exit_Click(object sender, RoutedEventArgs e)

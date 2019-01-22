@@ -18,7 +18,7 @@ namespace DAL
                 return new Address
                 {
                     City = address.City,
-                    Street = address.City,
+                    Street = address.Street,
                     HouseNum = address.HouseNum
                 };
             }

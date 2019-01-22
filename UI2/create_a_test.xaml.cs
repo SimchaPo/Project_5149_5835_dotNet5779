@@ -27,7 +27,7 @@ namespace UI2
         Test testToCreate;
         DateTime dateTime;
         IBL bl;
-ObservableCollection<Tester> testers = new ObservableCollection<Tester>();
+        ObservableCollection<Tester> testers = new ObservableCollection<Tester>();
         public create_a_test(Trainee trainee6)
         {
             InitializeComponent();
@@ -47,13 +47,16 @@ ObservableCollection<Tester> testers = new ObservableCollection<Tester>();
                 testToCreate.TesterId = tester.IdTester;
                 testToCreate.TraineeId = trainee.IdTrainee;
                 testToCreate.TestDate = dateTime;
+                testToCreate.AddressTest = trainee.AddressTrainee;
                 bl.AddTest(testToCreate);
+                MessageBox.Show("נקבע עבורך מבחן בתאריך " + testToCreate.TestDate + "\nבוחן: " +
+                    bl.GetTester(testToCreate.TesterId).NameTester.FirstName + " " + bl.GetTester(testToCreate.TesterId).NameTester.LastName,
+                    "מבחן", MessageBoxButton.OK, MessageBoxImage.Question, MessageBoxResult.None, MessageBoxOptions.RtlReading);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            MessageBox.Show(testToCreate.TestNum);
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
