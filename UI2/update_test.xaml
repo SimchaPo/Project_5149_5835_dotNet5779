@@ -87,7 +87,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="1">
-                <TextBlock Text="שמירת מרחק" FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+                <TextBlock Text="שמירת מרחק:" FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
             </Grid>
             <Grid Grid.Column="0">
                 <ComboBox Name="distance" FlowDirection="RightToLeft" FontSize="24" SelectedIndex="0" VerticalContentAlignment="Center">

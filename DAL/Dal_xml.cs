@@ -107,9 +107,9 @@ namespace DAL
             //*** I need to Add the other element that already i not did ********
             TesterRoot.Save(TesterPath);
 
-            Tester some= GetTester("333333333");
+            /*Tester some= GetTester("333333333");
            List<Tester> list= getTesters();
-            removeTester("333333333");
+            removeTester("333333333");*/
             
 
         }
@@ -274,7 +274,7 @@ namespace DAL
                 TestRoot.Save(TestPath);
             }
             else
-                throw new Exception("לא קיים בוחן בעל תעודת זהות זו במערכת");
+                throw new Exception("לא קיים מבחן כזה במערכת");
         }
 
         public Test GetTest(string id)

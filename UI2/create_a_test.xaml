@@ -109,7 +109,7 @@
                     <TextBox IsReadOnly="True" x:Name="numberOfLessonTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding NumberOfLesson, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
                 </StackPanel>
             </Grid>
-            <Grid Grid.Row="3">
+            <Grid Grid.Row="3" Background="LightGray">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30*"/>
                     <RowDefinition Height="30*"/>
@@ -140,15 +140,25 @@
                     </Grid>
                 </Grid>
                     <Grid Grid.Row="2">
-                    <Button Name="getAvailableTesters" Content="קבל בוחנים זמינים" FlowDirection="RightToLeft" Click="getAvailableTesters_Click"/>
+                    <Button Name="getAvailableTesters" Content="קבל בוחנים זמינים" FlowDirection="RightToLeft" Click="getAvailableTesters_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Grid>
             </Grid>
         </Grid>
-        <Grid Name="list" Grid.Column="0">
+        <Grid Grid.Column="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="340*"/>
+                <RowDefinition Height="40*"/>
+            </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Name="list" Grid.Column="0">
             <StackPanel>
+                <TextBlock Name="LastTest" FlowDirection="RightToLeft"/>
                 <ListBox Name="listBox" ItemsSource="{Binding}"  ItemTemplate="{StaticResource myTester}" HorizontalContentAlignment="Stretch" SelectionChanged="ListBox_SelectionChanged"/>
                 <Button Name="buttonTest" Content="הזמן מבחן" Click="test_Click" IsEnabled="False"/>
             </StackPanel>
+        </Grid>
+            <Grid Grid.Row="1">
+                <Button Name="close" Content="סגירה" FlowDirection="RightToLeft" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
         </Grid>
     </Grid>
 </Window>
