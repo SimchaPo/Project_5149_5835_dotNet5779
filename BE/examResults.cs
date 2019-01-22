@@ -16,5 +16,6 @@ namespace BE
         {
             return "mirrors " + mirrors + " blinker " + " distance " + distance + " passTest " + passTest;
         } 
+        
     }
 }

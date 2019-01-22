@@ -33,9 +33,9 @@ namespace UI2
             tester1 = tester;
             DataContext = tester;
             bl = FactoryBL.GetBL();
-            imageNotWorking.Source = new BitmapImage(new Uri("C:/Users/OWNER/source/repos/SimchaPo/Project_5149_5835_dotNet5779/UI2/images/עובד לא.jpg"));
+            imageNotWorking.Source = new BitmapImage(new Uri("images/עובד לא.jpg"));
             notWorking.ImageSource = imageNotWorking.Source;
-            imageWorking.Source = new BitmapImage(new Uri("C:/Users/OWNER/source/repos/SimchaPo/Project_5149_5835_dotNet5779/UI2/images/עובד.jpg"));
+            imageWorking.Source = new BitmapImage(new Uri("images/עובד.jpg"));
             working.ImageSource = imageWorking.Source;
             foreach (Button item in buttons.Children)
             {
