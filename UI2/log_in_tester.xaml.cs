@@ -65,18 +65,50 @@ namespace UI2
 
         private void delete_tester_Click(object sender, RoutedEventArgs e)
         {
-            bl.removeTester(tester1.IdTester);
-            Close();
+            MessageBoxResult result;
+            result = MessageBox.Show("האם אתה רוצה למחוק את עצמך מהמערכת", "מחיקת בוחן", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.None, MessageBoxOptions.RtlReading);
+            if (result == MessageBoxResult.Yes)
+            {
+                bl.removeTester(tester1.IdTester);
+                Close();
+            }
         }
 
         private void update_test_Click(object sender, RoutedEventArgs e)
         {
-           // bl.updateTest();
+            try
+            {
+                List<Test> testerTests = new List<Test>(bl.getTestsOfTester(tester1));
+                if (testerTests.Count == 0)
+                {
+                    throw new Exception("אין מבחנים לעדכן");
+                }
+                update_results update = new update_results(testerTests);
+                update.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
 
         private void get_tests_Click(object sender, RoutedEventArgs e)
         {
-            bl.getTests();
+            try
+            {
+                List<Test> testerTests = new List<Test>(bl.getTestsOfTester(tester1));
+                if (testerTests.Count == 0)
+                {
+                    throw new Exception("אין מבחנים להצגה");
+                }
+                show_testers_tests testers_Tests = new show_testers_tests(testerTests);
+                testers_Tests.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

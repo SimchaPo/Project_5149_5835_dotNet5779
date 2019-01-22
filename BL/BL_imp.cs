@@ -138,9 +138,9 @@ namespace BL
             return idal.getTrainees();
         }
 
-        public Test GetTest(string id)
+        public Test GetTest(string examId)
         {
-            return idal.GetTest(id);
+            return idal.GetTest(examId);
         }
         public Trainee GetTrainee(string trainee)
         {

@@ -8,6 +8,10 @@ namespace BE
 {
     public class Test
     {
+        public Test()
+        {
+            AddressTest = new Address();
+        }
         public string TestNum { get; set; }
         public string TesterId { get; set; }
         public string TraineeId { get; set; }

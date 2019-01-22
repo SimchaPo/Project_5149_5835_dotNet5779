@@ -90,6 +90,9 @@
     <Compile Include="mat.xaml.cs">
       <DependentUpon>mat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="show_testers_tests.xaml.cs">
+      <DependentUpon>show_testers_tests.xaml</DependentUpon>
+    </Compile>
     <Compile Include="show_trainees_tests.xaml.cs">
       <DependentUpon>show_trainees_tests.xaml</DependentUpon>
     </Compile>
@@ -98,6 +101,12 @@
     </Compile>
     <Compile Include="sign_in_trainee.xaml.cs">
       <DependentUpon>sign_in_trainee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="update_results.xaml.cs">
+      <DependentUpon>update_results.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="update_test.xaml.cs">
+      <DependentUpon>update_test.xaml</DependentUpon>
     </Compile>
     <Compile Include="update_tester.xaml.cs">
       <DependentUpon>update_tester.xaml</DependentUpon>
@@ -133,6 +142,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="show_testers_tests.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="show_trainees_tests.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,6 +155,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="sign_in_trainee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="update_results.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="update_test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

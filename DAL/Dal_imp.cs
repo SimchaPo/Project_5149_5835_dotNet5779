@@ -25,33 +25,11 @@ namespace DAL
 
         public void AddTest(Test newTest)
         {
-            // give idNum to the exam
-            newTest.TestNum = getExamIDNum();
-
-            /*Trainee CurrentTrainee = GetTrainee(newTest.TraineeId).Clone();
-            Tester CurrnetTester = GetTester(newTest.TesterId).Clone();
-
-            /* set of checks if the input is proper
-             if the check failed the function will throw exception
-             
-           
-            //checks about the student
-
-                    //check if the student did exam in this 7 days
-                    CurrentTrainee.DidTraineeExamInRecentTime();
-                    //check if the studen did enough lessons
-                    CurrentTrainee.didTraineeMinLessons();
-            //check if the tester fit to this sort of exam
-            CurrnetTester.DidtesterFitToTrainee(CurrentTrainee);
-
-            //checks about the tester
-
-                //check if the tester not pass the limit of exams in this week
-                CurrnetTester.didTesterPassLimitExam();
-                //check if the the 
-
-            //**in this place i need to do all of the checks*/
-            DS.DataSource.Tests.Add(newTest);
+            if (newTest.TestNum == null)
+            {
+                newTest.TestNum = getExamIDNum();
+            }
+            DataSource.Tests.Add(newTest);
         }
         public void removeTest(string idTest)
         {
