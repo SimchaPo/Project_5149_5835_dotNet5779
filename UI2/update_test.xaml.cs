@@ -32,7 +32,6 @@ namespace UI2
             test_to_update.Results = new examResults();
             trainee = bl.GetTrainee(test.TraineeId);
             DataContext = test;
-            nameTrainee.DataContext = trainee;
             
         }
 

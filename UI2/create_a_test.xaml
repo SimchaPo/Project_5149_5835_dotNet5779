@@ -161,7 +161,7 @@
                 </StackPanel>
         </Grid>
             <Grid Grid.Row="1">
-                <Button Name="close" Content="סגירה" FlowDirection="RightToLeft" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Button Name="close" Content="סגירה" Click="close_Click" FlowDirection="RightToLeft" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Grid>
         </Grid>
     </Grid>

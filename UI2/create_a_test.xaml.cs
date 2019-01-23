@@ -93,5 +93,10 @@ namespace UI2
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void close_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
