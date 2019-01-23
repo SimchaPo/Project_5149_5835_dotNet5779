@@ -245,7 +245,7 @@ namespace DAL
             XElement TestNum = new XElement("TestNum", newTest.TestNum); //***we need to create function to create a test num****8
             XElement TesterId = new XElement("TesterId", newTest.TesterId); 
             XElement TraineeId = new XElement("TraineeId", newTest.TraineeId);
-            XElement TestDate = new XElement("TraineeId", newTest.TestDate.ToString());
+            XElement TestDate = new XElement("TestDate", newTest.TestDate.ToString());
             XElement AddressTest = newTest.AddressTest.ToXElement();
             XElement NoteTester = new XElement("NoteTester", newTest.NoteTester);
 
@@ -253,7 +253,7 @@ namespace DAL
             XElement gearbox = new XElement("gearbox", newTest.gearbox.ToString());
             XElement Result = newTest.Results.ToXElement();
 
-            TestRoot.Add(TestNum, TesterId, TraineeId, AddressTest, NoteTester,carType,gearbox,Result);
+            TestRoot.Add(new XElement("Test",TestNum, TesterId, TraineeId,TestDate, AddressTest, NoteTester,carType,gearbox,Result));
 
             TestRoot.Save(TestPath);
         }
@@ -492,7 +492,7 @@ namespace DAL
 
             try
             {
-                tests = (from anyTest in TesterRoot.Elements()
+                tests = (from anyTest in TestRoot.Elements()
 
                          select new Test()
                          {

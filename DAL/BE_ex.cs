@@ -69,7 +69,8 @@ namespace DAL
                     CarTypeTrainee = t.CarTypeTrainee,
                     GearboxTrainee = t.GearboxTrainee,
                     SchoolTrainee = t.SchoolTrainee,
-                    TeacherTrainee = t.TeacherTrainee
+                    TeacherTrainee = t.TeacherTrainee,
+                    NumberOfLesson = t.NumberOfLesson
                 };
             }
             return null;
@@ -197,23 +198,31 @@ namespace DAL
 
         public static XElement ToXElement(this examResults results)
         {
-            XElement mirrors = new XElement("mirrors", results.mirrors.ToString());
-            XElement blinker = new XElement("blinker", results.blinker.ToString());
-            XElement distance = new XElement("distance", results.distance.ToString());
-            XElement passTest = new XElement("passTest", results.passTest.ToString());
-            return new XElement("Results", mirrors, blinker, distance, passTest);
+            if (results != null)
+            {
+                XElement mirrors = new XElement("mirrors", results.mirrors.ToString());
+                XElement blinker = new XElement("blinker", results.blinker.ToString());
+                XElement distance = new XElement("distance", results.distance.ToString());
+                XElement passTest = new XElement("passTest", results.passTest.ToString());
+                return new XElement("Results", mirrors, blinker, distance, passTest);
+            }
+            else
+                return new XElement("Results", "null");
         }
 
         public static examResults ToExamResults(this XElement Result)
         {
-            return new examResults()
-            {
-                //(Gender)Enum.Parse(typeof(Gender),tra.Element("GenderTrainee").Value)
-                mirrors = bool.Parse(Result.Element("mirrors").Value),
-                blinker=bool.Parse(Result.Element("blinker").Value),
-                distance= bool.Parse(Result.Element("distance").Value),
-                passTest= bool.Parse(Result.Element("passTest").Value)
-            };
+            if (Result.Value != "null")
+                return new examResults()
+                {
+                    //(Gender)Enum.Parse(typeof(Gender),tra.Element("GenderTrainee").Value)
+                    mirrors = bool.Parse(Result.Element("mirrors").Value),
+                    blinker = bool.Parse(Result.Element("blinker").Value),
+                    distance = bool.Parse(Result.Element("distance").Value),
+                    passTest = bool.Parse(Result.Element("passTest").Value)
+                };
+            else
+                return null;
         }
 
         public static XElement ToXElement(this Address address)
