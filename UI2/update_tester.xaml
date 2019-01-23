@@ -38,7 +38,7 @@
                 <TextBox x:Name="firstNameTextBox" Text="{Binding NameTester.FirstName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft"/>
                 <TextBox x:Name="lastNameTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding NameTester.LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center"/>
                 <TextBox IsReadOnly="True" x:Name="idTesterTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding IdTester, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center" MaxLength="9" />
-                <TextBox IsReadOnly="True" x:Name="birthDateTesterDatePicker" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding BirthDateTester, Mode=TwoWay, StringFormat=\{0:d\}}" Height="24" VerticalContentAlignment="Center"/>
+                <TextBox IsReadOnly="True" x:Name="birthDateTesterDatePicker" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding BirthDateTester, Mode=TwoWay, StringFormat=dd-MM-yyyy}" Height="24" VerticalContentAlignment="Center"/>
                 <ComboBox x:Name="genderTesterComboBox" VerticalAlignment="Center" Grid.Row="2" SelectedItem="{Binding GenderTester}" FlowDirection="RightToLeft" Height="24"/>
                 <TextBox x:Name="phoneNumberTesterTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding PhoneNumberTester, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" MaxLength="10"/>
             </StackPanel>
@@ -55,7 +55,7 @@
                 <Label Content="רחוב:" Height="24"/>
                 <TextBox x:Name="streetTextBox" Text="{Binding AddresTester.Street, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24" Width="68"/>
                 <Label Content="מספר בית:" Height="24"/>
-                <TextBox x:Name="houseNumTextBox" Text="{Binding AddresTester.HouseNum, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="30" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24" MaxLength="4"/>
+                <TextBox x:Name="houseNumTextBox" Text="{Binding AddresTester.HouseNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="30" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24" MaxLength="4"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="3">
@@ -73,7 +73,7 @@
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="3">
                 <ComboBox x:Name="carTypeTesterComboBox" SelectedItem="{Binding CarTypeTester}" FlowDirection="RightToLeft" Height="24"/>
-                <TextBox x:Name="maxFarFromTesterTextBox" Text="{Binding MaxFarFromTester, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft"/>
+                <TextBox x:Name="maxFarFromTesterTextBox" Text="{Binding MaxFarFromTester, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft"/>
                 <TextBox x:Name="maxTestsTesterTextBox" Text="{Binding MaxTestsTester, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft"/>
                 <TextBox x:Name="seniorityTesterTextBox" Text="{Binding SeniorityTester, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft"/>
             </StackPanel>

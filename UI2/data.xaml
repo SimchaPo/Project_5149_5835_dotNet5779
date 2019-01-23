@@ -1,0 +1,201 @@
+﻿<Window x:Class="UI2.data"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI2"
+        mc:Ignorable="d"
+        Title="נתוני המערכת" Height="450" Width="1000" Icon="images/לוגו משרד התחבורה.jpg">
+    <Window.Resources>
+        <DataTemplate x:Key="tester" DataType="Tester">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <DataGridColumnHeader Content="שם" FlowDirection="RightToLeft"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1">
+                            <TextBlock Text="{Binding Path=NameTester.FirstName}" FlowDirection="RightToLeft"/>
+                        </Grid>
+                        <Grid Grid.Column="0">
+                            <TextBlock Text="{Binding Path=NameTester.LastName}" FlowDirection="RightToLeft"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <StackPanel FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <DataGridColumnHeader Content="סוג רכב" FlowDirection="RightToLeft"/>
+                        <TextBlock Text="{Binding Path=CarTypeTester}" FlowDirection="RightToLeft"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="0">
+                    <StackPanel FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <DataGridColumnHeader Content="עיר" FlowDirection="RightToLeft" />
+                        <TextBlock Text="{Binding Path=AddresTester.City}" FlowDirection="RightToLeft"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="trainee" DataType="Trainee">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <DataGridColumnHeader Content="שם" FlowDirection="RightToLeft"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1">
+                            <TextBlock Text="{Binding Path=NameTrainee.FirstName}" FlowDirection="RightToLeft"/>
+                        </Grid>
+                        <Grid Grid.Column="0">
+                            <TextBlock Text="{Binding Path=NameTrainee.LastName}" FlowDirection="RightToLeft"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <StackPanel FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <DataGridColumnHeader Content="סוג רכב" FlowDirection="RightToLeft"/>
+                        <TextBlock Text="{Binding Path=CarTypeTrainee}" FlowDirection="RightToLeft"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="0">
+                    <StackPanel FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <DataGridColumnHeader Content="עיר" FlowDirection="RightToLeft" />
+                        <TextBlock Text="{Binding Path=AddressTrainee.City}" FlowDirection="RightToLeft"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="test" DataType="TestDetailes">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="4">
+                    <StackPanel FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <DataGridColumnHeader Content="מספר מבחן" FlowDirection="RightToLeft" />
+                        <TextBlock Text="{Binding Path=examId}" FlowDirection="RightToLeft"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <DataGridColumnHeader Content="שם בוחן" FlowDirection="RightToLeft"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1">
+                            <TextBlock Text="{Binding Path=TesterName.FirstName}" FlowDirection="RightToLeft"/>
+                        </Grid>
+                        <Grid Grid.Column="0">
+                            <TextBlock Text="{Binding Path=TesterName.LastName}" FlowDirection="RightToLeft"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <DataGridColumnHeader Content="שם תלמיד" FlowDirection="RightToLeft"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1">
+                            <TextBlock Text="{Binding Path=TraineeName.FirstName}" FlowDirection="RightToLeft"/>
+                        </Grid>
+                        <Grid Grid.Column="0">
+                            <TextBlock Text="{Binding Path=TraineeName.LastName}" FlowDirection="RightToLeft"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <StackPanel FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <DataGridColumnHeader Content="סוג רכב" FlowDirection="RightToLeft"/>
+                        <TextBlock Text="{Binding Path=type}" FlowDirection="RightToLeft"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="0">
+                    <StackPanel FlowDirection="RightToLeft" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <DataGridColumnHeader Content="תאריך מבחן" FlowDirection="RightToLeft"/>
+                        <TextBlock Text="{Binding Path=dateTime, StringFormat=dd-MM-yyyy}" FlowDirection="RightToLeft"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="410*"/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="600*"/>
+                <ColumnDefinition Width="300*"/>
+                <ColumnDefinition Width="300*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" >
+                <StackPanel>
+                    <TextBlock Text="רשימת מבחנים" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                    <ListBox Name="tests" ItemsSource="{Binding}" ItemTemplate="{StaticResource test}" HorizontalContentAlignment="Stretch"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="1">
+                <StackPanel>
+                    <TextBlock Text="רשימת תלמידים" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <ListBox Name="trainees" ItemsSource="{Binding}" ItemTemplate="{StaticResource trainee}" HorizontalContentAlignment="Stretch"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="2">
+                <StackPanel>
+                    <TextBlock Text="רשימת בוחנים" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                    <ListBox Name="testers" ItemsSource="{Binding}" ItemTemplate="{StaticResource tester}" HorizontalContentAlignment="Stretch"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <Button Name="close" Content="סגירה" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Click="close_Click"/>
+        </Grid>
+    </Grid>
+</Window>

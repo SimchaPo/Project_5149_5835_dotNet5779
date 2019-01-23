@@ -39,62 +39,62 @@ namespace UI2
                 });
             }
         }
-
+        internal class TestDetailes
+        {
+            public DateTime dateTime { set; get; }
+            public string TesterName { set; get; }
+            public string type { set; get; }
+            public examResults results { get; set; }
+            public bool pass { set; get; }
+            public string checks
+            {
+                get
+                {
+                    if (results != null)
+                    {
+                        string str = "מראות: ";
+                        if (results.mirrors == true)
+                            str += "עבר בהצלחה, ";
+                        else
+                            str += "נכשל, ";
+                        str += "איתותים: ";
+                        if (results.blinker == true)
+                            str += "עבר בהצלחה, ";
+                        else
+                            str += "נכשל, ";
+                        str += " שמירת מרחק: ";
+                        if (results.distance == true)
+                            str += "עבר בהצלחה, ";
+                        else
+                            str += "נכשל, ";
+                        return str;
+                    }
+                    if (dateTime > DateTime.Now)
+                    {
+                        return "מבחן עוד לא התקיים";
+                    }
+                    return "טרם פורסמו תוצאות המבחן";
+                }
+            }
+            public string passTest
+            {
+                get
+                {
+                    if (results != null)
+                    {
+                        if (results.passTest == true)
+                            return "תלמיד עבר בהצלחה את מבחן הנהיגה";
+                        else
+                            return "תלמיד נכשל במבחן הנהיגה";
+                    }
+                    return null;
+                }
+            }
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
     }
-    internal class TestDetailes
-    {
-        public DateTime dateTime { set; get; }
-        public string TesterName { set; get; }
-        public string type { set; get; }
-        public examResults results { get; set; }
-        public bool pass { set; get; }
-        public string checks
-        {
-            get
-            {
-                if (results != null)
-                {
-                    string str = "מראות:";
-                    if (results.mirrors == true)
-                        str += " עבר בהצלחה";
-                    else
-                        str += " נכשל";
-                    str += " איתותים: ";
-                    if (results.blinker == true)
-                        str += " עבר בהצלחה";
-                    else
-                        str += " נכשל";
-                    str += " שמירת מרחק: ";
-                    if (results.distance == true)
-                        str += " עבר בהצלחה";
-                    else
-                        str += " נכשל";
-                    return str;
-                }
-                if (dateTime > DateTime.Now)
-                {
-                    return "מבחן עוד לא התקיים";
-                }
-                return "טרם פורסמו תוצאות המבחן";
-            }
-        }
-        public string passTest
-        {
-            get
-            {
-                if (results != null)
-                {
-                    if (results.passTest == true)
-                        return "תלמיד עבר בהצלחה את מבחן הנהיגה";
-                    else
-                        return "תלמיד נכשל במבחן הנהיגה";
-                }
-                return null;
-            }
-        }
-    }
+    
 }

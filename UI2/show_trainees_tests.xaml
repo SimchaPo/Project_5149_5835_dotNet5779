@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI2"
         mc:Ignorable="d"
-        Title="רשימת מבחנים" Height="220" Width="350" Icon="images/לוגו משרד התחבורה.jpg" >
+        Title="רשימת מבחנים" Height="220" Width="500" Icon="images/לוגו משרד התחבורה.jpg" >
     <Window.Resources>
         <DataTemplate x:Key="tests" DataType="TestDetailes">
             <Grid>
@@ -20,7 +20,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
-                        <TextBlock Text="{Binding Path=dateTime, StringFormat=\{0:d\}}" FlowDirection="RightToLeft"/>
+                        <TextBlock Text="{Binding Path=dateTime, StringFormat=dd-MM-yyyy}"/>
                     </Grid>
                     <Grid Grid.Column="1">
                         <TextBlock Text="{Binding Path=type}" FlowDirection="RightToLeft"/>
@@ -51,13 +51,13 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="200*"/>
-            <RowDefinition Height="20*"/>
+            <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <ListBox Name="listBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource tests}" HorizontalContentAlignment="Stretch"/>
         </Grid>
         <Grid Grid.Row="1">
-            <Button Content="סגירה" Click="Button_Click"/>
+            <Button Content="סגירה" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18"/>
         </Grid>
     </Grid>
 </Window>

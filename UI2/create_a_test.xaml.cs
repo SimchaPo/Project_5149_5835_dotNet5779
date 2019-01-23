@@ -52,6 +52,7 @@ namespace UI2
                 MessageBox.Show("נקבע עבורך מבחן בתאריך " + testToCreate.TestDate + "\nבוחן: " +
                     bl.GetTester(testToCreate.TesterId).NameTester.FirstName + " " + bl.GetTester(testToCreate.TesterId).NameTester.LastName,
                     "מבחן", MessageBoxButton.OK, MessageBoxImage.Question, MessageBoxResult.None, MessageBoxOptions.RtlReading);
+                Close();
             }
             catch (Exception ex)
             {
@@ -82,6 +83,10 @@ namespace UI2
                 Day = testDate.SelectedDate.Value.Day;
                 Hour = hour.SelectedIndex + 8;
                 dateTime = new DateTime(Year, Month, Day, Hour, 00, 00);
+                if(dateTime < DateTime.Now)
+                {
+                    throw new Exception("התאריך עבר..");
+                }
                 foreach (Tester t in bl.getTestersAvailable(dateTime))
                 {
                     testers.Add(t);

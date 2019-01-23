@@ -11,55 +11,100 @@ namespace BL
     public class BL_imp : IBL
     {
         Idal idal = FactoryDal.GetDal();
-        public void AddTest(Test test)
-        {
-            Trainee trainee = GetTrainee(test.TraineeId);
-            List<Test> traineeTests = new List<Test>(getTestsOfTrainee(trainee));
-            if (traineeTests.Count > 0)
-            {
-                if (traineeTests.Last().TestDate.AddDays(7) > test.TestDate)
-                {
-                    throw new Exception("לא ניתן לקבוע מבחן בטווח של שבוע מהמבחן הקודם");
-                }
-            }
-            idal.AddTest(test);
-        }
+
+        //********************* Tester Func ******************
 
         public void addTester(Tester newTester)
         {
             Checks.CheckTesterInput(newTester);
             idal.addTester(newTester);
         }
+        public void changeTester(Tester updateTester)
+        {
+            Checks.CheckTesterInput(updateTester);
+            idal.changeTester(updateTester);
+        }
+        public void removeTester(string idTester)
+        {
+            idal.removeTester(idTester);
+        }
+        public List<Tester> getTesters()
+        {
+            return idal.getTesters();
+        }
+        public Tester GetTester(string id)
+        {
+            Checks.CheckID(id);
+            return idal.GetTester(id);
+        }
+        public List<Tester> getTestersAvailable(DateTime dateTime)
+        {
+            List<Tester> testers = new List<Tester>();
+            var v = from item in getTesters()
+                    where testerWorksAtDayAndHour(dateTime, item)
+                    select item;
+            foreach (var item in v)
+                testers.Add(item);
+            return testers;
+        }
+        public bool testerWorksAtDayAndHour(DateTime dateTime, Tester tester)
+        {
+            int day = (int)dateTime.DayOfWeek;
+            int hour = dateTime.Hour - 9;
+            if (day > 4)
+                throw new Exception("מבחנים מתקיימים בין יום ראשון לחמישי בלבד");
+            if (hour < 0 || hour > 6)
+                throw new Exception("מבחנים מתקיימים בין השעות 09:00 - 15:00 בלבד");
+            if (tester.mat[day, hour] == false)
+                return false;
+            List<Test> tests = new List<Test>(getTestsOfTester(tester));
+            if (tests.Any(t => t.TestDate == dateTime))
+                return false;
+            int count = 0;
+            foreach(Test test in tests)
+            {
+                if (dateTime.AddDays(-day) <= test.TestDate && dateTime.AddDays(4 - day) >= test.TestDate)
+                    ++count;
+            }
+            if (count > tester.MaxTestsTester)
+                return false;
+            return true;
+        }
+        public List<Tester> getTestersFilter(Func<Tester, bool> filter)
+        {
+            throw new NotImplementedException();
+        }
+        public List<Test> getTestsOfTester(Tester tester)
+        {
+            List<Test> testsOfTester = new List<Test>();
+            var v = from tests in getTests()
+                    orderby tests.TestDate
+                    where tests.TesterId == tester.IdTester
+                    select tests;
+            foreach (var item in v)
+            {
+                testsOfTester.Add(item);
+            }
+            return testsOfTester;
+        }
+        public bool farFromAddress(Address traineeAddress)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        //********************* Trainee Func ******************
 
         public void addTrainee(Trainee newTrainee)
         {
             Checks.CheckTraineeInput(newTrainee);
             idal.addTrainee(newTrainee);
         }
-
-        public void changeTester(Tester updateTester)
-        {
-            Checks.CheckTesterInput(updateTester);
-            idal.changeTester(updateTester);
-        }
-
         public void changeTrainee(Trainee updateTrainee)
         {
             Checks.CheckTraineeInput(updateTrainee);
             idal.changeTrainee(updateTrainee);
         }
-        
-        public List<Tester> getTestersAvailable(DateTime dateTime)
-        {
-            List<Tester> testers = new List<Tester>();
-            var v = from item in getTesters()
-                    where testerWorksAtDayAndHour(dateTime, item) && testerIsAvailableAtDate(dateTime, item)
-                    select item;
-            foreach (var item in v)
-                testers.Add(item);
-            return testers;
-        }
-
         public void checkTraineeDoTest(Trainee trainee)
         {
             List<Test> traineeTests = new List<Test>(getTestsOfTrainee(trainee));
@@ -68,6 +113,10 @@ namespace BL
                 if (traineeTests.Last().TestDate > DateTime.Now)
                 {
                     throw new Exception("כבר רשום למבחן, לא ניתן לקבוע מבחן נוסף");
+                }
+                if (traineeTests.Last().Results == null)
+                {
+                    throw new Exception("לא ניתן לקבוע מבחן טרם התקבלו תוצאות מבחן קודם");
                 }
                 var v = from item in traineeTests
                         where item.Results.passTest == true
@@ -88,33 +137,6 @@ namespace BL
                 throw new Exception("תלמיד לא עשה מספיק שיעורים בשביל לגשת למבחן");
             }
         }
-        public bool testerIsAvailableAtDate(DateTime dateTime, Tester tester)
-        {
-            List<Test> tests = new List<Test>(getTestsOfTester(tester));
-            return tests.All(t => t.TestDate != dateTime);
-        }
-        public List<Tester> getTesters()
-        {
-            return idal.getTesters();
-        }
-
-        public List<Tester> getTestersFilter(Func<Tester, bool> filter)
-        {
-            throw new NotImplementedException();
-        }
-        public List<Test> getTestsOfTester(Tester tester)
-        {
-            List<Test> testsOfTester = new List<Test>();
-            var v = from tests in getTests()
-                    orderby tests.TestDate
-                    where tests.TesterId == tester.IdTester
-                    select tests;
-            foreach (var item in v)
-            {
-                testsOfTester.Add(item);
-            }
-            return testsOfTester;
-        }
         public List<Test> getTestsOfTrainee(Trainee trainee)
         {
             List<Test> testsOfTrainee = new List<Test>();
@@ -128,19 +150,9 @@ namespace BL
             }
             return testsOfTrainee;
         }
-        public List<Test> getTests()
-        {
-            return idal.getTests();
-        }
-
         public List<Trainee> getTrainees()
         {
             return idal.getTrainees();
-        }
-
-        public Test GetTest(string examId)
-        {
-            return idal.GetTest(examId);
         }
         public Trainee GetTrainee(string trainee)
         {
@@ -153,53 +165,46 @@ namespace BL
                 throw ex;
             }
         }
-        public Tester GetTester(string id)
+        public bool pastTest(string traineeID)
         {
-            Checks.CheckID(id);
-            return idal.GetTester(id);
+            throw new NotImplementedException();
         }
-
-        public void removeTester(string idTester)
+        public int amountOfTests(string traineeID)
         {
-            idal.removeTester(idTester);
+            throw new NotImplementedException();
         }
-
-        
-
         public void removeTrainee(string idTrainee)
         {
             idal.removeTrainee(idTrainee);
         }
 
+
+        //********************* Test Func **********************
+
+        public void AddTest(Test test)
+        {
+            Trainee trainee = GetTrainee(test.TraineeId);
+            List<Test> traineeTests = new List<Test>(getTestsOfTrainee(trainee));
+            if (traineeTests.Count > 0)
+            {
+                if (traineeTests.Last().TestDate.AddDays(7) > test.TestDate)
+                {
+                    throw new Exception("לא ניתן לקבוע מבחן בטווח של שבוע מהמבחן הקודם");
+                }
+            }
+            idal.AddTest(test);
+        }
+        public List<Test> getTests()
+        {
+            return idal.getTests();
+        }
+        public Test GetTest(string examId)
+        {
+            return idal.GetTest(examId);
+        }
         public void updateTest(Test updateTest)
         {
             idal.updateTest(updateTest);
-        }
-
-        public bool farFromAddress(Address traineeAddress)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool testerWorksAtDayAndHour(DateTime dateTime, Tester tester)
-        {
-                int day = (int)dateTime.DayOfWeek;
-                int hour = dateTime.Hour - 9;
-                if (day > 4)
-                    throw new Exception("מבחנים מתקיימים בין יום ראשון לחמישי בלבד");
-                if (hour < 0 || hour > 6)
-                    throw new Exception("מבחנים מתקיימים בין השעות 09:00 - 15:00 בלבד");
-                return tester.mat[day, hour] == true;            
-        }
-
-        public int amountOfTests(string traineeID)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool pastTest(string traineeID)
-        {
-            throw new NotImplementedException();
         }
     }
 }
