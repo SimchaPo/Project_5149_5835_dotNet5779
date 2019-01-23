@@ -137,6 +137,12 @@ namespace UI2
             else if (userID.Text == "")
                 userID.Text = "מספר זהות";
         }
+
+        private void show_data_Click(object sender, RoutedEventArgs e)
+        {
+            data data1 = new data();
+            data1.ShowDialog();
+        }
     }
     
 }

@@ -5,20 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI2"
         mc:Ignorable="d"
-        Title="רשימת מבחנים" Height="600" Width="720" Icon="images/לוגו משרד התחבורה.jpg" >
+        Title="רשימת מבחנים" Height="600" Width="800" Icon="images/לוגו משרד התחבורה.jpg" >
     <Window.Resources>
         <DataTemplate x:Key="tests" DataType="TestDetailes">
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50*"/>
-                    <RowDefinition Height="50*"/>
-                    <RowDefinition Height="100*"/>
-                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="400*"/>
+                    <ColumnDefinition Width="40*"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="100*"/>
+                    </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -52,7 +52,7 @@
                         <Grid Grid.Column="0">
                             <StackPanel>
                                 <TextBlock Text="תאריך מבחן " FlowDirection="RightToLeft" FontSize="16"/>
-                                <TextBlock Text="{Binding Path=dateTime, StringFormat=\{0:d\}}" FontSize="16" FlowDirection="RightToLeft"/>
+                                <TextBlock Text="{Binding Path=dateTime, StringFormat=dd-MM-yyyy}" FontSize="16" FlowDirection="RightToLeft"/>
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -61,7 +61,6 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-
                         <Grid Grid.Column="0" Name="addressTrainee">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -94,11 +93,10 @@
             <RowDefinition Height="200*"/>
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
-
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300*"/>
+                <ColumnDefinition Width="500*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="1">
                 <ListBox Name="listBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource tests}" HorizontalContentAlignment="Stretch"/>

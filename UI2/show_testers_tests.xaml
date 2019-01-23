@@ -20,7 +20,7 @@
                         <ColumnDefinition Width="100*"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
-                        <TextBlock Text="{Binding Path=dateTime, StringFormat=\{0:d\}}" FlowDirection="RightToLeft"/>
+                        <TextBlock Text="{Binding Path=dateTime, StringFormat=dd-MM-yyyy}" FlowDirection="RightToLeft"/>
                     </Grid>
                     <Grid Grid.Column="1">
                         <TextBlock Text="{Binding Path=TraineeName}" FlowDirection="RightToLeft"/>
@@ -47,13 +47,13 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="200*"/>
-            <RowDefinition Height="20*"/>
+            <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <ListBox Name="listBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource tests}" HorizontalContentAlignment="Stretch"/>
         </Grid>
         <Grid Grid.Row="1">
-            <Button Content="סגירה" Click="Button_Click"/>
+            <Button Content="סגירה" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18"/>
         </Grid>
     </Grid>
 </Window>

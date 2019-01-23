@@ -25,7 +25,7 @@ namespace UI2
         IBL bl;
         Trainee trainee;
         Test test_to_update;
-
+        TestDetailes test;
         ObservableCollection<TestDetailes> testDetailes = new ObservableCollection<TestDetailes>();
         public update_results(List<Test> tests1)
         {
@@ -56,15 +56,6 @@ namespace UI2
             public DateTime dateTime { set; get; }
             public FullName TraineeName { set; get; }
             public string type { set; get; }
-        }
-
-        private void update_result_Click(object sender, RoutedEventArgs e)
-        {
-            Button button = sender as Button;
-            int index = listBox.Items.IndexOf(button.DataContext);
-            TestDetailes test = listBox.Items[index] as TestDetailes;
-            update_test update = new update_test(bl.GetTest(test.examId));
-            update.ShowDialog();
         }
 
         private void finish_Click(object sender, RoutedEventArgs e)
@@ -114,6 +105,7 @@ namespace UI2
                     test_to_update.Results.passTest = false;
                 }
                 bl.updateTest(test_to_update);
+                testDetailes.Remove(test);
                 updateTest.Visibility = Visibility.Hidden;
             }
             catch (Exception ex)
@@ -131,9 +123,13 @@ namespace UI2
         {
             Button button = sender as Button;
             int index = listBox.Items.IndexOf(button.DataContext);
-            TestDetailes test = listBox.Items[index] as TestDetailes;
+            test = listBox.Items[index] as TestDetailes;
             test_to_update = bl.GetTest(test.examId);
             updateTest.DataContext = test;
+            mirrors.SelectedIndex = 0;
+            blinkers.SelectedIndex = 0;
+            distance.SelectedIndex = 0;
+            passTest.SelectedIndex = 0;
             updateTest.Visibility = Visibility.Visible;
         }
     }

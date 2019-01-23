@@ -57,7 +57,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="350"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="26*"/>
                 <RowDefinition Height="80*"/>
@@ -84,7 +84,7 @@
                     <TextBox IsReadOnly="True" x:Name="firstNameTextBox" Text="{Binding NameTrainee.FirstName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft"/>
                     <TextBox IsReadOnly="True" x:Name="lastNameTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding NameTrainee.LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center"/>
                     <TextBox IsReadOnly="True" x:Name="idTraineeTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding IdTrainee, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
-                    <TextBox IsReadOnly="True" x:Name="birthDateTraineeDatePicker" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding BirthDateTrainee, Mode=TwoWay, StringFormat=\{0:d\}}" Height="24"  VerticalContentAlignment="Center"/>
+                    <TextBox IsReadOnly="True" x:Name="birthDateTraineeDatePicker" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding BirthDateTrainee, Mode=TwoWay, StringFormat=dd-MM-yyyy}" Height="24"  VerticalContentAlignment="Center"/>
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="2">
@@ -106,7 +106,7 @@
                     <TextBox IsReadOnly="True" x:Name="gearboxTraineeComboBox" Text="{Binding GearboxTrainee}" FlowDirection="RightToLeft" Height="24" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
                     <TextBox IsReadOnly="True" x:Name="schoolTraineeTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding SchoolTrainee, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
                     <TextBox IsReadOnly="True" x:Name="teacherTraineeTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding TeacherTrainee, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
-                    <TextBox IsReadOnly="True" x:Name="numberOfLessonTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding NumberOfLesson, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
+                    <TextBox IsReadOnly="True" x:Name="numberOfLessonTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding NumberOfLesson,  Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="3" Background="LightGray">
@@ -149,9 +149,9 @@
             <RowDefinition Height="340*"/>
                 <RowDefinition Height="40*"/>
             </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Name="list" Grid.Column="0">
+        <Grid Grid.Row="0" Name="list" Grid.Column="0" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" >
             <StackPanel>
-                <TextBlock Name="LastTest" FlowDirection="RightToLeft"/>
+                    <TextBlock Name="LastTest" Text="מבחנים זמינים" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" AllowDrop="True" FontWeight="Bold"/>
                 <ListBox Name="listBox" ItemsSource="{Binding}"  ItemTemplate="{StaticResource myTester}" HorizontalContentAlignment="Stretch" SelectionChanged="ListBox_SelectionChanged"/>
                 <Button Name="buttonTest" Content="הזמן מבחן" Click="test_Click" IsEnabled="False"/>
                     <ProgressBar Name="myProgressBar"  Height="50" />
@@ -160,8 +160,8 @@
                     </Label>
                 </StackPanel>
         </Grid>
-            <Grid Grid.Row="1">
-                <Button Name="close" Content="סגירה" Click="close_Click" FlowDirection="RightToLeft" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Grid Grid.Row="1" Background="LightGray">
+                <Button Name="close" Content="סגירה" Click="close_Click" FlowDirection="RightToLeft" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}"/>
             </Grid>
         </Grid>
     </Grid>

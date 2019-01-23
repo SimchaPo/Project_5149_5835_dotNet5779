@@ -84,6 +84,9 @@
     <Compile Include="create_a_test.xaml.cs">
       <DependentUpon>create_a_test.xaml</DependentUpon>
     </Compile>
+    <Compile Include="data.xaml.cs">
+      <DependentUpon>data.xaml</DependentUpon>
+    </Compile>
     <Compile Include="log_in_tester.xaml.cs">
       <DependentUpon>log_in_tester.xaml</DependentUpon>
     </Compile>
@@ -110,9 +113,6 @@
     <Compile Include="update_results.xaml.cs">
       <DependentUpon>update_results.xaml</DependentUpon>
     </Compile>
-    <Compile Include="update_test.xaml.cs">
-      <DependentUpon>update_test.xaml</DependentUpon>
-    </Compile>
     <Compile Include="update_tester.xaml.cs">
       <DependentUpon>update_tester.xaml</DependentUpon>
     </Compile>
@@ -124,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="create_a_test.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="data.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -168,10 +172,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="update_results.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="update_test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
