@@ -86,6 +86,7 @@ namespace UI2
                 {
                     testers.Add(t);
                 }
+             //   checkTestersInRange();
             }
             catch (Exception ex)
             {

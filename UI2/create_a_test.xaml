@@ -154,7 +154,11 @@
                 <TextBlock Name="LastTest" FlowDirection="RightToLeft"/>
                 <ListBox Name="listBox" ItemsSource="{Binding}"  ItemTemplate="{StaticResource myTester}" HorizontalContentAlignment="Stretch" SelectionChanged="ListBox_SelectionChanged"/>
                 <Button Name="buttonTest" Content="הזמן מבחן" Click="test_Click" IsEnabled="False"/>
-            </StackPanel>
+                    <ProgressBar Name="myProgressBar"  Height="50" />
+                    <Label>
+                        <Label Name="PercentLabel" Height="25" Width="50"/>
+                    </Label>
+                </StackPanel>
         </Grid>
             <Grid Grid.Row="1">
                 <Button Name="close" Content="סגירה" FlowDirection="RightToLeft" VerticalAlignment="Center" HorizontalAlignment="Center"/>

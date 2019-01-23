@@ -110,7 +110,7 @@ namespace BE
                 return new Address
                 {
                     City = address.City,
-                    Street = address.City,
+                    Street = address.Street,
                     HouseNum = address.HouseNum
                 };
             }
@@ -147,7 +147,9 @@ namespace BE
                     CarTypeTrainee = t.CarTypeTrainee,
                     GearboxTrainee = t.GearboxTrainee,
                     SchoolTrainee = t.SchoolTrainee,
-                    TeacherTrainee = t.TeacherTrainee
+                    TeacherTrainee = t.TeacherTrainee,
+                    NumberOfLesson = t.NumberOfLesson
+                    
                 };
             }
             return null;
