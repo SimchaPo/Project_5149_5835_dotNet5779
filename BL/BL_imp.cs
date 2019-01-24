@@ -234,5 +234,30 @@ namespace BL
         {
             idal.updateTest(updateTest);
         }
+
+        // impelementetion of speciael queries
+
+        public List<IGrouping<string,Trainee>> GetTraineesGroupedBySchool()
+        {
+            return (from Trainee anyTrainee in getTrainees()
+                    group anyTrainee by anyTrainee.SchoolTrainee).ToList();
+        }
+
+        public List<IGrouping<string,Trainee>> GetTreineesGroupedByTeacher()
+        {
+            return (from Trainee anyTrainee in getTrainees()
+                    group anyTrainee by anyTrainee.TeacherTrainee).ToList();
+        }
+
+        public List<IGrouping<int,Trainee>> GetTraineesGroupedByNumOfTests()
+        {
+            return (from Trainee anyTrainee in getTrainees()
+                    group anyTrainee by GetNumberOfTestTrainee(anyTrainee)).ToList();
+        }
+
+        public int GetNumberOfTestTrainee(Trainee trainee)
+        {
+            return getTestsOfTrainee(trainee).Count();
+        }
     }
 }
