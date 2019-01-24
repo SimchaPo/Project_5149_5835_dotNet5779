@@ -70,5 +70,12 @@ namespace UI2
         {
             Close();
         }
+        private List<IGrouping<CarType, Tester>> GroupTestersByCarType()
+        {
+            List<Tester> testers = bl.getTesters();
+            var v = from tester in testers
+                    group tester by tester.CarTypeTester;
+            return v.ToList();
+        }
     }
 }
