@@ -35,6 +35,10 @@ namespace UI2
         private List<Trainee> getTraineesBySelectedSchool(string SelectedSchool, bool IsOrdered)
         {
             List<Trainee> result = new List<Trainee>();
+
+            if (SelectedSchool!=null)
+            {
+
             var v = (from anyGroup in bl.GetTraineesGroupedBySchool(IsOrdered)
                     where anyGroup.Key.ToString() == SelectedSchool
                      select anyGroup).ToList().FirstOrDefault();
