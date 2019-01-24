@@ -152,9 +152,10 @@
         <Grid Grid.Row="0" Name="list" Grid.Column="0" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" >
             <StackPanel>
                     <TextBlock Name="LastTest" Text="מבחנים זמינים" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" AllowDrop="True" FontWeight="Bold"/>
+                    <TextBlock Visibility="Collapsed" Name="search" Text="מחפש בוחנים במערכת" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" AllowDrop="True" FontWeight="Bold" Foreground="#FF53B734"/>
+                    <ProgressBar Visibility="Collapsed" Name="myProgressBar" Height="30" Width="250"/>
                 <ListBox Name="listBox" ItemsSource="{Binding}"  ItemTemplate="{StaticResource myTester}" HorizontalContentAlignment="Stretch" SelectionChanged="ListBox_SelectionChanged"/>
                 <Button Name="buttonTest" Content="הזמן מבחן" Click="test_Click" IsEnabled="False"/>
-                    <ProgressBar Name="myProgressBar"  Height="50" />
                     <Label>
                         <Label Name="PercentLabel" Height="25" Width="50"/>
                     </Label>

@@ -242,7 +242,7 @@ namespace DAL
         {
             
 
-            XElement TestNum = new XElement("TestNum", getExamIDNum().ToString()); //***we need to create function to create a test num****8
+            XElement TestNum = new XElement("TestNum", getExamIDNum()); //***we need to create function to create a test num****8
             XElement TesterId = new XElement("TesterId", newTest.TesterId); 
             XElement TraineeId = new XElement("TraineeId", newTest.TraineeId);
             XElement TestDate = new XElement("TestDate", newTest.TestDate.ToString());
@@ -526,28 +526,19 @@ namespace DAL
 
 
             LoadDataTest();
-            bool emptyTestList = false;
-            int IdNum;
-            try
-            {
-                List<Test> tests = getTests();
-            }
-            catch (Exception)
-            {
 
-                emptyTestList = true;
-            }
-            if (emptyTestList)
+            int IdNum;
+            if (getTests().Count == 0)
                 IdNum = Configuration.minIDNum;
             else
             {
-              IdNum = int.Parse
-                    ((from Test t in getTests()
-                         orderby t.TestNum
-                         select t).Last().TestNum);
+                IdNum = int.Parse
+                      ((from Test t in getTests()
+                        orderby t.TestNum
+                        select t).Last().TestNum);
+                IdNum++;
             }
 
-            IdNum += 1;
             if (IdNum < 10000000) //reset IDnum - need to check what to do with old tests
             {
                 return IdNum.ToString().PadLeft(8, '0'); //return examIDnum as a string and adds '0' to left of the number
