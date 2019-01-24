@@ -64,6 +64,7 @@ namespace UI2
                 MessageBox.Show(ex.Message, "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             List<Tester> testersToShow = new List<Tester>();
+            List<Trainee> traineesToShow = new List<Trainee>();
             if (tester.IsChecked == true)
             {
                 testers.Visibility = Visibility.Visible;
@@ -73,8 +74,7 @@ namespace UI2
                     if (sorted.IsChecked == true)
                     {
                         var v = from Tester t in bl.getTesters()
-                                orderby t.NameTester.LastName
-                                orderby t.NameTester.FirstName
+                                orderby t.NameTester.LastName, t.NameTester.FirstName
                                 select t;
                         foreach (var item in v)
                         {
@@ -91,6 +91,43 @@ namespace UI2
                     testersToShow = getTestersBySelectedCarType(carTypesOfTester.SelectedValue.ToString(), (bool)sorted.IsChecked);
                 }
                 testers.ItemsSource = testersToShow;
+            }
+            if(trainee.IsChecked == true)
+            {
+                trainees.Visibility = Visibility.Visible;
+                if(groupTraineeBy.SelectedIndex == 0)
+                {
+                    if (sorted.IsChecked == true)
+                    {
+                        var v = from Trainee t in bl.getTrainees()
+                                orderby t.NameTrainee.LastName, t.NameTrainee.FirstName
+                                select t;
+                        foreach (var item in v)
+                        {
+                            traineesToShow.Add(item);
+                        }
+                    }
+                    if (sorted.IsChecked == false)
+                    {
+                        traineesToShow = bl.getTrainees();
+                    }
+                }
+                trainees.ItemsSource = traineesToShow;
+                if(groupTraineeBy.SelectedIndex == 1)
+                {
+                    switch (groupTraineeBy.SelectedIndex)
+                    {
+                        case 1:
+                            trainees.ItemsSource = getTraineesBySelectedSchool(traineeComboBox.SelectedValue.ToString(), (bool)sorted.IsChecked);
+                            break;
+                        case 2:
+                            trainees.ItemsSource = getTraineeBySelectedTeacher(traineeComboBox.SelectedValue.ToString(), (bool)sorted.IsChecked);
+                            break;
+                        case 3:
+                            trainees.ItemsSource = getTraineeBySelectedNumOfTests(traineeComboBox.SelectedValue.ToString(), (bool)sorted.IsChecked);
+                            break;
+                    }
+                }
             }
         }
 

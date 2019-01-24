@@ -36,8 +36,8 @@
                 </Grid>
                 <Grid Grid.Column="0">
                     <StackPanel FlowDirection="RightToLeft">
-                        <RadioButton Name="sorted" FontSize="20" Checked="sorted_Checked" Content="ממוין" VerticalContentAlignment="Center"/>
-                        <RadioButton Name="notSorted" FontSize="20" Checked="notSorted_Checked" Content="לא ממוין" VerticalContentAlignment="Center"/>
+                        <RadioButton Name="sorted" FontSize="20"  Content="ממוין" VerticalContentAlignment="Center"/>
+                        <RadioButton Name="notSorted" FontSize="20" Content="לא ממוין" VerticalContentAlignment="Center"/>
                     </StackPanel>
                 </Grid>
             </Grid>
@@ -53,7 +53,7 @@
                 <ComboBox x:Name="groupTraineeBy" SelectedItem="{Binding groupTrainee}" SelectedIndex="0" SelectionChanged="groupTraineeBy_SelectionChanged" FlowDirection="RightToLeft" Height="24" Visibility="Collapsed"/>
                 </Grid>
                 <Grid Grid.Column="0">
-                    <ComboBox x:Name="traineeComboBox" SelectedItem="{Binding traineeCombos}" SelectedIndex="0" SelectionChanged="traineeComboBox_SelectionChanged" FlowDirection="RightToLeft" Height="24" Visibility="Collapsed"/>
+                    <ComboBox x:Name="traineeComboBox" SelectedItem="{Binding traineeCombos}" SelectedIndex="0" FlowDirection="RightToLeft" Height="24" Visibility="Collapsed"/>
                 </Grid>
             </Grid>
             <Grid Grid.Row="3">
