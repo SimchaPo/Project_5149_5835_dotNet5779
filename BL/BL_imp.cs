@@ -248,6 +248,7 @@ namespace BL
                         group anyTrainee by anyTrainee.SchoolTrainee).ToList();
         }
 
+        
         public List<IGrouping<string,Trainee>> GetTreineesGroupedByTeacher(bool ordered)
         {
             if(ordered)
@@ -290,6 +291,7 @@ namespace BL
                 return v.ToList();
             }
         }
+
 
         public int GetNumberOfTestTrainee(Trainee trainee)
         {

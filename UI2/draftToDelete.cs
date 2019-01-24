@@ -39,11 +39,64 @@ namespace UI2
             List<Trainee> result = new List<Trainee>();
 
 
-            //var v = (from anyGroup in bl.GetTraineesGroupedBySchool(IsOrdered)
-            //         where anyGroup.Key==SelectedSchool
-            //         select ).ToList().FirstOrDefault();
+            var v = (from anyGroup in bl.GetTraineesGroupedBySchool(IsOrdered)
+                    where anyGroup.Key==SelectedSchool
+                     select anyGroup).ToList().FirstOrDefault();
+            foreach(Trainee trainee in v)
+            {
+                result.Add(trainee);
+            }
 
-            return null;
+            return result;
+        }
+        private List<Trainee> getTraineeBySelectedNumOfTests(int numOfTests,bool IsOrdered)
+        {
+            List<Trainee> result = new List<Trainee>();
+
+
+            var v = (from anyGroup in bl.GetTraineesGroupedByNumOfTests(IsOrdered)
+                     where anyGroup.Key == numOfTests
+                     select anyGroup).ToList().FirstOrDefault();
+            foreach (Trainee trainee in v)
+            {
+                result.Add(trainee);
+            }
+
+            return result;
+        }
+
+        private List<Trainee> getTraineeBySelectedTeacher(string teacher,bool IsOrdered)
+        {
+            List<Trainee> result = new List<Trainee>();
+
+
+            var v = (from anyGroup in bl.GetTreineesGroupedByTeacher(IsOrdered)
+                     where anyGroup.Key == teacher
+                     select anyGroup).ToList().FirstOrDefault();
+            foreach (Trainee trainee in v)
+            {
+                result.Add(trainee);
+            }
+
+            return result;
+        }
+
+        private List<string> getListForComboBoxBySChool()
+        {
+            return (from g in bl.GetTraineesGroupedBySchool(true)
+                     select g.Key.ToString()).ToList();
+        }
+        private List<string> getListForComboBoxByTeacher()
+        {
+            return (from g in bl.GetTreineesGroupedByTeacher(true)
+                    select g.Key.ToString()).ToList();
+        }
+
+        private List<int> getListForComboBoxByNumOfTests()
+        {
+            return (from g in bl.GetTraineesGroupedByNumOfTests(true)
+                    select g.Key).ToList();
+            
         }
     }
 }
