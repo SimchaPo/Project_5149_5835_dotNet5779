@@ -35,21 +35,4 @@ namespace UI2
 
 
     }
-    public class MultiValueConverter : IMultiValueConverter
-    {
-        public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
-        {
-            string str = "";
-            foreach (object t in value)
-            {
-                str += t;
-                str += " ";
-            }
-            return str;
-        }
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
 }
