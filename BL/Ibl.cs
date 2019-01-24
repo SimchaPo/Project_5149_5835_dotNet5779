@@ -39,7 +39,7 @@ namespace BL
         List<Test> getTests();
 
         //special queries
-        List<IGrouping<CarType, Tester>> GetTestersGroupedByCarType(bool ordered);
+        IEnumerable<IGrouping<CarType, Tester>> GetTestersGroupedByCarType(bool ordered);
         List<IGrouping<string,Trainee>> GetTraineesGroupedBySchool(bool ordered);
         List<IGrouping<string,Trainee>> GetTreineesGroupedByTeacher(bool ordered);
         List<IGrouping<int,Trainee>> GetTraineesGroupedByNumOfTests(bool ordered);
