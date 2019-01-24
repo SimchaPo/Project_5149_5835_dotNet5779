@@ -60,19 +60,19 @@
                 <Grid Grid.Column="3">
                     <StackPanel>
                         <Label Content="עיר:" Height="24" FlowDirection="RightToLeft" HorizontalAlignment="Center"/>
-                        <TextBox  IsReadOnly="True" x:Name="cityTextBox" Text="{Binding AddresTester.City, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="100" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24"/>
+                        <TextBox x:Name="cityTextBox" Text="{Binding AddressTrainee.City, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="100" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24"/>
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Column="2">
                     <StackPanel>
                         <Label Content="רחוב:" Height="24" FlowDirection="RightToLeft" HorizontalAlignment="Center"/>
-                        <TextBox IsReadOnly="True" x:Name="streetTextBox" Text="{Binding AddresTester.Street, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24" Width="100"/>
+                        <TextBox x:Name="streetTextBox" Text="{Binding AddressTrainee.Street, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24" Width="100"/>
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Column="1">
                     <StackPanel>
                         <Label Content="מספר בית:" Height="24" FlowDirection="RightToLeft" HorizontalAlignment="Center"/>
-                        <TextBox IsReadOnly="True" x:Name="houseNumTextBox" Text="{Binding AddresTester.HouseNum, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="40" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24" MaxLength="4"/>
+                        <TextBox x:Name="houseNumTextBox" Text="{Binding AddressTrainee.HouseNum,Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="40" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24" MaxLength="4"/>
                     </StackPanel>
                 </Grid>
             </Grid>

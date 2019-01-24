@@ -17,6 +17,10 @@ namespace BL
         public void addTester(Tester newTester)
         {
             Checks.CheckTesterInput(newTester);
+            if (GetTester(newTester.IdTester) != null)
+            {
+                throw new Exception("בוחן כבר קיים במערכת");
+            }
             idal.addTester(newTester);
         }
         public void changeTester(Tester updateTester)
@@ -104,6 +108,10 @@ namespace BL
         public void addTrainee(Trainee newTrainee)
         {
             Checks.CheckTraineeInput(newTrainee);
+            if (GetTrainee(newTrainee.IdTrainee) != null)
+            {
+                throw new Exception("תלמיד כבר קיים במערכת");
+            }
             idal.addTrainee(newTrainee);
         }
         public void changeTrainee(Trainee updateTrainee)
