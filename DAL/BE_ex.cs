@@ -215,7 +215,7 @@ namespace DAL
             if (Result.Value != "null")
                 return new examResults()
                 {
-                    //(Gender)Enum.Parse(typeof(Gender),tra.Element("GenderTrainee").Value)
+                    
                     mirrors = bool.Parse(Result.Element("mirrors").Value),
                     blinker = bool.Parse(Result.Element("blinker").Value),
                     distance = bool.Parse(Result.Element("distance").Value),

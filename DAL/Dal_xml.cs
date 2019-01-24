@@ -242,7 +242,7 @@ namespace DAL
         {
             
 
-            XElement TestNum = new XElement("TestNum", newTest.TestNum); //***we need to create function to create a test num****8
+            XElement TestNum = new XElement("TestNum", getExamIDNum().ToString()); //***we need to create function to create a test num****8
             XElement TesterId = new XElement("TesterId", newTest.TesterId); 
             XElement TraineeId = new XElement("TraineeId", newTest.TraineeId);
             XElement TestDate = new XElement("TestDate", newTest.TestDate.ToString());
@@ -268,7 +268,7 @@ namespace DAL
             ToChangeTest.Element("TestNum").Value=updatedTest.TestNum; //***we need to create function to create a test num****8
             ToChangeTest.Element("TesterId").Value=updatedTest.TesterId;
             ToChangeTest.Element("TraineeId").Value=updatedTest.TraineeId;
-            ToChangeTest.Element("TraineeId").Value=updatedTest.TestDate.ToString();
+            ToChangeTest.Element("TestDate").Value=updatedTest.TestDate.ToString();
             
              ToChangeTest.Element("Address").Element("City").Value = updatedTest.AddressTest.City;
             ToChangeTest.Element("Address").Element("Street").Value = updatedTest.AddressTest.Street;
@@ -281,8 +281,10 @@ namespace DAL
             ToChangeTest.Element("carType").Value=updatedTest.carType.ToString();
             ToChangeTest.Element("gearbox").Value=updatedTest.gearbox.ToString();
 
-            ToChangeTest.Element("Result").Remove();
-            ToChangeTest.Add(updatedTest.Results.ToXElement()); 
+            XElement toRemove = ToChangeTest.Element("Results");
+            toRemove.Remove();
+            ToChangeTest.Add(updatedTest.Results.ToXElement());
+            TestRoot.Save(TestPath);
         }
 
         public void removeTest(string idTest)
@@ -307,7 +309,7 @@ namespace DAL
             LoadDataTest();
             Test result;
 
-            result = (from anyTest in TesterRoot.Elements()
+            result = (from anyTest in TestRoot.Elements()
                       where anyTest.Element("TestNum").Value == id
                       select new Test()
                       {
@@ -506,7 +508,10 @@ namespace DAL
                                  Street = anyTest.Element("Address").Element("Street").Value,
                                  HouseNum = int.Parse(anyTest.Element("Address").Element("HouseNum").Value)
                              },
-                             NoteTester = anyTest.Element("NoteTester").Value
+                             NoteTester = anyTest.Element("NoteTester").Value,
+                             carType= (CarType)Enum.Parse(typeof(CarType), anyTest.Element("carType").Value),
+                             gearbox=(Gearbox)Enum.Parse(typeof(Gearbox),anyTest.Element("gearbox").Value),
+                             Results=anyTest.Element("Results").ToExamResults()
                          }).ToList();
             }
             catch (Exception)
@@ -519,13 +524,22 @@ namespace DAL
                 return tests;
       
         }
+        //פונקציה האחראית על המספר הרץ
+        static int examIDNum = Configuration.minIDNum;
+        public static string getExamIDNum()
+        {
+            if (examIDNum < 10000000) //reset IDnum - need to check what to do with old tests
+            {
+                return examIDNum++.ToString().PadLeft(8, '0'); //return examIDnum as a string and adds '0' to left of the number
+            }
+            return examIDNum++.ToString();
+        }
 
-      
     }
 
 
- 
-    }
+
+}
 
     
 
