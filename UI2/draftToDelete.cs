@@ -11,6 +11,8 @@ namespace UI2
 {
     public partial class groups : Window
     {
+        //********************* help functions for comboBox*********************************
+
         private List<string> getListOfCarTypeTesterForComboBox()
         {
             return (from anyGroup in bl.GetTestersGroupedByCarType(true)
@@ -32,12 +34,14 @@ namespace UI2
             return result;
         }
 
-        private List<Trainee> getTraineesBySelectedSchool(string SelectedScholl, bool IsOrdered)
+        private List<Trainee> getTraineesBySelectedSchool(string SelectedSchool, bool IsOrdered)
         {
-            List<Trainee> result;
+            List<Trainee> result = new List<Trainee>();
+
 
             //var v = (from anyGroup in bl.GetTraineesGroupedBySchool(IsOrdered)
-            //         where anyGroup.Key==SelectedScholl).ToList().FirstOrDefault();
+            //         where anyGroup.Key==SelectedSchool
+            //         select ).ToList().FirstOrDefault();
 
             return null;
         }
