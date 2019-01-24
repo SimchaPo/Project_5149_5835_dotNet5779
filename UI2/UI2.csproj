@@ -84,6 +84,7 @@
     <Compile Include="data.xaml.cs">
       <DependentUpon>data.xaml</DependentUpon>
     </Compile>
+    <Compile Include="draftToDelete.cs" />
     <Compile Include="groups.xaml.cs">
       <DependentUpon>groups.xaml</DependentUpon>
     </Compile>
