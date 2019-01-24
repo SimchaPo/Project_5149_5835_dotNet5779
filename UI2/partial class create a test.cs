@@ -88,10 +88,10 @@ namespace UI2
 
             outputMap output = (outputMap)e.Result;
 
-            if (output.tester.MaxFarFromTester >= output.distance)
-                testers.Add(output.tester);
-            myProgressBar.Value += 1;
+                if (output.tester.MaxFarFromTester > output.distance)
+                    testers.Add(output.tester);
+                myProgressBar.Value += 1;
+            }
         }
     }
-}
 
