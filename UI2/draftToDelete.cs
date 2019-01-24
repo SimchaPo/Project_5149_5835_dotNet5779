@@ -38,13 +38,16 @@ namespace UI2
         {
             List<Trainee> result = new List<Trainee>();
 
-
-            var v = (from anyGroup in bl.GetTraineesGroupedBySchool(IsOrdered)
-                    where anyGroup.Key==SelectedSchool
-                     select anyGroup).ToList().FirstOrDefault();
-            foreach(Trainee trainee in v)
+            if (SelectedSchool!=null)
             {
-                result.Add(trainee);
+
+                var v = (from anyGroup in bl.GetTraineesGroupedBySchool(IsOrdered)
+                         where anyGroup.Key == SelectedSchool
+                         select anyGroup).ToList().FirstOrDefault();
+                foreach (Trainee trainee in v)
+                {
+                    result.Add(trainee);
+                } 
             }
 
             return result;

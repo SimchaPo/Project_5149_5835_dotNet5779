@@ -113,7 +113,7 @@ namespace UI2
                     }
                 }
                 trainees.ItemsSource = traineesToShow;
-                if(groupTraineeBy.SelectedIndex == 1)
+                if(groupTraineeBy.SelectedIndex == 1 && traineeComboBox.SelectedValue!=null)
                 {
                     switch (groupTraineeBy.SelectedIndex)
                     {
