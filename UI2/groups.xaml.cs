@@ -26,16 +26,17 @@ namespace UI2
         {
             InitializeComponent();
             bl = FactoryBL.GetBL();
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             List<Trainee> trainees2 = new List<Trainee>();
-            List<IGrouping<int, Trainee>> trainees = bl.GetTraineesGroupedByNumOfTests();
+            List<IGrouping<int, Trainee>> trainees = bl.GetTraineesGroupedByNumOfTests(true);
             var v = (from t in trainees
-                    where t.Key == 1
-                    select t).ToList().First();
-            foreach(Trainee trainee in v)
+                     where t.Key == 1
+                     select t).ToList().First();
+            foreach (Trainee trainee in v)
             {
                 trainees2.Add(trainee);
             }
@@ -52,21 +53,100 @@ namespace UI2
 
         private void show_Click(object sender, RoutedEventArgs e)
         {
-            if(tester.IsChecked == true )
+            try
             {
-                if(sorted.IsChecked == true)
-                {
-
-                }
-
+                if (tester.IsChecked == false && test.IsChecked == false && trainee.IsChecked == false ||
+                    sorted.IsChecked == false && notSorted.IsChecked == false)
+                    throw new Exception("יש לסמן בחירה בכל אחת מן האפשרויות");
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            List<Tester> testersToShow = new List<Tester>();
+            if (tester.IsChecked == true)
+            {
+                testers.Visibility = Visibility.Visible;
 
+                if (carTypesOfTester.SelectedIndex == 0)
+                {
+                    if (sorted.IsChecked == true)
+                    {
+                        var v = from Tester t in bl.getTesters()
+                                orderby t.NameTester.LastName
+                                orderby t.NameTester.FirstName
+                                select t;
+                        foreach (var item in v)
+                        {
+                            testersToShow.Add(item);
+                        }
+                    }
+                    if (sorted.IsChecked == false)
+                    {
+                        testersToShow = bl.getTesters();
+                    }
+                    testers.ItemsSource = testersToShow;
+                }
+                if (carTypesOfTester.SelectedIndex != 0)
+                {
+                    if (sorted.IsChecked == true)
+                    {
+                        var v = from Tester t in bl.getTesters()
+                                orderby t.NameTester.LastName
+                                orderby t.NameTester.FirstName
+                                select t;
+                        foreach (var item in v)
+                        {
+                            testersToShow.Add(item);
+                        }
+                    }
+                    if (sorted.IsChecked == false)
+                    {
+                        testersToShow = bl.getTesters();
+                    }
+                    testers.ItemsSource = testersToShow;
+                }
+            }
         }
 
         private void tester_Checked(object sender, RoutedEventArgs e)
         {
-            carTypeTester.Visibility = Visibility.Visible;
-            //carTypeTester.ItemsSource = 
+            if(tester.IsChecked == false)
+            {
+                carTypesOfTester.Visibility = Visibility.Collapsed;
+                return;
+            }
+            List<string> types = new List<string>();
+            types.Add("כולם");
+            carTypesOfTester.Visibility = Visibility.Visible;
+            var carTypesGroups = from t in bl.getTesters()
+                                 group t by t.CarTypeTester into g
+                                 select new { type = g.Key, testers = g };
+            foreach (var item in carTypesGroups)
+            {
+                types.Add(item.type.ToString());
+            }
+            carTypesOfTester.ItemsSource = types;
+        }
+
+        private void trainee_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void test_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void sorted_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void notSorted_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

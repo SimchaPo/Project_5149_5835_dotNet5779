@@ -30,20 +30,20 @@
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="1">
                     <StackPanel FlowDirection="RightToLeft">
-                        <RadioButton Name="tester" FontSize="20" Content="בוחנים" Checked="tester_Checked" VerticalContentAlignment="Center"/>
-                        <RadioButton Name="trainee" FontSize="20" Content="תלמידים" VerticalContentAlignment="Center"/>
-                        <RadioButton Name="test" FontSize="20" Content="מבחנים" VerticalContentAlignment="Center"/>
+                        <RadioButton Name="tester" FontSize="20" Unchecked="test_Checked" Content="בוחנים" Checked="tester_Checked" VerticalContentAlignment="Center"/>
+                        <RadioButton Name="trainee" FontSize="20" Content="תלמידים" Checked="trainee_Checked" VerticalContentAlignment="Center"/>
+                        <RadioButton Name="test" FontSize="20" Content="מבחנים" Checked="test_Checked" VerticalContentAlignment="Center"/>
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Column="0">
                     <StackPanel FlowDirection="RightToLeft">
-                        <RadioButton Name="sorted" FontSize="20" Content="ממוין" Checked="tester_Checked" VerticalContentAlignment="Center"/>
-                        <RadioButton Name="notSorted" FontSize="20" Content="לא ממוין" VerticalContentAlignment="Center"/>
+                        <RadioButton Name="sorted" FontSize="20" Checked="sorted_Checked" Content="ממוין" VerticalContentAlignment="Center"/>
+                        <RadioButton Name="notSorted" FontSize="20" Checked="notSorted_Checked" Content="לא ממוין" VerticalContentAlignment="Center"/>
                     </StackPanel>
                 </Grid>
             </Grid>
             <Grid Name="testersCombo" Grid.Row="2">
-                <ComboBox x:Name="carTypeTester" SelectedItem="{Binding CarTypes}" FlowDirection="RightToLeft" Height="24" Visibility="Collapsed"/>
+                <ComboBox x:Name="carTypesOfTester" SelectedItem="{Binding CarTypes}" SelectedIndex="0" FlowDirection="RightToLeft" Height="24" Visibility="Collapsed"/>
             </Grid>
         <Grid Grid.Row="3">
                 <Button Name="show" Content="הצג" Click="show_Click"/>

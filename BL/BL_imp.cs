@@ -270,18 +270,25 @@ namespace BL
                         group anyTrainee by GetNumberOfTestTrainee(anyTrainee)).ToList();
         }
 
-        public List<IGrouping<CarType, Tester>> GetTestersGroupedByCarType(bool ordered)
+        public IEnumerable<IGrouping<CarType, Tester>> GetTestersGroupedByCarType(bool ordered)
         {
-            if(ordered)
-            return (from Tester anyTester in getTesters()
-                    orderby anyTester.NameTester
-                    group anyTester by anyTester.CarTypeTester).ToList();
-
+            if (ordered)
+            {
+                var v = from tester in getTesters()
+                        orderby tester.NameTester
+                        group tester by tester.CarTypeTester
+                       into g
+                        select g;
+                return v;
+            }
             else
-                return (from Tester anyTester in getTesters()
-
-                        group anyTester by anyTester.CarTypeTester).ToList();
-
+            {
+                var v = from tester in getTesters()
+                        group tester by tester.CarTypeTester
+                        into g
+                        select g;
+                return v.ToList();
+            }
         }
 
         public int GetNumberOfTestTrainee(Trainee trainee)
