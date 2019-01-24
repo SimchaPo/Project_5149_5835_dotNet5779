@@ -55,7 +55,7 @@ namespace UI2
         {
             try
             {
-                if (tester.IsChecked == false && test.IsChecked == false && trainee.IsChecked == false ||
+                if (tester.IsChecked == false && trainee.IsChecked == false ||
                     sorted.IsChecked == false && notSorted.IsChecked == false)
                     throw new Exception("יש לסמן בחירה בכל אחת מן האפשרויות");
             }
@@ -96,7 +96,7 @@ namespace UI2
 
         private void tester_Checked(object sender, RoutedEventArgs e)
         {
-            if(tester.IsChecked == false)
+            if(tester.IsChecked != true)
             {
                 carTypesOfTester.Visibility = Visibility.Collapsed;
                 return;
@@ -119,6 +119,7 @@ namespace UI2
             if(trainee.IsChecked == false)
             {
                 groupTraineeBy.Visibility = Visibility.Collapsed;
+                traineeComboBox.Visibility = Visibility.Collapsed;
                 return;
             }
             groupTraineeBy.Visibility = Visibility.Visible;
@@ -140,14 +141,27 @@ namespace UI2
 
         }
 
-        private void notSorted_Checked(object sender, RoutedEventArgs e)
+
+        private void groupTraineeBy_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-        }
-
-        private void traineeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            List<string> strs = new List<string>();
+            switch (groupTraineeBy.SelectedIndex)
+            {
+                case 0:
+                    traineeComboBox.Visibility = Visibility.Collapsed;
+                    return;
+                case 1:
+                    strs = getListForComboBoxBySChool();
+                    break;
+                case 2:
+                    strs = getListForComboBoxByTeacher();
+                    break;
+                case 3:
+                    strs = getListForComboBoxByNumOfTests();
+                    break;
+            }
+            traineeComboBox.Visibility = Visibility.Visible;
+            traineeComboBox.ItemsSource = strs;
         }
     }
 }

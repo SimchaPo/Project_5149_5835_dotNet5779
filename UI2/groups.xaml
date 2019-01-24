@@ -30,9 +30,8 @@
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="1">
                     <StackPanel FlowDirection="RightToLeft">
-                        <RadioButton Name="tester" FontSize="20" Unchecked="test_Checked" Content="בוחנים" Checked="tester_Checked" VerticalContentAlignment="Center"/>
-                        <RadioButton Name="trainee" FontSize="20" Content="תלמידים" Checked="trainee_Checked" VerticalContentAlignment="Center"/>
-                        <RadioButton Name="test" FontSize="20" Content="מבחנים" Checked="test_Checked" VerticalContentAlignment="Center"/>
+                        <RadioButton Name="tester" FontSize="20" Unchecked="tester_Checked" Content="בוחנים" Checked="tester_Checked" VerticalContentAlignment="Center"/>
+                        <RadioButton Name="trainee" FontSize="20" Content="תלמידים" Unchecked="trainee_Checked" Checked="trainee_Checked" VerticalContentAlignment="Center"/>
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Column="0">
@@ -51,7 +50,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="1">
-                <ComboBox x:Name="groupTraineeBy" SelectedItem="{Binding groupTrainee}" SelectedIndex="0" FlowDirection="RightToLeft" Height="24" Visibility="Collapsed"/>
+                <ComboBox x:Name="groupTraineeBy" SelectedItem="{Binding groupTrainee}" SelectedIndex="0" SelectionChanged="groupTraineeBy_SelectionChanged" FlowDirection="RightToLeft" Height="24" Visibility="Collapsed"/>
                 </Grid>
                 <Grid Grid.Column="0">
                     <ComboBox x:Name="traineeComboBox" SelectedItem="{Binding traineeCombos}" SelectedIndex="0" SelectionChanged="traineeComboBox_SelectionChanged" FlowDirection="RightToLeft" Height="24" Visibility="Collapsed"/>

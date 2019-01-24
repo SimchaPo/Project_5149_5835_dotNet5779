@@ -49,13 +49,13 @@ namespace UI2
 
             return result;
         }
-        private List<Trainee> getTraineeBySelectedNumOfTests(int numOfTests,bool IsOrdered)
+        private List<Trainee> getTraineeBySelectedNumOfTests(string numOfTests,bool IsOrdered)
         {
             List<Trainee> result = new List<Trainee>();
 
 
             var v = (from anyGroup in bl.GetTraineesGroupedByNumOfTests(IsOrdered)
-                     where anyGroup.Key == numOfTests
+                     where anyGroup.Key.ToString() == numOfTests
                      select anyGroup).ToList().FirstOrDefault();
             foreach (Trainee trainee in v)
             {
@@ -92,10 +92,10 @@ namespace UI2
                     select g.Key.ToString()).ToList();
         }
 
-        private List<int> getListForComboBoxByNumOfTests()
+        private List<string> getListForComboBoxByNumOfTests()
         {
             return (from g in bl.GetTraineesGroupedByNumOfTests(true)
-                    select g.Key).ToList();
+                    select g.Key.ToString()).ToList();
             
         }
     }
