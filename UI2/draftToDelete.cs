@@ -80,5 +80,23 @@ namespace UI2
 
             return result;
         }
+
+        private List<string> getListForComboBoxBySChool()
+        {
+            return (from g in bl.GetTraineesGroupedBySchool(true)
+                     select g.Key.ToString()).ToList();
+        }
+        private List<string> getListForComboBoxByTeacher()
+        {
+            return (from g in bl.GetTreineesGroupedByTeacher(true)
+                    select g.Key.ToString()).ToList();
+        }
+
+        private List<int> getListForComboBoxByNumOfTests()
+        {
+            return (from g in bl.GetTraineesGroupedByNumOfTests(true)
+                    select g.Key).ToList();
+            
+        }
     }
 }
