@@ -50,7 +50,7 @@ namespace UI2
             listOfWorkers = new List<WorkerHelp>();
 
 
-            PercentLabel.Content = "0%";
+            
             myProgressBar.Maximum = testers.Count();
             myProgressBar.Value = 0;
 
@@ -92,7 +92,7 @@ namespace UI2
 
                 outputMap output = (outputMap)e.Result;
 
-                if (output.tester.MaxFarFromTester > output.distance)
+                if (output.tester.MaxFarFromTester >= output.distance)
                     testers.Add(output.tester);
                 myProgressBar.Value += 1;
             }
