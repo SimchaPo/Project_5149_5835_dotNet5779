@@ -241,7 +241,7 @@ namespace BL
         {
             if(ordered)
             return (from Trainee anyTrainee in getTrainees()
-                    orderby anyTrainee.NameTrainee.FirstName
+                    orderby anyTrainee.NameTrainee.LastName, anyTrainee.NameTrainee.FirstName
                     group anyTrainee by anyTrainee.SchoolTrainee).ToList();
             else
                 return (from Trainee anyTrainee in getTrainees()
@@ -252,7 +252,7 @@ namespace BL
         {
             if(ordered)
             return (from Trainee anyTrainee in getTrainees()
-                        orderby anyTrainee.NameTrainee.FirstName
+                    orderby anyTrainee.NameTrainee.LastName, anyTrainee.NameTrainee.FirstName
                     group anyTrainee by anyTrainee.TeacherTrainee).ToList();
             else
                 return (from Trainee anyTrainee in getTrainees()
@@ -263,7 +263,7 @@ namespace BL
         {
             if(ordered)
             return (from Trainee anyTrainee in getTrainees()
-                    orderby anyTrainee.NameTrainee.FirstName
+                    orderby anyTrainee.NameTrainee.LastName, anyTrainee.NameTrainee.FirstName
                     group anyTrainee by GetNumberOfTestTrainee(anyTrainee)).ToList();
             else
                 return (from Trainee anyTrainee in getTrainees()
@@ -275,7 +275,7 @@ namespace BL
             if (ordered)
             {
                 var v = from tester in getTesters()
-                        orderby tester.NameTester
+                        orderby tester.NameTester.LastName, tester.NameTester.FirstName
                         group tester by tester.CarTypeTester
                        into g
                         select g;

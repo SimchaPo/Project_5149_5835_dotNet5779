@@ -85,27 +85,12 @@ namespace UI2
                     {
                         testersToShow = bl.getTesters();
                     }
-                    testers.ItemsSource = testersToShow;
                 }
                 if (carTypesOfTester.SelectedIndex != 0)
                 {
-                    if (sorted.IsChecked == true)
-                    {
-                        var v = from Tester t in bl.getTesters()
-                                orderby t.NameTester.LastName
-                                orderby t.NameTester.FirstName
-                                select t;
-                        foreach (var item in v)
-                        {
-                            testersToShow.Add(item);
-                        }
-                    }
-                    if (sorted.IsChecked == false)
-                    {
-                        testersToShow = bl.getTesters();
-                    }
-                    testers.ItemsSource = testersToShow;
+                    testersToShow = getTestersBySelectedCarType(carTypesOfTester.SelectedValue.ToString(), (bool)sorted.IsChecked);
                 }
+                testers.ItemsSource = testersToShow;
             }
         }
 
@@ -131,7 +116,18 @@ namespace UI2
 
         private void trainee_Checked(object sender, RoutedEventArgs e)
         {
-
+            if(trainee.IsChecked == false)
+            {
+                groupTraineeBy.Visibility = Visibility.Collapsed;
+                return;
+            }
+            groupTraineeBy.Visibility = Visibility.Visible;
+            List<string> traineesoption = new List<string>();
+            traineesoption.Add("כולם");
+            traineesoption.Add("בית ספר");
+            traineesoption.Add("מורה");
+            traineesoption.Add("מספר מבחנים");
+            groupTraineeBy.ItemsSource = traineesoption;
         }
 
         private void test_Checked(object sender, RoutedEventArgs e)
@@ -145,6 +141,11 @@ namespace UI2
         }
 
         private void notSorted_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void traineeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

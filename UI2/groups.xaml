@@ -45,7 +45,19 @@
             <Grid Name="testersCombo" Grid.Row="2">
                 <ComboBox x:Name="carTypesOfTester" SelectedItem="{Binding CarTypes}" SelectedIndex="0" FlowDirection="RightToLeft" Height="24" Visibility="Collapsed"/>
             </Grid>
-        <Grid Grid.Row="3">
+            <Grid Name="traineeCombo" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1">
+                <ComboBox x:Name="groupTraineeBy" SelectedItem="{Binding groupTrainee}" SelectedIndex="0" FlowDirection="RightToLeft" Height="24" Visibility="Collapsed"/>
+                </Grid>
+                <Grid Grid.Column="0">
+                    <ComboBox x:Name="traineeComboBox" SelectedItem="{Binding traineeCombos}" SelectedIndex="0" SelectionChanged="traineeComboBox_SelectionChanged" FlowDirection="RightToLeft" Height="24" Visibility="Collapsed"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="3">
                 <Button Name="show" Content="הצג" Click="show_Click"/>
             </Grid>
         </Grid>

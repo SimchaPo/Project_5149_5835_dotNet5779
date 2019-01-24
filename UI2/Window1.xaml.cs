@@ -23,7 +23,6 @@ namespace UI2
     public partial class Window1 : Window
     {
         IBL bl;
-        Tester tester;
 
         public Window1()
         {
