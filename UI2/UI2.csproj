@@ -81,9 +81,6 @@
     <Compile Include="create_a_test.xaml.cs">
       <DependentUpon>create_a_test.xaml</DependentUpon>
     </Compile>
-    <Compile Include="data.xaml.cs">
-      <DependentUpon>data.xaml</DependentUpon>
-    </Compile>
     <Compile Include="draftToDelete.cs" />
     <Compile Include="groups.xaml.cs">
       <DependentUpon>groups.xaml</DependentUpon>
@@ -120,14 +117,7 @@
     <Compile Include="update_trainee.xaml.cs">
       <DependentUpon>update_trainee.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
-    </Compile>
     <Page Include="create_a_test.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="data.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -184,10 +174,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="update_trainee.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Window1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

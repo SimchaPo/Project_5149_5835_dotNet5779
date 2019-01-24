@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI2"
         mc:Ignorable="d"
-        Title="נתונים" Height="450" Width="800" Icon="images/לוגו משרד התחבורה.jpg">
+        Title="נתונים" Height="400" Width="800" Icon="images/לוגו משרד התחבורה.jpg">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -17,10 +17,9 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <Label Content="הצג:" FlowDirection="RightToLeft" FontSize="24"/>
+                <Label Content="הצגת נתוני המערכת על פי סינון" FlowDirection="RightToLeft" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFD31B05"/>
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -30,19 +29,21 @@
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="1">
                     <StackPanel FlowDirection="RightToLeft">
+                        <TextBlock Text="אלו נתונים ברצונך לקבל" FlowDirection="RightToLeft" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <RadioButton Name="tester" FontSize="20" Unchecked="tester_Checked" Content="בוחנים" Checked="tester_Checked" VerticalContentAlignment="Center"/>
                         <RadioButton Name="trainee" FontSize="20" Content="תלמידים" Unchecked="trainee_Checked" Checked="trainee_Checked" VerticalContentAlignment="Center"/>
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Column="0">
                     <StackPanel FlowDirection="RightToLeft">
+                        <TextBlock Text="האם למיין את הנתונים" FlowDirection="RightToLeft" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <RadioButton Name="sorted" FontSize="20"  Content="ממוין" VerticalContentAlignment="Center"/>
                         <RadioButton Name="notSorted" FontSize="20" Content="לא ממוין" VerticalContentAlignment="Center"/>
                     </StackPanel>
                 </Grid>
             </Grid>
             <Grid Name="testersCombo" Grid.Row="2">
-                <ComboBox x:Name="carTypesOfTester" SelectedItem="{Binding CarTypes}" SelectedIndex="0" FlowDirection="RightToLeft" Height="24" Visibility="Collapsed"/>
+                <ComboBox x:Name="carTypesOfTester" SelectedItem="{Binding CarTypes}" SelectedIndex="0" FlowDirection="RightToLeft" Height="24" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
             <Grid Name="traineeCombo" Grid.Row="2">
                 <Grid.ColumnDefinitions>
@@ -50,74 +51,80 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="1">
-                <ComboBox x:Name="groupTraineeBy" SelectedItem="{Binding groupTrainee}" SelectedIndex="0" SelectionChanged="groupTraineeBy_SelectionChanged" FlowDirection="RightToLeft" Height="24" Visibility="Collapsed"/>
+                    <ComboBox x:Name="groupTraineeBy" SelectedItem="{Binding groupTrainee}" SelectedIndex="0" SelectionChanged="groupTraineeBy_SelectionChanged" FlowDirection="RightToLeft" Height="24" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Grid>
                 <Grid Grid.Column="0">
                     <ComboBox x:Name="traineeComboBox" SelectedItem="{Binding traineeCombos}" SelectedIndex="0" FlowDirection="RightToLeft" Height="24" Visibility="Collapsed"/>
                 </Grid>
             </Grid>
             <Grid Grid.Row="3">
-                <Button Name="show" Content="הצג" Click="show_Click"/>
+                <Button Name="show" Content="הצג את הנתונים" FontSize="24" Click="show_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
         </Grid>
-        
-      
         <Grid Grid.Column="0">
-            <DataGrid Name="testers" AutoGenerateColumns="False" FlowDirection="RightToLeft" IsReadOnly="True" Visibility="Collapsed">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="שם בוחן">
-                        <DataGridTextColumn.Binding>
-                            <MultiBinding StringFormat="{}{0} {1}">
-                                <Binding Path="NameTester.FirstName" />
-                                <Binding Path="NameTester.LastName" />
-                            </MultiBinding>
-                        </DataGridTextColumn.Binding>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Header="סוג רכב" Binding="{Binding CarTypeTester}"/>
-                    <DataGridTextColumn Header="עיר" Binding="{Binding AddresTester.City}"/>
-                    <DataGridTextColumn Header="וותק" Binding="{Binding SeniorityTester}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <DataGrid Name="trainees" AutoGenerateColumns="False" FlowDirection="RightToLeft" IsReadOnly="True" Visibility="Collapsed">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="שם תלמיד">
-                        <DataGridTextColumn.Binding>
-                            <MultiBinding StringFormat="{}{0} {1}">
-                                <Binding Path="NameTrainee.FirstName" />
-                                <Binding Path="NameTrainee.LastName" />
-                            </MultiBinding>
-                        </DataGridTextColumn.Binding>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Header="סוג רכב" Binding="{Binding CarTypeTrainee}"/>
-                    <DataGridTextColumn Header="עיר" Binding="{Binding AddressTrainee.City}"/>
-                    <DataGridTextColumn Header="בית ספר" Binding="{Binding SchoolTrainee}"/>
-                    <DataGridTextColumn Header="מורה" Binding="{Binding TeacherTrainee}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <DataGrid Name="tests" AutoGenerateColumns="False" FlowDirection="RightToLeft" IsReadOnly="True" Visibility="Collapsed">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="שם בוחן">
-                        <DataGridTextColumn.Binding>
-                            <MultiBinding StringFormat="{}{0} {1}">
-                                <Binding Path="NameTester.FirstName" />
-                                <Binding Path="NameTester.LastName" />
-                            </MultiBinding>
-                        </DataGridTextColumn.Binding>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Header="שם תלמיד">
-                        <DataGridTextColumn.Binding>
-                            <MultiBinding StringFormat="{}{0} {1}">
-                                <Binding Path="NameTrainee.FirstName" />
-                                <Binding Path="NameTrainee.LastName" />
-                            </MultiBinding>
-                        </DataGridTextColumn.Binding>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Header="תאריך" Binding="{Binding dateTime}"/>
-                    <DataGridTextColumn Header="עיר" Binding="{Binding Address.City}"/>
-                    <DataGridTextColumn Header="סוג רכב" Binding="{Binding type}"/>
-                </DataGrid.Columns>
-            </DataGrid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <DataGrid Name="testers" AutoGenerateColumns="False" FlowDirection="RightToLeft" IsReadOnly="True" Visibility="Collapsed">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="שם בוחן">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="NameTester.FirstName" />
+                                    <Binding Path="NameTester.LastName" />
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="סוג רכב" Binding="{Binding CarTypeTester}"/>
+                        <DataGridTextColumn Header="עיר" Binding="{Binding AddresTester.City}"/>
+                        <DataGridTextColumn Header="וותק" Binding="{Binding SeniorityTester}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <DataGrid Name="trainees" AutoGenerateColumns="False" FlowDirection="RightToLeft" IsReadOnly="True" Visibility="Collapsed">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="שם תלמיד">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="NameTrainee.FirstName" />
+                                    <Binding Path="NameTrainee.LastName" />
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="סוג רכב" Binding="{Binding CarTypeTrainee}"/>
+                        <DataGridTextColumn Header="עיר" Binding="{Binding AddressTrainee.City}"/>
+                        <DataGridTextColumn Header="בית ספר" Binding="{Binding SchoolTrainee}"/>
+                        <DataGridTextColumn Header="מורה" Binding="{Binding TeacherTrainee}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <DataGrid Name="tests" AutoGenerateColumns="False" FlowDirection="RightToLeft" IsReadOnly="True" Visibility="Collapsed">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="שם בוחן">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="NameTester.FirstName" />
+                                    <Binding Path="NameTester.LastName" />
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="שם תלמיד">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="NameTrainee.FirstName" />
+                                    <Binding Path="NameTrainee.LastName" />
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="תאריך" Binding="{Binding dateTime}"/>
+                        <DataGridTextColumn Header="עיר" Binding="{Binding Address.City}"/>
+                        <DataGridTextColumn Header="סוג רכב" Binding="{Binding type}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Button Name="close" Content="סגירה" FontSize="24" Click="close_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
         </Grid>
-
     </Grid>
 </Window>

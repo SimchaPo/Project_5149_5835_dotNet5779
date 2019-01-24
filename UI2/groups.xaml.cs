@@ -58,76 +58,79 @@ namespace UI2
                 if (tester.IsChecked == false && trainee.IsChecked == false ||
                     sorted.IsChecked == false && notSorted.IsChecked == false)
                     throw new Exception("יש לסמן בחירה בכל אחת מן האפשרויות");
+                List<Tester> testersToShow = new List<Tester>();
+                List<Trainee> traineesToShow = new List<Trainee>();
+                if (tester.IsChecked == true)
+                {
+                    if (carTypesOfTester.SelectedIndex == 0)
+                    {
+                        if (sorted.IsChecked == true)
+                        {
+                            var v = from Tester t in bl.getTesters()
+                                    orderby t.NameTester.LastName, t.NameTester.FirstName
+                                    select t;
+                            foreach (var item in v)
+                            {
+                                testersToShow.Add(item);
+                            }
+                        }
+                        if (sorted.IsChecked == false)
+                        {
+                            testersToShow = bl.getTesters();
+                        }
+                    }
+                    if (carTypesOfTester.SelectedIndex != 0)
+                    {
+                        testersToShow = getTestersBySelectedCarType(carTypesOfTester.SelectedValue.ToString(), (bool)sorted.IsChecked);
+                    }
+                    testers.Visibility = Visibility.Visible;
+                    testers.ItemsSource = testersToShow;
+                }
+                if (trainee.IsChecked == true)
+                {
+                    if (groupTraineeBy.SelectedIndex == 0)
+                    {
+                        if (sorted.IsChecked == true)
+                        {
+                            var v = from Trainee t in bl.getTrainees()
+                                    orderby t.NameTrainee.LastName, t.NameTrainee.FirstName
+                                    select t;
+                            foreach (var item in v)
+                            {
+                                traineesToShow.Add(item);
+                            }
+                        }
+                        if (sorted.IsChecked == false)
+                        {
+                            traineesToShow = bl.getTrainees();
+                        }
+                    }
+                    trainees.ItemsSource = traineesToShow;
+                    if (groupTraineeBy.SelectedIndex > 0) 
+                    {
+                        if (traineeComboBox.SelectedValue == null)
+                        {
+                            throw new Exception("יש לבחור בסינון הרצוי");
+                        }
+                            switch (groupTraineeBy.SelectedIndex)
+                        {
+                            case 1:
+                                trainees.ItemsSource = getTraineesBySelectedSchool(traineeComboBox.SelectedValue.ToString(), (bool)sorted.IsChecked);
+                                break;
+                            case 2:
+                                trainees.ItemsSource = getTraineeBySelectedTeacher(traineeComboBox.SelectedValue.ToString(), (bool)sorted.IsChecked);
+                                break;
+                            case 3:
+                                trainees.ItemsSource = getTraineeBySelectedNumOfTests(traineeComboBox.SelectedValue.ToString(), (bool)sorted.IsChecked);
+                                break;
+                        }
+                    }
+                    trainees.Visibility = Visibility.Visible;
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            List<Tester> testersToShow = new List<Tester>();
-            List<Trainee> traineesToShow = new List<Trainee>();
-            if (tester.IsChecked == true)
-            {
-                testers.Visibility = Visibility.Visible;
-
-                if (carTypesOfTester.SelectedIndex == 0)
-                {
-                    if (sorted.IsChecked == true)
-                    {
-                        var v = from Tester t in bl.getTesters()
-                                orderby t.NameTester.LastName, t.NameTester.FirstName
-                                select t;
-                        foreach (var item in v)
-                        {
-                            testersToShow.Add(item);
-                        }
-                    }
-                    if (sorted.IsChecked == false)
-                    {
-                        testersToShow = bl.getTesters();
-                    }
-                }
-                if (carTypesOfTester.SelectedIndex != 0)
-                {
-                    testersToShow = getTestersBySelectedCarType(carTypesOfTester.SelectedValue.ToString(), (bool)sorted.IsChecked);
-                }
-                testers.ItemsSource = testersToShow;
-            }
-            if(trainee.IsChecked == true)
-            {
-                trainees.Visibility = Visibility.Visible;
-                if(groupTraineeBy.SelectedIndex == 0)
-                {
-                    if (sorted.IsChecked == true)
-                    {
-                        var v = from Trainee t in bl.getTrainees()
-                                orderby t.NameTrainee.LastName, t.NameTrainee.FirstName
-                                select t;
-                        foreach (var item in v)
-                        {
-                            traineesToShow.Add(item);
-                        }
-                    }
-                    if (sorted.IsChecked == false)
-                    {
-                        traineesToShow = bl.getTrainees();
-                    }
-                }
-                trainees.ItemsSource = traineesToShow;
-                if(groupTraineeBy.SelectedIndex == 1)
-                {
-                    switch (groupTraineeBy.SelectedIndex)
-                    {
-                        case 1:
-                            trainees.ItemsSource = getTraineesBySelectedSchool(traineeComboBox.SelectedValue.ToString(), (bool)sorted.IsChecked);
-                            break;
-                        case 2:
-                            trainees.ItemsSource = getTraineeBySelectedTeacher(traineeComboBox.SelectedValue.ToString(), (bool)sorted.IsChecked);
-                            break;
-                        case 3:
-                            trainees.ItemsSource = getTraineeBySelectedNumOfTests(traineeComboBox.SelectedValue.ToString(), (bool)sorted.IsChecked);
-                            break;
-                    }
-                }
             }
         }
 
@@ -199,6 +202,11 @@ namespace UI2
             }
             traineeComboBox.Visibility = Visibility.Visible;
             traineeComboBox.ItemsSource = strs;
+        }
+
+        private void close_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

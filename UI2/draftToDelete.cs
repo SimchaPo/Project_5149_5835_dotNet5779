@@ -29,55 +29,44 @@ namespace UI2
             {
                 result.Add(tester);
             }
-
-
             return result;
         }
 
         private List<Trainee> getTraineesBySelectedSchool(string SelectedSchool, bool IsOrdered)
         {
             List<Trainee> result = new List<Trainee>();
-
-
             var v = (from anyGroup in bl.GetTraineesGroupedBySchool(IsOrdered)
-                    where anyGroup.Key==SelectedSchool
+                    where anyGroup.Key.ToString() == SelectedSchool
                      select anyGroup).ToList().FirstOrDefault();
             foreach(Trainee trainee in v)
             {
                 result.Add(trainee);
             }
-
-            return result;
-        }
-        private List<Trainee> getTraineeBySelectedNumOfTests(string numOfTests,bool IsOrdered)
-        {
-            List<Trainee> result = new List<Trainee>();
-
-
-            var v = (from anyGroup in bl.GetTraineesGroupedByNumOfTests(IsOrdered)
-                     where anyGroup.Key.ToString() == numOfTests
-                     select anyGroup).ToList().FirstOrDefault();
-            foreach (Trainee trainee in v)
-            {
-                result.Add(trainee);
-            }
-
             return result;
         }
 
         private List<Trainee> getTraineeBySelectedTeacher(string teacher,bool IsOrdered)
         {
             List<Trainee> result = new List<Trainee>();
-
-
             var v = (from anyGroup in bl.GetTreineesGroupedByTeacher(IsOrdered)
-                     where anyGroup.Key == teacher
+                     where anyGroup.Key.ToString() == teacher
                      select anyGroup).ToList().FirstOrDefault();
             foreach (Trainee trainee in v)
             {
                 result.Add(trainee);
             }
-
+            return result;
+        }
+        private List<Trainee> getTraineeBySelectedNumOfTests(string numOfTests,bool IsOrdered)
+        {
+            List<Trainee> result = new List<Trainee>();
+            var v = (from anyGroup in bl.GetTraineesGroupedByNumOfTests(IsOrdered)
+                     where anyGroup.Key.ToString() == numOfTests
+                     select anyGroup).ToList().FirstOrDefault();
+            foreach (Trainee trainee in v)
+            {
+                result.Add(trainee);
+            }        
             return result;
         }
 

@@ -140,12 +140,8 @@ namespace UI2
 
         private void show_data_Click(object sender, RoutedEventArgs e)
         {
-            /*data data1 = new data();
-            data1.ShowDialog();
-            Window1 window = new Window1();
-            window.Show();*/
             groups gr = new groups();
-            gr.Show();
+            gr.ShowDialog();
         }
     }
     
