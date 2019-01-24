@@ -259,9 +259,6 @@ namespace BL
         {
             return (from Tester anyTester in getTesters()
                     group anyTester by anyTester.CarTypeTester).ToList();
- 
-
-             throw new NotImplementedException();
         }
 
         public int GetNumberOfTestTrainee(Trainee trainee)
