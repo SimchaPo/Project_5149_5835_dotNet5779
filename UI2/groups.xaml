@@ -1,0 +1,38 @@
+﻿<Window x:Class="UI2.groups"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI2"
+        mc:Ignorable="d"
+        Title="נתונים" Height="450" Width="800" Icon="images/לוגו משרד התחבורה.jpg">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
+            <Button Content="טסטרים לפי סוג רכב" Click="Button_Click"/>
+        </Grid>
+        <Grid Grid.Column="0">
+            <DataGrid>
+                <DataGridTextColumn  Header="שם בוחן">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat="{}{0} {1}">
+                            <Binding Path="NameTester.FirstName" />
+                            <Binding Path="NameTester.LastName" />
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTextColumn  Header="{Binding }">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat="{}{0} {1}">
+                            <Binding Path="NameTester.FirstName" />
+                            <Binding Path="NameTester.LastName" />
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>
