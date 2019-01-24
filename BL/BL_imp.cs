@@ -237,27 +237,58 @@ namespace BL
 
         // impelementetion of speciael queries
 
-        public List<IGrouping<string,Trainee>> GetTraineesGroupedBySchool()
+        public List<IGrouping<string,Trainee>> GetTraineesGroupedBySchool(bool ordered)
         {
+            if(ordered)
             return (from Trainee anyTrainee in getTrainees()
+                    orderby anyTrainee.NameTrainee
                     group anyTrainee by anyTrainee.SchoolTrainee).ToList();
+            else
+                return (from Trainee anyTrainee in getTrainees()
+                        group anyTrainee by anyTrainee.SchoolTrainee).ToList();
         }
 
-        public List<IGrouping<string,Trainee>> GetTreineesGroupedByTeacher()
+        public List<IGrouping<string,Trainee>> GetTreineesGroupedByTeacher(bool ordered)
         {
+            if(ordered)
             return (from Trainee anyTrainee in getTrainees()
+                        orderby anyTrainee.NameTrainee
                     group anyTrainee by anyTrainee.TeacherTrainee).ToList();
+            else
+                return (from Trainee anyTrainee in getTrainees()
+                        group anyTrainee by anyTrainee.TeacherTrainee).ToList();
         }
 
-        public List<IGrouping<int,Trainee>> GetTraineesGroupedByNumOfTests()
+        public List<IGrouping<int,Trainee>> GetTraineesGroupedByNumOfTests(bool ordered)
         {
+            if(ordered)
             return (from Trainee anyTrainee in getTrainees()
+                    orderby anyTrainee.NameTrainee
                     group anyTrainee by GetNumberOfTestTrainee(anyTrainee)).ToList();
+            else
+                return (from Trainee anyTrainee in getTrainees()
+                        group anyTrainee by GetNumberOfTestTrainee(anyTrainee)).ToList();
+        }
+
+        public List<IGrouping<CarType, Tester>> GetTestersGroupedByCarType(bool ordered)
+        {
+            if(ordered)
+            return (from Tester anyTester in getTesters()
+                    orderby anyTester.NameTester
+                    group anyTester by anyTester.CarTypeTester).ToList();
+
+            else
+                return (from Tester anyTester in getTesters()
+
+                        group anyTester by anyTester.CarTypeTester).ToList();
+
         }
 
         public int GetNumberOfTestTrainee(Trainee trainee)
         {
             return getTestsOfTrainee(trainee).Count();
         }
+
+      
     }
 }

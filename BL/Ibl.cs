@@ -39,7 +39,7 @@ namespace BL
         List<Test> getTests();
 
         //special queries
-
+        List<IGrouping<CarType, Tester>> GetTestersGroupedByCarType();
         List<IGrouping<string,Trainee>> GetTraineesGroupedBySchool();
         List<IGrouping<string,Trainee>> GetTreineesGroupedByTeacher();
         List<IGrouping<int,Trainee>> GetTraineesGroupedByNumOfTests();
