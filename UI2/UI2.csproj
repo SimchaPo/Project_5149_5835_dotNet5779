@@ -78,9 +78,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CheckTestersInRange.xaml.cs">
-      <DependentUpon>CheckTestersInRange.xaml</DependentUpon>
-    </Compile>
     <Compile Include="create_a_test.xaml.cs">
       <DependentUpon>create_a_test.xaml</DependentUpon>
     </Compile>
@@ -119,10 +116,6 @@
     <Compile Include="update_trainee.xaml.cs">
       <DependentUpon>update_trainee.xaml</DependentUpon>
     </Compile>
-    <Page Include="CheckTestersInRange.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="create_a_test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

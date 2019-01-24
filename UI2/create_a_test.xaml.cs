@@ -83,7 +83,7 @@ namespace UI2
                 Day = testDate.SelectedDate.Value.Day;
                 Hour = hour.SelectedIndex + 8;
                 dateTime = new DateTime(Year, Month, Day, Hour, 00, 00);
-                if(dateTime < DateTime.Now)
+                if (dateTime < DateTime.Now)
                 {
                     throw new Exception("התאריך עבר..");
                 }
@@ -91,7 +91,9 @@ namespace UI2
                 {
                     testers.Add(t);
                 }
-              checkTestersInRange();
+                search.Visibility = Visibility.Visible;
+                myProgressBar.Visibility = Visibility.Visible;
+                checkTestersInRange();
             }
             catch (Exception ex)
             {

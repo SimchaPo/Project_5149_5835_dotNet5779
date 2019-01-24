@@ -18,7 +18,7 @@ using System.ComponentModel;
 
 namespace UI2
 {
-    partial class create_a_test: Window
+    partial class create_a_test : Window
     {
         public class inputMap
         {
@@ -47,14 +47,12 @@ namespace UI2
         List<WorkerHelp> listOfWorkers;
         public void checkTestersInRange()
         {
+
             listOfWorkers = new List<WorkerHelp>();
-
-
-            PercentLabel.Content = "0%";
             myProgressBar.Maximum = testers.Count();
             myProgressBar.Value = 0;
 
-            listOfWorkers = (testers.Select(t => new WorkerHelp(new inputMap() { address = trainee.AddressTrainee, tester = t }))).ToList();
+            listOfWorkers = testers.Select(t => new WorkerHelp(new inputMap() { address = trainee.AddressTrainee, tester = t })).ToList();
 
             testers.Clear();
             foreach (WorkerHelp item in listOfWorkers)
@@ -62,35 +60,33 @@ namespace UI2
                 item.worker.DoWork += Worker_DoWork;
                 item.worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
                 item.worker.WorkerSupportsCancellation = true;
-
                 item.worker.RunWorkerAsync(item.input_map);
             }
         }
 
-            public void Worker_DoWork(object sender, DoWorkEventArgs e)
+        public void Worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+            inputMap input = (inputMap)e.Argument;
+
+            double dist;
+            try
             {
-
-                inputMap input = (inputMap)e.Argument;
-
-                double dist;
-                try
-                {
-                    dist = map.GetDist(input.address, input.tester.AddresTester);
-                }
-                catch (Exception) //אם ישנה שגיאה נשים ערך ברירת מחדל במרחק
-                {
-                    dist = 20;
-                }
-
-                e.Result = new outputMap() { tester = input.tester, distance = dist };
-
+                dist = map.GetDist(input.address, input.tester.AddresTester);
+            }
+            catch (Exception) //אם ישנה שגיאה נשים ערך ברירת מחדל במרחק
+            {
+                dist = 20;
             }
 
-            private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-            {
+            e.Result = new outputMap() { tester = input.tester, distance = dist };
+        }
+
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
 
 
-                outputMap output = (outputMap)e.Result;
+            outputMap output = (outputMap)e.Result;
 
                 if (output.tester.MaxFarFromTester > output.distance)
                     testers.Add(output.tester);
