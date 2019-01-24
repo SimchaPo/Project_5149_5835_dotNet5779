@@ -29,6 +29,8 @@ namespace BE
             CheckPhoneNumber(newTester.PhoneNumberTester);
             CheckString(newTester.AddresTester.City, "שם העיר");
             CheckString(newTester.AddresTester.Street, "שם הרחוב");
+            CheckEnglishLetters(newTester.AddresTester.City);
+            CheckEnglishLetters(newTester.AddresTester.Street);
             if (newTester.AddresTester.HouseNum == 0)
                 throw new Exception("מספר בית לא תקין");
             if (newTester.BirthDateTester.AddYears(Configuration.minAgetester) > DateTime.Now)
@@ -60,6 +62,8 @@ namespace BE
             CheckPhoneNumber(newTrainee.PhoneNumberTrainee);
             CheckString(newTrainee.AddressTrainee.City, "שם העיר");
             CheckString(newTrainee.AddressTrainee.Street, "שם הרחוב");
+            CheckEnglishLetters(newTrainee.AddressTrainee.City);
+            CheckEnglishLetters(newTrainee.AddressTrainee.Street);
             if (newTrainee.AddressTrainee.HouseNum == 0)
                 throw new Exception("מספר בית לא תקין");
             CheckString(newTrainee.SchoolTrainee, "שם בית הספר");
@@ -94,13 +98,18 @@ namespace BE
                 ((myNumber.Length == 10 && myNumber[1] == '5')  || (myNumber.Length == 9 && myNumber[1] != '5'))))
             throw new Exception("מספר טלפון לא תקין");
         }
-
         public static void CheckString(string myString, string item)
         {
             if (myString.Any(c => !(char.IsLetter(c) || char.IsWhiteSpace(c))))
                 throw new Exception(item + " לא תקין");
         }
-
+        public static void CheckEnglishLetters(string myStr)
+        {
+            if (myStr.Any(t => !char.IsLower(t) && !char.IsUpper(t) && !char.IsWhiteSpace(t)))
+            {
+                throw new Exception("יש להזין תיבות באנגלית בלבד");
+            }
+        }
         //***************CLONES*************
         //********clone for address
         public static Address Clone(this Address address)
@@ -129,9 +138,7 @@ namespace BE
             }
             return null;
         }
-
         //clone for Trainee
-
         public static Trainee Clone(this Trainee t)
         {
             if (t != null)
@@ -170,7 +177,6 @@ namespace BE
             }
             return null;
         }
-
         public static Tester Clone(this Tester t)
         {
             if (t != null)
@@ -331,7 +337,5 @@ namespace BE
 
             }
         }
-
-
     }
 }

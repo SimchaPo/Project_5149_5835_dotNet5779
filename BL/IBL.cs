@@ -28,6 +28,7 @@ namespace BL
         Test GetTest(string id);
         Trainee GetTrainee(string trainee);
         Tester GetTester(string id);
+        void removeTest(string idTest);
 
         List<Tester> getTestersAvailable(DateTime dateTime);
         void checkTraineeDoTest(Trainee trainee);

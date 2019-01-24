@@ -15,9 +15,9 @@
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="26*"/>
-                    <RowDefinition Height="149*"/>
-                    <RowDefinition Height="47*"/>
-                    <RowDefinition Height="128*"/>
+                    <RowDefinition Height="140*"/>
+                    <RowDefinition Height="70*"/>
+                    <RowDefinition Height="120*"/>
                     <RowDefinition Height="30*"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" >
@@ -48,19 +48,40 @@
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="20"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="20"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Row="2" Grid.Column="1" FlowDirection="RightToLeft" Orientation="Horizontal">
-                        <Label Content="עיר:" Height="24"/>
-                        <TextBox IsReadOnly="True" x:Name="cityTextBox" Text="{Binding AddressTrainee.City, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="68" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24"/>
-                        <Label Content="רחוב:" Height="24"/>
-                        <TextBox IsReadOnly="True" x:Name="streetTextBox" Text="{Binding AddressTrainee.Street, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24" Width="68"/>
-                        <Label Content="מספר בית:" Height="24"/>
-                        <TextBox IsReadOnly="True" x:Name="houseNumTextBox" Text="{Binding AddressTrainee.HouseNum, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="30" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24" MaxLength="4"/>
-                    </StackPanel>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="5*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <TextBlock Text="יש להזין כתובת באנגלית" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" FontWeight="Bold" Foreground="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="20"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="3">
+                            <StackPanel>
+                                <Label Content="עיר:" Height="24" FlowDirection="RightToLeft" HorizontalAlignment="Center"/>
+                                <TextBox  IsReadOnly="True" x:Name="cityTextBox" Text="{Binding AddresTester.City, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="100" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <StackPanel>
+                                <Label Content="רחוב:" Height="24" FlowDirection="RightToLeft" HorizontalAlignment="Center"/>
+                                <TextBox IsReadOnly="True" x:Name="streetTextBox" Text="{Binding AddresTester.Street, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24" Width="100"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <StackPanel>
+                                <Label Content="מספר בית:" Height="24" FlowDirection="RightToLeft" HorizontalAlignment="Center"/>
+                                <TextBox IsReadOnly="True" x:Name="houseNumTextBox" Text="{Binding AddresTester.HouseNum, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="40" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24" MaxLength="4"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
                 </Grid>
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>

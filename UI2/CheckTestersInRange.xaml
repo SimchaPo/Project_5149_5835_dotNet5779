@@ -5,10 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI2"
         mc:Ignorable="d"
-        Title="בודק טסטרים בטווח" Height="167" Width="254">
+        Title="בודק טסטרים בטווח" Height="167" Width="254" Icon="images/לוגו משרד התחבורה.jpg" >
     <Grid>
-        <ProgressBar Name="myPrgressBar" HorizontalAlignment="Left" Height="20" Margin="30,57,0,0" VerticalAlignment="Top" Width="185"/>
-        <Label Name="percentLabel" Content="0%" HorizontalAlignment="Left" Margin="104,21,0,0" VerticalAlignment="Top"/>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Label Name="percentLabel" Content="0%" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <ProgressBar Name="myPrgressBar" Height="20" Width="185"/>
+        </Grid>
     </Grid>
 </Window>

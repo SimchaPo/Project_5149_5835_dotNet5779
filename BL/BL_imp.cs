@@ -26,6 +26,12 @@ namespace BL
         }
         public void removeTester(string idTester)
         {
+            var v = from test in getTestsOfTester(GetTester(idTester))
+                    select test;
+            foreach (Test test in v)
+            {
+                removeTest(test.TestNum);
+            }
             idal.removeTester(idTester);
         }
         public List<Tester> getTesters()
@@ -175,6 +181,12 @@ namespace BL
         }
         public void removeTrainee(string idTrainee)
         {
+            var v = from test in getTestsOfTrainee(GetTrainee(idTrainee))
+                    select test;
+            foreach(Test test in v)
+            {
+                removeTest(test.TestNum);
+            }
             idal.removeTrainee(idTrainee);
         }
 
@@ -193,6 +205,14 @@ namespace BL
                 }
             }
             idal.AddTest(test);
+        }
+        public void removeTest(string idTest)
+        {
+            if (getTests().All(t => t.TestNum != idTest))
+            {
+                throw new Exception("לא קיים מבחן כזה במערכת");
+            }
+            idal.removeTest(idTest);
         }
         public List<Test> getTests()
         {
