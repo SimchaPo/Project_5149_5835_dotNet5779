@@ -255,9 +255,20 @@ namespace BL
                     group anyTrainee by GetNumberOfTestTrainee(anyTrainee)).ToList();
         }
 
+        public List<IGrouping<CarType, Tester>> GetTestersGroupedByCarType()
+        {
+            return (from Tester anyTester in getTesters()
+                    group anyTester by anyTester.CarTypeTester).ToList();
+ 
+
+             throw new NotImplementedException();
+        }
+
         public int GetNumberOfTestTrainee(Trainee trainee)
         {
             return getTestsOfTrainee(trainee).Count();
         }
+
+      
     }
 }
