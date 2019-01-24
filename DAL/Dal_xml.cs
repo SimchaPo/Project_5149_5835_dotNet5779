@@ -329,10 +329,7 @@ namespace DAL
                           Results = anyTest.Element("Results").ToExamResults()
                       }).FirstOrDefault();
 
-            if (result != null)
-                return result;
-            else
-                throw new Exception("לא קיים במערכת בוחן בעל מספר מזהה זה");
+            return result;
 
         }
 
@@ -372,10 +369,10 @@ namespace DAL
                           LastExamDate = DateTime.Parse(tra.Element("LastExamDate").Value)
 
                       }).FirstOrDefault();
-            if (rainee != null)
+            
                 return rainee;
-            else
-                throw new Exception("תלמיד בעל תעודת זהות זו לא קיים במערכת");
+            
+                
 
         }
 
@@ -410,11 +407,9 @@ namespace DAL
                           mat = anyTester.Element("mat").Value.ToMatrix(),
                           MaxFarFromTester = int.Parse(anyTester.Element("MaxFarFromTester").Value)
                       }).FirstOrDefault();
-            if (result != null)
+            
                 return result;
-            else
-                throw new Exception("לא קיים במערכת בוחן בעל תעודת זהות זו");
-
+            
         }
 
         public List<Tester> getTesters()
@@ -526,13 +521,38 @@ namespace DAL
         }
         //פונקציה האחראית על המספר הרץ
         static int examIDNum = Configuration.minIDNum;
-        public static string getExamIDNum()
+        public string getExamIDNum()
         {
-            if (examIDNum < 10000000) //reset IDnum - need to check what to do with old tests
+
+
+            LoadDataTest();
+            bool emptyTestList = false;
+            int IdNum;
+            try
             {
-                return examIDNum++.ToString().PadLeft(8, '0'); //return examIDnum as a string and adds '0' to left of the number
+                List<Test> tests = getTests();
             }
-            return examIDNum++.ToString();
+            catch (Exception)
+            {
+
+                emptyTestList = true;
+            }
+            if (emptyTestList)
+                IdNum = Configuration.minIDNum;
+            else
+            {
+              IdNum = int.Parse
+                    ((from Test t in getTests()
+                         orderby t.TestNum
+                         select t).Last().TestNum);
+            }
+
+            IdNum += 1;
+            if (IdNum < 10000000) //reset IDnum - need to check what to do with old tests
+            {
+                return IdNum.ToString().PadLeft(8, '0'); //return examIDnum as a string and adds '0' to left of the number
+            }
+            return IdNum.ToString();
         }
 
     }
