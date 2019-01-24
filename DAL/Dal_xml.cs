@@ -520,7 +520,7 @@ namespace DAL
       
         }
         //פונקציה האחראית על המספר הרץ
-        static int examIDNum = Configuration.minIDNum;
+        
         public string getExamIDNum()
         {
 
