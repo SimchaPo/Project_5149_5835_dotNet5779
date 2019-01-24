@@ -11,6 +11,12 @@ namespace UI2
 {
     public partial class groups : Window
     {
+        private List<string> getListOfCarTypeTesterForComboBox()
+        {
+            return (from anyGroup in bl.GetTestersGroupedByCarType(true)
+                     select anyGroup.Key.ToString()).ToList();
+        }
+
         private List<Tester> getTestersBySelectedCarType(string SelectedCarType,bool IsOrdred)
         {
             List<Tester> result = new List<Tester>();
