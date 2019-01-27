@@ -95,9 +95,9 @@
             <StackPanel Grid.Column="1">
                 <ComboBox x:Name="carTypeTraineeComboBox" SelectedItem="{Binding CarTypeTrainee}" FlowDirection="RightToLeft" Height="24"/>
                 <ComboBox x:Name="gearboxTraineeComboBox" SelectedItem="{Binding GearboxTrainee}" FlowDirection="RightToLeft" Height="24"/>
-                <TextBox x:Name="schoolTraineeTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding SchoolTrainee, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
-                <TextBox x:Name="teacherTraineeTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding TeacherTrainee, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
-                <TextBox x:Name="numberOfLessonTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding NumberOfLesson, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center" MaxLength="9"/>
+                <TextBox x:Name="schoolTraineeTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding SchoolTrainee, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="teacherTraineeTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding TeacherTrainee, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="numberOfLessonTextBox" VerticalAlignment="Center" FlowDirection="RightToLeft" Text="{Binding NumberOfLesson, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Height="24" VerticalContentAlignment="Center"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="4">

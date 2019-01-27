@@ -81,7 +81,7 @@
     <Compile Include="create_a_test.xaml.cs">
       <DependentUpon>create_a_test.xaml</DependentUpon>
     </Compile>
-    <Compile Include="draftToDelete.cs" />
+    <Compile Include="partial class groups.cs" />
     <Compile Include="groups.xaml.cs">
       <DependentUpon>groups.xaml</DependentUpon>
     </Compile>
