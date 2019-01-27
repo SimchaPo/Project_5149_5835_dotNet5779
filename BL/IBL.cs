@@ -31,7 +31,6 @@ namespace BL
         void removeTest(string idTest);
 
         List<Tester> getTestersAvailable(DateTime dateTime);
-        List<DateTime> getMoreDatesAvailable(DateTime dateTime);
         void checkTraineeDoTest(Trainee trainee);
         List<Test> getTestsOfTrainee(Trainee trainee);
         List<Test> getTestsOfTester(Tester tester);
