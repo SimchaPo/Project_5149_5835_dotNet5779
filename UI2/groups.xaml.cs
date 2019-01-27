@@ -83,6 +83,7 @@ namespace UI2
                     {
                         testersToShow = getTestersBySelectedCarType(carTypesOfTester.SelectedValue.ToString(), (bool)sorted.IsChecked);
                     }
+                    trainees.Visibility = Visibility.Collapsed;
                     testers.Visibility = Visibility.Visible;
                     testers.ItemsSource = testersToShow;
                 }
@@ -125,6 +126,7 @@ namespace UI2
                                 break;
                         }
                     }
+                    testers.Visibility = Visibility.Collapsed;
                     trainees.Visibility = Visibility.Visible;
                 }
             }

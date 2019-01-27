@@ -16,40 +16,41 @@ namespace UI2
         private List<string> getListOfCarTypeTesterForComboBox()
         {
             return (from anyGroup in bl.GetTestersGroupedByCarType(true)
-                     select anyGroup.Key.ToString()).ToList();
+                    select anyGroup.Key.ToString()).ToList();
         }
 
-        private List<Tester> getTestersBySelectedCarType(string SelectedCarType,bool IsOrdred)
+        private List<Tester> getTestersBySelectedCarType(string SelectedCarType, bool IsOrdred)
         {
             List<Tester> result = new List<Tester>();
             var v = (from anyGroup in bl.GetTestersGroupedByCarType(IsOrdred)
                      where anyGroup.Key.ToString() == SelectedCarType
                      select anyGroup).ToList().FirstOrDefault();
-            foreach(Tester tester in v)
+            foreach (Tester tester in v)
             {
                 result.Add(tester);
             }
             return result;
-        }
+        } 
 
         private List<Trainee> getTraineesBySelectedSchool(string SelectedSchool, bool IsOrdered)
         {
             List<Trainee> result = new List<Trainee>();
 
-            if (SelectedSchool!=null)
+            if (SelectedSchool != null)
             {
 
-            var v = (from anyGroup in bl.GetTraineesGroupedBySchool(IsOrdered)
-                    where anyGroup.Key.ToString() == SelectedSchool
-                     select anyGroup).ToList().FirstOrDefault();
-            foreach(Trainee trainee in v)
-            {
-                result.Add(trainee);
+                var v = (from anyGroup in bl.GetTraineesGroupedBySchool(IsOrdered)
+                         where anyGroup.Key.ToString() == SelectedSchool
+                         select anyGroup).ToList().FirstOrDefault();
+                foreach (Trainee trainee in v)
+                {
+                    result.Add(trainee);
+                }
+                return result;
             }
-            return result;
+            return null;
         }
-
-        private List<Trainee> getTraineeBySelectedTeacher(string teacher,bool IsOrdered)
+        private List<Trainee> getTraineeBySelectedTeacher(string teacher, bool IsOrdered)
         {
             List<Trainee> result = new List<Trainee>();
             var v = (from anyGroup in bl.GetTreineesGroupedByTeacher(IsOrdered)
@@ -61,7 +62,7 @@ namespace UI2
             }
             return result;
         }
-        private List<Trainee> getTraineeBySelectedNumOfTests(string numOfTests,bool IsOrdered)
+        private List<Trainee> getTraineeBySelectedNumOfTests(string numOfTests, bool IsOrdered)
         {
             List<Trainee> result = new List<Trainee>();
             var v = (from anyGroup in bl.GetTraineesGroupedByNumOfTests(IsOrdered)
@@ -70,14 +71,14 @@ namespace UI2
             foreach (Trainee trainee in v)
             {
                 result.Add(trainee);
-            }        
+            }
             return result;
         }
 
         private List<string> getListForComboBoxBySChool()
         {
             return (from g in bl.GetTraineesGroupedBySchool(true)
-                     select g.Key.ToString()).ToList();
+                    select g.Key.ToString()).ToList();
         }
         private List<string> getListForComboBoxByTeacher()
         {
@@ -89,7 +90,6 @@ namespace UI2
         {
             return (from g in bl.GetTraineesGroupedByNumOfTests(true)
                     select g.Key.ToString()).ToList();
-            
         }
     }
 }

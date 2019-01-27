@@ -47,6 +47,44 @@ namespace BL
             Checks.CheckID(id);
             return idal.GetTester(id);
         }
+        public List<DateTime> getMoreDatesAvailable(DateTime dateTime)
+        {
+            List<DateTime> dates = new List<DateTime>();
+            dateTime = dateTime.AddDays(-(int)dateTime.DayOfWeek);
+            dateTime = dateTime.AddHours(-dateTime.Hour + 9);
+            if(dateTime < DateTime.Now)
+            {
+                if (DateTime.Now.Hour >= 15)
+                {
+                    dateTime = DateTime.Now.AddDays(1);
+                    dateTime = dateTime.AddHours(-dateTime.Hour + 9);
+                }
+                else
+                {
+                    dateTime = DateTime.Now.AddHours(1);
+                    dateTime = dateTime.AddMinutes(-DateTime.Now.Minute);
+                }
+            }
+            while ((int)dateTime.DayOfWeek <= 4)
+            {
+                while (dateTime.Hour <= 15)
+                {
+                    if(getTestersAvailable(dateTime).Count > 0)
+                    {
+                        dates.Add(dateTime);
+                    }
+                    dateTime = dateTime.AddHours(1);
+                }
+                dateTime = dateTime.AddDays(1);
+                dateTime = dateTime.AddHours(-dateTime.Hour + 9);
+            }
+            if(dates.Count == 0)
+            {
+                throw new Exception("אין מבחנים זמינים בשבוע זה");
+            }
+            return dates;
+        }
+
         public List<Tester> getTestersAvailable(DateTime dateTime)
         {
             List<Tester> testers = new List<Tester>();
@@ -79,10 +117,6 @@ namespace BL
             if (count > tester.MaxTestsTester)
                 return false;
             return true;
-        }
-        public List<Tester> getTestersFilter(Func<Tester, bool> filter)
-        {
-            throw new NotImplementedException();
         }
         public List<Test> getTestsOfTester(Tester tester)
         {

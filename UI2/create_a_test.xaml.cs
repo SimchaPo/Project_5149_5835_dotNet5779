@@ -36,7 +36,7 @@ namespace UI2
             bl = FactoryBL.GetBL();
             trainee = trainee6;
             DataContext = trainee;
-            list.DataContext = testers;
+            listBox.ItemsSource = testers;
         }
 
         private void test_Click(object sender, RoutedEventArgs e)
@@ -91,6 +91,20 @@ namespace UI2
                 {
                     testers.Add(t);
                 }
+                if (testers.Count == 0)
+                {
+                    List<DateTime> availableDatesToShow = new List<DateTime>();
+                    MessageBox.Show("לא נמצאו מבחנים בתאריך המבוקש," + "\n" + "המערכת מחפשת אחר מבחנים נוספים בשבוע זה", "שים לב",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                    foreach (DateTime t in bl.getMoreDatesAvailable(dateTime))
+                    {
+                        availableDatesToShow.Add(t);
+                    }
+                    listBoxDates.ItemsSource = availableDatesToShow;
+                    availableDates.Visibility = Visibility.Visible;
+                    return;
+                }
+                availableTesters.Visibility = Visibility.Visible;
                 search.Visibility = Visibility.Visible;
                 myProgressBar.Visibility = Visibility.Visible;
                 checkTestersInRange();
@@ -104,6 +118,32 @@ namespace UI2
         private void close_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void buttonDate_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if(listBoxDates.SelectedValue == null)
+                {
+                    throw new Exception("יש לבחור תאריך מהרשימה");
+                }
+                dateTime = (DateTime)listBoxDates.SelectedValue;
+                availableDates.Visibility = Visibility.Collapsed;
+                testers.Clear();
+                foreach (Tester t in bl.getTestersAvailable(dateTime))
+                {
+                    testers.Add(t);
+                }
+                availableTesters.Visibility = Visibility.Visible;
+                search.Visibility = Visibility.Visible;
+                myProgressBar.Visibility = Visibility.Visible;
+                checkTestersInRange();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

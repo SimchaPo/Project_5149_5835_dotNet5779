@@ -52,7 +52,7 @@
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="20"/>
-                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="7*"/>
                     <ColumnDefinition Width="10*"/>
                     <ColumnDefinition Width="10*"/>
                     <ColumnDefinition Width="20"/>
@@ -71,7 +71,7 @@
                 </Grid>
                 <Grid Grid.Column="1">
                     <StackPanel>
-                        <Label Content="מספר בית:" Height="24" FlowDirection="RightToLeft" HorizontalAlignment="Right"/>
+                        <Label Content="מספר בית:" Height="24" FlowDirection="RightToLeft" HorizontalAlignment="Center"/>
                         <TextBox Validation.ErrorTemplate="{x:Null}" x:Name="houseNumTextBox" Text="{Binding AddressTrainee.HouseNum, Mode=OneWayToSource, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="40" VerticalContentAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" Height="24" MaxLength="4"/>
                     </StackPanel>
                 </Grid>
