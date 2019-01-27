@@ -101,92 +101,18 @@ namespace DAL
                     IdTester = t.IdTester,
                     NameTester = t.NameTester.Clone(),
                     BirthDateTester = t.BirthDateTester,
-                    GenderTester = t.GenderTester,//did datetime return reffence or copy???????????????????
+                    GenderTester = t.GenderTester,
                     PhoneNumberTester = t.PhoneNumberTester,
                     AddresTester = t.AddresTester.Clone(),
                     SeniorityTester = t.SeniorityTester,
                     MaxTestsTester = t.MaxTestsTester,
                     CarTypeTester = t.CarTypeTester,
-                    mat = (bool[,])t.mat.Clone(), //i need to make the clone of mat*********
+                    mat = (bool[,])t.mat.Clone(),
                     MaxFarFromTester = t.MaxFarFromTester
                 };
             }
             return null;
         }
-
-
-        //************************checks
-        public static void CheckCorrectAgeTester(this Tester t)
-        {
-            if (t.BirthDateTester.AddYears(Configuration.minAgetester) > DateTime.Now)
-            {
-                throw new Exception("can't be a tester, you are to young");
-            }
-            if (t.BirthDateTester.AddYears(Configuration.maxAgeTester) < DateTime.Now)
-            {
-                throw new Exception("can't be a tester, you are to old");
-            }
-        }
-
-        public static void isCorrectAgeTrainee(this Trainee t)
-        {
-            if (t.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) > DateTime.Now)
-                throw new Exception("This student can't do a test, he is too young");
-        }
-
-
-        public static void DidTraineeExamInRecentTime(this Trainee t)
-        {
-
-            if (t.LastExamDate.AddDays(-Configuration.minDaysPassFromLastTest) > DateTime.Now) //we need to check if it is correct
-                throw new Exception("The studenet did exam in the last " + Configuration.minDaysPassFromLastTest + " days, please wait to correct time");//*** I need to change this
-        }
-        public static bool didTraineeMinLessons(this Trainee t)
-        {
-            return t.NumberOfLesson > Configuration.minLessons;
-        }
-
-
-        public static void didTesterPassLimitExam(this Tester t)
-        {
-            throw new Exception("not implemented func");
-        }
-        public static void didTesterVacatedInThisDate(this Tester t, DateTime time)
-        {
-            throw new Exception("not implemented func");
-        }
-
-#if false
-        public static bool didStudentPassThisSortVehicle(this Trainee t, Test test)
-        {
-
-            return ((t.GearboxTrainee == gear) || (t.GearboxTrainee == Gearbox.גיר_ידני)) //if the student pass exam on manual gear it also good for automatic gear
-                & (t.CarTypeTrainee == carType);
-        } 
-#endif
-
-        public static bool didStudentsExist(this Trainee t)//***IF I MOVE THIS CHECK FUNCTION TO CLASS OF CHEECK, I NEED TO CHANGE THIS FUNCTION
-        {
-            return DS.DataSource.Trainees.Exists(item => item.IdTrainee == t.IdTrainee);
-        }
-        public static bool didTesterExist(this Tester t)//***IF I MOVE THIS CHECK FUNCTION TO CLASS OF CHEECK, I NEED TO CHANGE THIS FUNCTION
-        {
-            return DS.DataSource.Testers.Exists(item => item.IdTester == t.IdTester);
-        }
-
-        public static bool didTestExist(this Test t)//***IF I MOVE THIS CHECK FUNCTION TO CLASS OF CHEECK, I NEED TO CHANGE THIS FUNCTION
-        {
-            return DS.DataSource.Tests.Exists(item => item.TestNum == t.TestNum);
-        }
-
-        public static void DidtesterFitToTrainee(this Tester tester, Trainee trainee)
-        {
-            if (tester.CarTypeTester != trainee.CarTypeTrainee)
-                throw new Exception("התמחות הבוחן אינה מתאימה לרכב עליו למד הנבחן");
-        }
-
-
-
 
         //this function for Dal_xml class
         public static XElement ToXElement(this FullName fullName)
@@ -214,8 +140,7 @@ namespace DAL
         {
             if (Result.Value != "null")
                 return new examResults()
-                {
-                    
+                {                   
                     mirrors = bool.Parse(Result.Element("mirrors").Value),
                     blinker = bool.Parse(Result.Element("blinker").Value),
                     distance = bool.Parse(Result.Element("distance").Value),
@@ -232,6 +157,7 @@ namespace DAL
             XElement HouseNum = new XElement("HouseNum", address.HouseNum);
             return new XElement("Address", City, Street, HouseNum);
         }
+
         public static string ToStringMat(this bool[,] mat)
         {
             string time = "";
@@ -249,6 +175,7 @@ namespace DAL
             }
             return time;
         }
+
         public static bool[,] ToMatrix(this string work)
         {
             bool[,] mat = new bool[5, 7] { { false, false, false, false, false, false, false},
@@ -274,10 +201,6 @@ namespace DAL
                 }
             }
             return mat;
-        }
-
-        
-    };
-   
-
+        }       
+    };   
 }

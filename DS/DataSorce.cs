@@ -9,7 +9,6 @@ namespace DS
 {
     public class DataSource
     {
-
         //******exam list**********
         private static List<Test> tests = new List<Test>();  //list of all of the exams
         public static List<Test> Tests//property
@@ -29,39 +28,5 @@ namespace DS
         { //propterty
             get { return trainees; }
         } //return refference of the trainee list
-
-       /* public void init()
-        {
-            Testers.Add(new Tester
-            {
-                AddresTester = new Address { Street = "baruch duvdevani", HouseNum = 40, City = "jerusalem" }
-                ,
-                IdTester = "304944855",
-                NameTester = new FullName { FirstName = "netnel", LastName = "zadok" },
-                BirthDateTester = new DateTime(1970, 1, 1),
-                GenderTester = Gender.זכר,
-                PhoneNumberTester = "05444444",
-                SeniorityTester = 15,
-                MaxTestsTester = 15,
-                CarTypeTester = CarType.רכב_פרטי
-                ,
-                MaxFarFromTester = 15
-            ,
-                mat = new bool?[5, 6] {
-                    {null,true,true,true,true,true },
-                    {null,null,null,null,null,null },
-                    {null,null,null,null,null,null },
-                    {null,null,null,null,null,null },
-                    {null,true,null,true,true,true },
-                    }
-            }
-
-                );
-
-
-        }*/
-
-
-
     }
 }

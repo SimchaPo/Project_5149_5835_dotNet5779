@@ -15,7 +15,6 @@ namespace BE
         public override string ToString()
         {
             return "mirrors " + mirrors + " blinker " + " distance " + distance + " passTest " + passTest;
-        } 
-        
+        }         
     }
 }

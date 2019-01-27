@@ -111,6 +111,7 @@ namespace UI2
                 userLastName.Text = userLastName.Text = "שם משפחה";
                 userID.Text = "מספר זהות";
                 old_user_detailes.Visibility = Visibility.Collapsed;
+                combo.SelectedIndex = 0;
             }
         }
 

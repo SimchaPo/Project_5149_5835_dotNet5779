@@ -11,7 +11,6 @@ namespace BE
         public string City { get; set; }
         public string Street { get; set; }
         public int HouseNum { get; set; }
-
         public override string ToString()
         {
             return Street + " " + HouseNum + " st. " + City + " israel";

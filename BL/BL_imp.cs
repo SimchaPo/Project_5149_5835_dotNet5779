@@ -11,9 +11,7 @@ namespace BL
     public class BL_imp : IBL
     {
         Idal idal = FactoryDal.GetDal();
-
         //********************* Tester Func ******************
-
         public void addTester(Tester newTester)
         {
             Checks.CheckTesterInput(newTester);

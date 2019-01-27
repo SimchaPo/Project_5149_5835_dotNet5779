@@ -8,8 +8,7 @@ using BE;
 namespace DAL
 {
     public interface Idal
-    {
-        
+    {        
         void addTester(Tester newTester);
         void removeTester(string idTester);
         void changeTester(Tester updateTester);

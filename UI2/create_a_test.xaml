@@ -165,7 +165,7 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Name="list" Grid.Column="0" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" >
                 <StackPanel Name="availableTesters"  Visibility="Collapsed">
-                    <TextBlock Name="LastTest" Text="מבחנים זמינים" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" AllowDrop="True" FontWeight="Bold"/>
+                    <TextBlock Text="מבחנים זמינים" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" AllowDrop="True" FontWeight="Bold"/>
                     <TextBlock Visibility="Collapsed" Name="search" Text="מחפש בוחנים במערכת" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" AllowDrop="True" FontWeight="Bold" Foreground="#FF53B734"/>
                     <ProgressBar Visibility="Collapsed" Name="myProgressBar" Height="30" Width="250"/>
                     <ListBox Name="listBox" ItemsSource="{Binding}"  ItemTemplate="{StaticResource myTester}" HorizontalContentAlignment="Stretch" SelectionChanged="ListBox_SelectionChanged"/>
@@ -179,11 +179,11 @@
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="20*"/>
-                        <RowDefinition Height="320*"/>
+                        <RowDefinition Height="40*"/>
+                        <RowDefinition Height="300*"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <TextBlock Text="תאריכים זמינים" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" AllowDrop="True" FontWeight="Bold"/>
+                        <TextBlock TextWrapping="Wrap" Text="בתאריכים אלו יש בוחנים זמינים, בחר תאריך והמערכת תבדוק אם הם באזור מגוריך" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="RightToLeft" AllowDrop="True" FontWeight="Bold"/>
                     </Grid>
                     <Grid Grid.Row="1">
                         <ListBox Name="listBoxDates" ItemsSource="{Binding}"  ItemTemplate="{StaticResource myDates}" HorizontalContentAlignment="Stretch" SelectionChanged="ListBox_SelectionChanged" />

@@ -10,11 +10,11 @@ namespace DAL
     public class Dal_xml : Idal
     {
         XElement TesterRoot;
-        string TesterPath = @"TesterXml.xml"; //did i need property in the path????
+        string TesterPath = @"TesterXml.xml";
         XElement TraineeRoot;
-        string TraineePath = @"TraineeXml.xml"; //did i need property in the path????
+        string TraineePath = @"TraineeXml.xml";
         XElement TestRoot;
-        string TestPath = @"TestXml.xml"; //did i need property in the path????
+        string TestPath = @"TestXml.xml";
 
         public Dal_xml()
         {
@@ -89,7 +89,7 @@ namespace DAL
             }
         }
 
-        public void addTester(Tester newTester) // i need to think how to store the matrix (meybe with convert to string)
+        public void addTester(Tester newTester)
         {
             XElement id = new XElement("IdTester", newTester.IdTester);
             XElement NameTester = newTester.NameTester.ToXElement();
@@ -104,12 +104,12 @@ namespace DAL
             XElement MaxFarFromTester = new XElement("MaxFarFromTester", newTester.MaxFarFromTester);
             TesterRoot.Add(new XElement("Tester", id, NameTester, BirthDateTester, GenderTester, PhoneNumberTester, Address, SeniorityTester,
                 MaxTestsTester, CarTypeTester, mat, MaxFarFromTester));
-            //*** I need to Add the other element that already i not did ********
             TesterRoot.Save(TesterPath);
         }
 
         public void removeTester(string idTester)
         {
+            LoadDataTester();
             XElement ToRemoveTester;
             ToRemoveTester = (from tra in TesterRoot.Elements()
                               where tra.Element("IdTester").Value == idTester
@@ -125,6 +125,7 @@ namespace DAL
 
         public void changeTester(Tester updatedTester)
         {
+            LoadDataTester();
             XElement ToChangeTester;
             ToChangeTester = (from AnyTester in TesterRoot.Elements()
                               where AnyTester.Element("IdTester").Value == updatedTester.IdTester
@@ -167,6 +168,7 @@ namespace DAL
 
         public void removeTrainee(string idTrainee)
         {
+            LoadDateTrainee();
             XElement ToRemoveTrainee;
             ToRemoveTrainee = (from tra in TraineeRoot.Elements()
                                where tra.Element("IdTrainee").Value == idTrainee
@@ -182,6 +184,7 @@ namespace DAL
 
         public void changeTrainee(Trainee updatedTrainee)
         {
+            LoadDateTrainee();
             XElement tra = (from anyTrainee in TraineeRoot.Elements()
                             where anyTrainee.Element("IdTrainee").Value == updatedTrainee.IdTrainee
                             select anyTrainee).FirstOrDefault();
@@ -220,6 +223,7 @@ namespace DAL
 
         public void updateTest(Test updatedTest)
         {
+            LoadDataTest();
             XElement ToChangeTest;
             ToChangeTest = (from anyTest in TestRoot.Elements()
                             where anyTest.Element("TestNum").Value == updatedTest.TestNum
@@ -242,6 +246,7 @@ namespace DAL
 
         public void removeTest(string idTest)
         {
+            LoadDataTest();
             XElement ToRemoveTest;
             ToRemoveTest = (from anyTest in TestRoot.Elements()
                             where anyTest.Element("TestNum").Value == idTest

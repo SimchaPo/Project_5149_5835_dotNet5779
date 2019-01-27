@@ -11,7 +11,7 @@ namespace BE
 {
     public static class Checks
     {
-        public static void CheckTesterInput(Tester newTester)
+        public static void CheckTesterInput(Tester newTester) //Check new testers input
         {
             if(newTester.NameTester.FirstName == null || newTester.NameTester.LastName == null ||
                 newTester.AddresTester.City == null || newTester.AddresTester.Street == null)
@@ -33,16 +33,16 @@ namespace BE
             CheckEnglishLetters(newTester.AddresTester.Street);
             if (newTester.AddresTester.HouseNum == 0)
                 throw new Exception("מספר בית לא תקין");
-            if (newTester.BirthDateTester.AddYears(Configuration.minAgetester) > DateTime.Now)
+            if (newTester.BirthDateTester.AddYears(Configuration.minAgetester) > DateTime.Now) //Check tester isn't to young
             {
                 throw new Exception("צעיר מדי להיות בוחן");
             }
-            if (newTester.BirthDateTester.AddYears(Configuration.maxAgeTester) < DateTime.Now)
+            if (newTester.BirthDateTester.AddYears(Configuration.maxAgeTester) < DateTime.Now) //Check tester isn't to old 
             {
                 throw new Exception("מבוגר מדי להיות בוחן");
             }
         }
-        public static void CheckTraineeInput(Trainee newTrainee)
+        public static void CheckTraineeInput(Trainee newTrainee) //Check newtrainees input
         {
             if(newTrainee.NameTrainee.FirstName == null || newTrainee.NameTrainee.LastName == null ||
                 newTrainee.AddressTrainee.City == null || newTrainee.AddressTrainee.Street == null ||
@@ -68,12 +68,12 @@ namespace BE
                 throw new Exception("מספר בית לא תקין");
             CheckString(newTrainee.SchoolTrainee, "שם בית הספר");
             CheckString(newTrainee.TeacherTrainee, "שם המורה");
-            if (newTrainee.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) > DateTime.Now)
+            if (newTrainee.BirthDateTrainee.AddYears(Configuration.minAgeTrainee) > DateTime.Now) //Check trainee isn't to young
             {
                 throw new Exception("תלמיד צעיר מדי");
             }
         }
-        public static void CheckID(string myID)
+        public static void CheckID(string myID) //Check ID number is real
         {
             if (!(myID.Any(c => char.IsDigit(c)) && myID.Length == 9))
             throw new Exception("מספר זהות לא תקין");
@@ -92,18 +92,18 @@ namespace BE
             if (10 - (sum % 10) != int.Parse(myID[8].ToString()))
                 throw new Exception ("מספר זהות לא חוקי");
         }
-        public static void CheckPhoneNumber(string myNumber)
+        public static void CheckPhoneNumber(string myNumber) //Check PhoneNumber is good
         {
             if(!(myNumber.Any(c => char.IsDigit(c)) && myNumber[0] == '0' &&
                 ((myNumber.Length == 10 && myNumber[1] == '5')  || (myNumber.Length == 9 && myNumber[1] != '5'))))
             throw new Exception("מספר טלפון לא תקין");
         }
-        public static void CheckString(string myString, string item)
+        public static void CheckString(string myString, string item) //Check string has letters only
         {
             if (myString.Any(c => !(char.IsLetter(c) || char.IsWhiteSpace(c))))
                 throw new Exception(item + " לא תקין");
         }
-        public static void CheckEnglishLetters(string myStr)
+        public static void CheckEnglishLetters(string myStr) //Check string has English letters only
         {
             if (myStr.Any(t => !char.IsLower(t) && !char.IsUpper(t) && !char.IsWhiteSpace(t)))
             {
@@ -186,87 +186,21 @@ namespace BE
                     IdTester = t.IdTester,
                     NameTester = t.NameTester.Clone(),
                     BirthDateTester = t.BirthDateTester,
-                    GenderTester = t.GenderTester,//did datetime return reffence or copy???????????????????
+                    GenderTester = t.GenderTester,
                     PhoneNumberTester = t.PhoneNumberTester,
                     AddresTester = t.AddresTester.Clone(),
                     SeniorityTester = t.SeniorityTester,
                     MaxTestsTester = t.MaxTestsTester,
                     CarTypeTester = t.CarTypeTester,
-                    mat = (bool[,])t.mat.Clone(), //i need to make the clone of mat*********
+                    mat = (bool[,])t.mat.Clone(),
                     MaxFarFromTester = t.MaxFarFromTester
                 };
             }
             return null;
         }
-        public static string ToString(bool[,]mat)
-        {
-            string time = "";
-            for (int i = 0; i < 5; ++i)
-            {
-                time += "d " + i;
-                for (int j = 0; j < 7; ++j)
-                {
-                    if (mat[i, j] == true)
-                    {
-                        time += " h " + j;
-                    }
-                }
-                time += "\n";
-            }
-            return time;
-        }
-        public static bool[,] ToMatrix(string work)
-        {
-            bool[,] mat = new bool[5, 7] { { false, false, false, false, false, false, false},
-                { false, false, false, false, false, false, false },
-                { false, false, false, false, false, false, false },
-                { false, false, false, false, false, false, false }, { false, false, false, false, false, false, false } };
-            int i = -1;
-            bool flag = false;
-            foreach (char a in work)
-            {
-                if (a == 'd')
-                {
-                    ++i;
-                    flag = false;
-                }
-                if (char.IsDigit(a))
-                {
-                    if (flag == true)
-                    {
-                        mat[i, int.Parse(a.ToString())] = true;
-                    }
-                    flag = true;
-                }
-            }
-            return mat;
-        }
-
-        public static void DidTraineeExamInRecentTime(this Trainee t)
-        {
-
-            if (t.LastExamDate.AddDays(-Configuration.minDaysPassFromLastTest) > DateTime.Now) //we need to check if it is correct
-                throw new Exception("The studenet did exam in the last " + Configuration.minDaysPassFromLastTest + " days, please wait to correct time");//*** I need to change this
-        }
-        public static bool didTraineeMinLessons(this Trainee t)
-        {
-            return t.NumberOfLesson > Configuration.minLessons;
-        }
-
-
-        public static void didTesterPassLimitExam(this Tester t)
-        {
-            throw new Exception("not implemented func");
-        }
-        public static void didTesterVacatedInThisDate(this Tester t, DateTime time)
-        {
-            throw new Exception("not implemented func");
-        }
-
         private static void checkAdress(Address Address1) //this function to check integrity of the address, 
                                                           //for the check, I operate the query between the current address and a permanent address and check the response of the server
         {
-
             int NetErrorCounter = 0;
             Address address2 = new Address { City = "beit shemesh", Street = "nachal ein gedi", HouseNum = 40 };
             string origin = Address1.ToString();
@@ -291,7 +225,6 @@ namespace BE
                 }
                 catch (Exception)
                 {
-
                     throw new Exception("שגיאה בחיבור לרשת");
                 }
                 Stream dataStream = response.GetResponseStream();
@@ -312,23 +245,14 @@ namespace BE
                     if ((distInMiles == 3.162) || (distInMiles * 1.609344 > 550)) //3.162 miles is usualy when there is some error,
                         //and 550 Km is most long route that can a be in israel
                         throw new Exception("הכתובת אינה תקינה או שאינה קיימת \n נא וודא שאכן הכתובת כתובה באופן תקין ובאותיות אנגליות");
-
-
-
-                    //display the returned driving time
-                    // XmlNodeList formattedTime = xmldoc.GetElementsByTagName("formattedTime");
-                    // string fTime = formattedTime[0].ChildNodes[0].InnerText;
-                    //  Console.WriteLine("Driving Time: " + fTime);
                 }
                 else if (xmldoc.GetElementsByTagName("statusCode")[0].ChildNodes[0].InnerText == "402")
                 //we have an answer that an error occurred, one of the addresses is not found
                 {
-                    // Console.WriteLine("an error occurred, one of the addresses is not found. try again.");
                     throw new Exception("הכתובת אינה תקינה או שאינה קיימת \n נא וודא שאכן הכתובת כתובה באופן תקין ובאותיות אנגליות");
                 }
                 else //busy network or other error...
                 {
-                    // Console.WriteLine("We have'nt got an answer, maybe the net is busy...");
                     if (NetErrorCounter <= 3)
                         NetErrorCounter++;
                     else

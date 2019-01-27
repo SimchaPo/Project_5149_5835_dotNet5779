@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Address.cs" />
-    <Compile Include="BE.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Checks.cs" />
     <Compile Include="enums.cs" />
