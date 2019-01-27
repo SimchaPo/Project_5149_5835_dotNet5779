@@ -26,7 +26,6 @@ namespace UI2
         {
             InitializeComponent();
             bl = FactoryBL.GetBL();
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

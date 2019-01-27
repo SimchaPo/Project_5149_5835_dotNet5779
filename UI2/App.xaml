@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:UI2"
              StartupUri="EntrenceWindow.xaml">
     <Application.Resources>
-         
+        
     </Application.Resources>
 </Application>

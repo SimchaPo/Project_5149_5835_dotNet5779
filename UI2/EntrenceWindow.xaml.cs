@@ -53,7 +53,6 @@ namespace UI2
                     }
                     if (combo.SelectedIndex == 1)
                     {
-                        
                         tester = bl.GetTester(userID.Text);
                         if (tester.NameTester.FirstName != userFirstName.Text || tester.NameTester.LastName != userLastName.Text)
                             throw new Exception("אחד או יותר מהנתונים שהוזנו שגויים");
@@ -144,6 +143,5 @@ namespace UI2
             groups gr = new groups();
             gr.ShowDialog();
         }
-    }
-    
+    }   
 }

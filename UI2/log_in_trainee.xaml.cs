@@ -29,6 +29,21 @@ namespace UI2
             trainee1 = trainee;
             DataContext = trainee;
             bl = FactoryBL.GetBL();
+            lastTestOfTrainee(trainee1);
+        }
+        private void lastTestOfTrainee(Trainee trainee)
+        {
+            if (bl.getTestsOfTrainee(trainee).Count > 0)
+            {
+                Test test = bl.getTestsOfTrainee(trainee).Last();
+                if (test.TestDate > DateTime.Now)
+                {
+                    nextTest.Visibility = Visibility.Visible;
+                    testerOfTrainee.DataContext = bl.GetTester(test.TesterId);
+                    DateOfTest.DataContext = test;
+                    CarTypeTest.DataContext = test;
+                }
+            }
         }
         private void updateTrainee_Click(object sender, RoutedEventArgs e)
         {
@@ -43,8 +58,9 @@ namespace UI2
                 bl.checkTraineeDoTest(trainee1);
                 create_a_test create = new create_a_test(trainee1);
                 create.ShowDialog();
+                lastTestOfTrainee(trainee1);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -66,7 +82,6 @@ namespace UI2
             {
                 MessageBox.Show(ex.Message, "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
 
         private void delete_trainee_Click(object sender, RoutedEventArgs e)

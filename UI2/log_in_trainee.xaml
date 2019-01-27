@@ -108,6 +108,28 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="#FFE4F36D" Name="nextTest" Visibility="Collapsed">
+                    <StackPanel >
+                        <TextBlock Text="המבחן הבא" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                        <TextBlock Name="testerOfTrainee" TextWrapping="Wrap" HorizontalAlignment="Center">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1} - בוחן">
+                                    <Binding  Path="NameTester.FirstName"/>
+                                    <Binding Path="NameTester.LastName"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                        <TextBlock Name="DateOfTest" Text="{Binding Path=TestDate, StringFormat=dd/MM/yyyy-hh:mm}" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                        <TextBlock Name="CarTypeTest" TextWrapping="Wrap" HorizontalAlignment="Center">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding  Path="carType"/>
+                                    <Binding Path="gearbox"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </StackPanel>
+                </Grid>
                 <Grid Grid.Row="1" HorizontalAlignment="Center" FlowDirection="RightToLeft" Width="205">
                     <TextBlock Text="בקשת מבחן באמצעות המערכת" TextWrapping="Wrap" HorizontalAlignment="Center"/>
                     <Button Name="order_test" Content="בקשת מבחן" HorizontalAlignment="Center" VerticalAlignment="Center" Click="order_test_Click"/>

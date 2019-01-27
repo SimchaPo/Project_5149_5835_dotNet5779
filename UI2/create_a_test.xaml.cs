@@ -105,7 +105,6 @@ namespace UI2
                     availableDates.Visibility = Visibility.Visible;
                     return;
                 } 
-
                 availableTesters.Visibility = Visibility.Visible;
                 search.Visibility = Visibility.Visible;
                 myProgressBar.Visibility = Visibility.Visible;

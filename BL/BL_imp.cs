@@ -328,8 +328,6 @@ namespace BL
         public int GetNumberOfTestTrainee(Trainee trainee)
         {
             return getTestsOfTrainee(trainee).Count();
-        }
-
-      
+        }    
     }
 }
