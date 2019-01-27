@@ -91,6 +91,7 @@ namespace UI2
                 {
                     testers.Add(t);
                 }
+
                 if (testers.Count == 0)
                 {
                     List<DateTime> availableDatesToShow = new List<DateTime>();
@@ -103,7 +104,8 @@ namespace UI2
                     listBoxDates.ItemsSource = availableDatesToShow;
                     availableDates.Visibility = Visibility.Visible;
                     return;
-                }
+                } 
+
                 availableTesters.Visibility = Visibility.Visible;
                 search.Visibility = Visibility.Visible;
                 myProgressBar.Visibility = Visibility.Visible;

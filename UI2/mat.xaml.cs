@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BE;
 using BL;
-
+using System.IO;
 namespace UI2
 {
     /// <summary>
@@ -36,10 +36,10 @@ namespace UI2
                 { false, false, false, false, false, false, false },
                 { false, false, false, false, false, false, false },
                 { false, false, false, false, false, false, false } };
-
-            imageNotWorking.Source = new BitmapImage(new Uri("C:/Users/OWNER/source/repos/SimchaPo/Project_5149_5835_dotNet5779/UI2/images/עובד לא.jpg"));
+            string DirPath = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName;
+            imageNotWorking.Source = new BitmapImage(new Uri(DirPath+"/images/עובד לא.jpg"));
             notWorking.ImageSource = imageNotWorking.Source;
-            imageWorking.Source = new BitmapImage(new Uri("C:/Users/OWNER/source/repos/SimchaPo/Project_5149_5835_dotNet5779/UI2/images/עובד.jpg"));
+            imageWorking.Source = new BitmapImage(new Uri(DirPath+"/images/עובד.jpg"));
             working.ImageSource = imageWorking.Source;
             
         }
